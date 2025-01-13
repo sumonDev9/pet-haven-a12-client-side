@@ -1,9 +1,9 @@
-import React from 'react';
+import Navber from '../pages/Share/Navber';
 
 const Mainlayout = () => {
     return (
         <div>
-            this
+           <Navber></Navber>
         </div>
     );
 };
