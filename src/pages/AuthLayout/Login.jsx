@@ -1,9 +1,39 @@
 import { Link } from "react-router-dom";
+// import UseAuth from "../../hooks/UseAuth";
 
 const Login = () => {
+    // const {userLogin} = UseAuth();
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        // console.log(email, password)
 
+        // login
+        // userLogin(email, password)
+        // .then(result => {
+        //     setUser(result.user);
+        //     console.log(result.user)
+        //     e.target.reset();
+            
+            // Swal.fire({
+            //     title: 'Success!',
+            //     text: 'The user login has been successfully.',
+            //     icon: 'success',
+            //     confirmButtonText: 'OK'
+            // });
+            // navigate(location.state ? location.state : "/");
+        // })
+        // .catch((error) => {
+            // Swal.fire({
+            //     icon: 'error',
+            //     title: 'Login Failed',
+            //     text: 'Please check your credentials and try again!',
+            //     confirmButtonText: 'OK',
+            //     timer: 5000,
+            //   });
+        //   })
     }
     return (
         <div className="min-h-screen px-4 flex items-center justify-center bg-gray-100 dark:bg-gray-900">

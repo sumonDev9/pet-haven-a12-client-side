@@ -23,7 +23,7 @@ const Register = () => {
           .then(result => {
               const user = (result.user);
               setUser(user)
-              console.log(user)
+            //   console.log(user)
              
               e.target.reset();
               enqueueSnackbar('User registration successful!', { variant: 'success' });

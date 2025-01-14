@@ -1,4 +1,5 @@
 import { useState } from "react";
+import React from "react";
 import {
   Navbar,
   Typography,
@@ -9,26 +10,48 @@ import {
   DropdownItem,
   DropdownToggle,
   DropdownMenu,
-  Avatar
+  Avatar,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem
 } from "@material-tailwind/react";
+
 import { Link } from "react-router-dom";
 import { IoMoon, IoSunny } from "react-icons/io5";
+import UseAuth from "../../hooks/UseAuth";
 
 
 const Navber = () => {
   const [openNav, setOpenNav] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
   const [dark, setDark] = useState(false);
+  const { user, userLogout } = UseAuth();
 
   const handleNavToggle = () => setOpenNav(!openNav);
 
-  const toggleDropdown = () => setOpenDropdown(!openDropdown);
+  // const toggleDropdown = () => setOpenDropdown(!openDropdown);
 
-       // toggle
-       const darkModeHandler = () => {
-        setDark(!dark);
-        document.body.classList.toggle("dark");
-      }
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+  // toggle
+  const darkModeHandler = () => {
+    setDark(!dark);
+    document.body.classList.toggle("dark");
+  }
+
+  const profileMenuItems = [
+    // {
+    //   label: `${user?.displayName}`,
+    // },
+    {
+      label: "Dashboard",
+    },
+    {
+      label: "Sign Out",
+    },
+  ];
+
 
   return (
     <div className="w-full dark:bg-gray-900 bg-white shadow-md">
@@ -47,49 +70,86 @@ const Navber = () => {
 
           {/* nav menu*/}
           <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-4">
-            
+
             <Link to='/'>
-            <Typography className="cursor-pointer">
-             Home
-            </Typography>
+              <Typography className="cursor-pointer">
+                Home
+              </Typography>
             </Link>
             <Link to='/petListing'>
-            <Typography className="cursor-pointer">
-            Pet Listing
-            </Typography>
+              <Typography className="cursor-pointer">
+                Pet Listing
+              </Typography>
             </Link>
             <Link to='/donationCampaigns'>
-            <Typography className="cursor-pointer">
-            Donation Campaigns
-            </Typography>
+              <Typography className="cursor-pointer">
+                Donation Campaigns
+              </Typography>
             </Link>
-          
+
           </div>
 
-          {/* প্রোফাইল পিকচার ও ড্রপডাউন মেনু */}
+          {/* proile pic and dropDown menu */}
           <div className="flex items-center gap-4">
-            {/* login and Register button*/}
-            <Link to='/login'>
-            <Button variant="outlined" className="border-primary border-2 dark:text-white text-secondary"> Login</Button>
-            </Link>
-           <Link to='/register'><Button className="bg-primary">Register</Button></Link>
+            {
+              user && user?.email ? <>
+                {/* profile */}
+                <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+                  <MenuHandler>
+                    <Button
+                      variant="text"
+                      color="blue-gray"
+                      className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+                    >
+                      <Avatar
+                        variant="circular"
+                        size="sm"
+                        alt="User Profile"
+                        className="border border-gray-900 p-0.5"
+                        src={user?.photoURL || "https://via.placeholder.com/40"}
+                      />
+                    </Button>
+                  </MenuHandler>
+                  <MenuList className="p-1">
+                    {profileMenuItems.map(({ label }, key) => {
+                      const isLastItem = key === profileMenuItems.length - 1;
+                      return (
+                        <MenuItem
+                          key={label}
+                          onClick={() => {
+                            closeMenu();
+                            if (isLastItem) {
+                              userLogout();
+                            }
+                          }}
+                          className={`flex items-center gap-2 rounded ${isLastItem
+                              ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                              : ""
+                            }`}
+                        >
+                          <Typography
+                            as="span"
+                            variant="small"
+                            className={`font-normal ${isLastItem ? "text-red-500" : "text-gray-900"
+                              }`}
+                          >
+                            {label}
+                          </Typography>
+                        </MenuItem>
+                      );
+                    })}
+                  </MenuList>
+                </Menu>
 
-            {/* profile */}
-            {/* <IconButton variant="text" onClick={toggleDropdown}>
-            <Avatar src="https://via.placeholder.com/40" alt="Profile" />
-          </IconButton>
-          {openDropdown && (
-            <Dropdown open={openDropdown}>
-              <DropdownToggle>Profile</DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem>Dashboard</DropdownItem>
-                <DropdownItem>Logout</DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-          )} */}
-
-
-              {/* toggle theme */}
+              </> : <>
+                {/* login and Register button*/}
+                <Link to='/login'>
+                  <Button variant="outlined" className="border-primary border-2 dark:text-white text-secondary"> Login</Button>
+                </Link>
+                <Link to='/register'><Button className="bg-primary">Register</Button></Link>
+              </>
+            }
+            {/* toggle theme */}
             <button onClick={() => darkModeHandler()}>
               {
 
@@ -128,20 +188,20 @@ const Navber = () => {
         {/* samll seceen dropdown menu*/}
         <Collapse open={openNav}>
           <div className="flex flex-col text-secondary dark:text-white items-start gap-2 mt-4">
-          <Link to='/'>
-            <Typography className="cursor-pointer">
-             Home
-            </Typography>
+            <Link to='/'>
+              <Typography className="cursor-pointer">
+                Home
+              </Typography>
             </Link>
             <Link to='/petListing'>
-            <Typography className="cursor-pointer">
-            Pet Listing
-            </Typography>
+              <Typography className="cursor-pointer">
+                Pet Listing
+              </Typography>
             </Link>
             <Link to='/donationCampaigns'>
-            <Typography className="cursor-pointer">
-            Donation Campaigns
-            </Typography>
+              <Typography className="cursor-pointer">
+                Donation Campaigns
+              </Typography>
             </Link>
           </div>
         </Collapse>
