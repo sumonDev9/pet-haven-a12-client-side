@@ -1,17 +1,15 @@
 import { Button, Typography } from '@material-tailwind/react';
 import React from 'react';
+import SectionTitle from './SectionTitle';
 
 const CallToAction = () => {
     return (
-        <section className="py-16 px-6  bg-gray-100 dark:bg-gray-900 ">
-            <div className='text-center'>
-                <Typography variant="h2" className="text-4xl lg:text-5xl font-bold mb-6">
-                Give Love, Adopt a Pet
-                </Typography>
-                <Typography variant="body1" className="max-w-3xl mx-auto text-lg mb-8">
-                    Every pet deserves a loving home. You can make a difference in their life by adopting. Let’s create a better world for them, one adoption at a time.
-                </Typography>
-            </div>
+        <section className="py-16 px-6  bg-gray-50 dark:bg-gray-900 ">
+            <SectionTitle 
+            heading={"Give Love, Adopt a Pet"}
+            subHeading={'Every pet deserves a loving home. You can make a difference in their life by adopting. Let’s create a better world for them, one adoption at a time.'
+            }
+            ></SectionTitle>
         <div className="w-11/12 mx-auto bg-white p-6 rounded-lg  flex flex-col lg:flex-row items-center justify-between">
        
           {/* Left Content (Title, Description, Button) */}
