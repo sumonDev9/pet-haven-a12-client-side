@@ -69,7 +69,8 @@ const Navber = () => {
           {/* প্রোফাইল পিকচার ও ড্রপডাউন মেনু */}
           <div className="flex items-center gap-4">
             {/* login and Register button*/}
-            <Link><Button variant="outlined" className="border-primary border-2 dark:text-white text-secondary"> Login</Button>
+            <Link to='/login'>
+            <Button variant="outlined" className="border-primary border-2 dark:text-white text-secondary"> Login</Button>
             </Link>
            <Link><Button className="bg-primary">Register</Button></Link>
 
@@ -113,7 +114,7 @@ const Navber = () => {
               viewBox="0 0 24 24"
               strokeWidth="2"
               stroke="currentColor"
-              className="h-6 w-6"
+              className="h-6 w-6 dark:text-white"
             >
               <path
                 strokeLinecap="round"
@@ -126,7 +127,7 @@ const Navber = () => {
 
         {/* samll seceen dropdown menu*/}
         <Collapse open={openNav}>
-          <div className="flex flex-col text-secondary items-start gap-2 mt-4">
+          <div className="flex flex-col text-secondary dark:text-white items-start gap-2 mt-4">
           <Link to='/'>
             <Typography className="cursor-pointer">
              Home
