@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import UseAuth from '../../hooks/UseAuth';
+import { useSnackbar } from 'notistack';
 
 const Register = () => {
 
-    
+    const {createUser,UserProfile, setUser} = UseAuth()
+    const navigate = useNavigate();
+    const { enqueueSnackbar } = useSnackbar();
+
     const handleRegister = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -12,6 +17,30 @@ const Register = () => {
         const password = e.target.password.value;
 
         console.table({name, photo, email, password})
+
+          // register
+          createUser(email, password)
+          .then(result => {
+              const user = (result.user);
+              setUser(user)
+              console.log(user)
+             
+              e.target.reset();
+              enqueueSnackbar('User registration successful!', { variant: 'success' });
+           
+              // user name and photo
+              UserProfile({ displayName: name, photoURL: photo })
+                  .then(() => {
+                      navigate('/')
+
+                  })
+                  .catch(err => {
+                     enqueueSnackbar('Failed to update user profile. Please try again!', { variant: 'error' });
+                  })
+          })
+          .catch((error) => {
+            enqueueSnackbar('An error occurred during registration. Please try again!', { variant: 'error' });
+          });
     }
 
     return (
