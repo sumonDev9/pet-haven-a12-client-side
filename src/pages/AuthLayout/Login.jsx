@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-// import UseAuth from "../../hooks/UseAuth";
+import UseAuth from "../../hooks/UseAuth";
+import { useSnackbar } from "notistack";
 
 const Login = () => {
-    // const {userLogin} = UseAuth();
-
+    const {userLogin, setUser} = UseAuth();
+    const { enqueueSnackbar } = useSnackbar();
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -11,29 +12,18 @@ const Login = () => {
         // console.log(email, password)
 
         // login
-        // userLogin(email, password)
-        // .then(result => {
-        //     setUser(result.user);
-        //     console.log(result.user)
-        //     e.target.reset();
-            
-            // Swal.fire({
-            //     title: 'Success!',
-            //     text: 'The user login has been successfully.',
-            //     icon: 'success',
-            //     confirmButtonText: 'OK'
-            // });
+        userLogin(email, password)
+        .then(result => {
+            setUser(result.user);
+            console.log(result.user)
+            e.target.reset();
+            enqueueSnackbar('The user login has been successfully.', {variant: 'success',});
             // navigate(location.state ? location.state : "/");
-        // })
-        // .catch((error) => {
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Login Failed',
-            //     text: 'Please check your credentials and try again!',
-            //     confirmButtonText: 'OK',
-            //     timer: 5000,
-            //   });
-        //   })
+        })
+        .catch((error) => {
+            enqueueSnackbar('Login failed. Please check your credentials and try again!', {variant: 'error',autoHideDuration: 5000,
+            });
+          })
     }
     return (
         <div className="min-h-screen px-4 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
