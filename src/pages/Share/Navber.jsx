@@ -53,12 +53,12 @@ const Navber = () => {
              Home
             </Typography>
             </Link>
-            <Link to='/'>
+            <Link to='/petListing'>
             <Typography className="cursor-pointer">
             Pet Listing
             </Typography>
             </Link>
-            <Link to='/'>
+            <Link to='/donationCampaigns'>
             <Typography className="cursor-pointer">
             Donation Campaigns
             </Typography>
@@ -132,12 +132,12 @@ const Navber = () => {
              Home
             </Typography>
             </Link>
-            <Link to='/'>
+            <Link to='/petListing'>
             <Typography className="cursor-pointer">
             Pet Listing
             </Typography>
             </Link>
-            <Link to='/'>
+            <Link to='/donationCampaigns'>
             <Typography className="cursor-pointer">
             Donation Campaigns
             </Typography>
