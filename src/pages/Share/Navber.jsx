@@ -22,17 +22,16 @@ const Navber = () => {
 
     return (
         <div>
-            <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 lg:py-4">
+            <Navbar className="">
       <div className="flex items-center justify-between text-blue-gray-900">
         {/* লোগো */}
         <Typography
           as="a"
-          href="#"
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 font-bold flex items-center gap-2"
         >
           {/* এখানে লোগো আইকন বা টেক্সট রাখতে পারেন */}
-          <img src="https://via.placeholder.com/30" alt="Logo" className="h-8 w-8 rounded-full" />
+          {/* <img src="https://via.placeholder.com/30" alt="Logo" className="h-8 w-8 rounded-full" /> */}
           <span>Pet Adoption</span>
         </Typography>
 
