@@ -2,8 +2,8 @@ import { Button, Typography } from "@material-tailwind/react";
 
 const Bannar = () => {
     return (
-        <section className="bg-gray-100 dark:bg-gray-900 py-6 md:py-16 px-6 md:px-16 lg:px-24 transition-all duration-300">
-        <div className="container mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
+        <section className="bg-gray-100 dark:bg-gray-900 py-6 md:py-16 px-6 transition-all duration-300">
+        <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
           {/* Left Content */}
           <div className="md:w-1/2 text-center md:text-left space-y-6">
             <Typography variant="h1" className="text-4xl lg:text-5xl font-bold text-secondary dark:text-white">
