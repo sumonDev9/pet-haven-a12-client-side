@@ -72,7 +72,7 @@ const Navber = () => {
             <Link to='/login'>
             <Button variant="outlined" className="border-primary border-2 dark:text-white text-secondary"> Login</Button>
             </Link>
-           <Link><Button className="bg-primary">Register</Button></Link>
+           <Link to='/register'><Button className="bg-primary">Register</Button></Link>
 
             {/* profile */}
             {/* <IconButton variant="text" onClick={toggleDropdown}>
