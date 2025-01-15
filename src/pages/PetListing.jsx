@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SectionTitle from '../components/SectionTitle';
 import { Input, Option, Select } from '@material-tailwind/react';
 import { CiSearch } from 'react-icons/ci';
@@ -8,18 +8,23 @@ import PetCard from '../components/PetCard';
 
 
 const PetListing = () => {
+  
+
+  const [filter, setFilter] = useState('');
+  const [search, setSearch] = useState('');
+
 
    const {data: pets, isPending} = useQuery({
-    queryKey: ['pets'],
+    queryKey: ['pets', filter, search],
     queryFn: async () => {
-        const res = await axios.get('http://localhost:5000/pets');
+        const res = await axios.get(`http://localhost:5000/pets?filter=${filter}&search=${search}`);
         return res.data;
-        
     }
-    
-   })
+})
    
 console.log(pets)
+console.log(search)
+
 
 if(isPending){
     <span>Loading...</span>
@@ -38,17 +43,33 @@ if(isPending){
                     {/* search */}
                     <div className="w-full  md:w-72">
                             <Input
-                            label="search" className='bg-white  text-secondary' icon={<CiSearch />} />
+                            onChange={e => setSearch(e.target.value)}
+                            label="search"
+                            className='bg-white  text-secondary' icon={<CiSearch />} />
                     </div>
                     {/* sort price */}
                     <div className="w-full mt-4 md:mt-0 md:w-72">
-                            <Select 
-                 label="category" className='bg-white'>
-                                <Option>Cat</Option>
-                                <Option>Dog</Option>
-                                <Option>Rabbit</Option>
-                                <Option>Fish</Option>
-                            </Select>
+                            {/* <Select 
+                                value={filter} // Set value for select input
+                            
+                               onChange={(e) => console.log(e.target.value)}
+                                className='bg-white'>
+                                <Option value=''>category by fillter</Option>
+                                <Option value='Cat'>Cat</Option>
+                                <Option value='Dog'>Dog</Option>
+                                <Option value='Rabbit'>Rabbit</Option>
+                                <Option value='Bird'>Bird</Option>
+                            </Select> */}
+                            <select 
+                            onChange={(e) => setFilter(e.target.value)}
+                            className='border p-2 w-72 rounded-lg'
+                            name="category">
+                                <option value="">Filter By Category</option>
+                                <option value="Cat">Cat</option>
+                                <option value="Dog">Dog</option>
+                                <option value="Rabbit">Rabbit</option>
+                                <option value="Bird">Bird</option>
+                            </select>
                         </div>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
