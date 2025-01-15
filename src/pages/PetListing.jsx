@@ -4,6 +4,7 @@ import { Input, Option, Select } from '@material-tailwind/react';
 import { CiSearch } from 'react-icons/ci';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import PetCard from '../components/PetCard';
 
 
 const PetListing = () => {
@@ -17,6 +18,7 @@ const PetListing = () => {
     }
     
    })
+   
 console.log(pets)
 
 if(isPending){
@@ -24,7 +26,7 @@ if(isPending){
 }
 
  return (
-       <div className='bg-gray-50  py-10'>
+       <div className='bg-gray-50 dark:bg-gray-900  py-10'>
            <div className='w-11/12 mx-auto'>
           <SectionTitle
           heading={"Find Your Furry Friend"}
@@ -34,7 +36,7 @@ if(isPending){
             {/* Filters Section */}
             <div className='flex pb-10 justify-between items-center flex-col md:flex-row gap:4 md:gap-8'>
                     {/* search */}
-                    <div className="w-full md:w-72">
+                    <div className="w-full  md:w-72">
                             <Input
                             label="search" className='bg-white  text-secondary' icon={<CiSearch />} />
                     </div>
@@ -49,7 +51,11 @@ if(isPending){
                             </Select>
                         </div>
                 </div>
-                <h1>this is pets {pets?.length}</h1>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                    {
+                        pets?.map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
+                    }
+                </div>
            </div>
        </div>
     );
