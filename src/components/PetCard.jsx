@@ -8,6 +8,7 @@ import {
   } from "@material-tailwind/react";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlineDateRange } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const PetCard = ({pet}) => {
     const {_id, image, name, age, location} = pet || {}
@@ -32,7 +33,9 @@ const PetCard = ({pet}) => {
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
+        <Link to={`/petdetails/${_id}`}>
         <Button className="bg-primary">Read More</Button>
+        </Link>
       </CardFooter>
     </Card>
     );

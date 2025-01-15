@@ -22,8 +22,7 @@ const PetListing = () => {
     }
 })
    
-console.log(pets)
-console.log(search)
+
 
 
 if(isPending){

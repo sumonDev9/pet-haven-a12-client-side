@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/AuthLayout/Login";
 import Register from "../pages/AuthLayout/Register";
 import PetListing from "../pages/PetListing";
+import PetDetails from "../pages/PetDetails";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         //   path: '/donationCampaigns',
         //   element: <PetListing></PetListing>
         // },
+        {
+          path: '/petdetails/:id',
+          element: <PetDetails></PetDetails>
+        },
         {
           path: '/login',
           element: <Login></Login>
