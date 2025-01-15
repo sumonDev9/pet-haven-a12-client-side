@@ -5,6 +5,7 @@ import { app } from "../firebase/firebase";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -33,6 +34,11 @@ const AuthProvider = ({children}) => {
         return updateProfile(auth.currentUser, updateData)
     }
 
+        // google provider
+        const logInbyGoogle = () => {
+            return signInWithPopup(auth, googleProvider);
+        };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
              setUser(currentUser);
@@ -50,7 +56,8 @@ const AuthProvider = ({children}) => {
         createUser,
         userLogin,
         userLogout,
-        UserProfile
+        UserProfile,
+        logInbyGoogle
     }
 
     return (
