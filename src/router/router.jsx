@@ -1,9 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Mainlayout from "../Layout/Mainlayout";
 import Home from "../pages/Home";
-import PetListing from "../pages/petListing";
 import Login from "../pages/AuthLayout/Login";
 import Register from "../pages/AuthLayout/Register";
+import PetListing from "../pages/PetListing";
 
 const router = createBrowserRouter([
     {
@@ -18,10 +18,10 @@ const router = createBrowserRouter([
           path: '/petListing',
           element: <PetListing></PetListing>
         },
-        {
-          path: '/donationCampaigns',
-          element: <PetListing></PetListing>
-        },
+        // {
+        //   path: '/donationCampaigns',
+        //   element: <PetListing></PetListing>
+        // },
         {
           path: '/login',
           element: <Login></Login>

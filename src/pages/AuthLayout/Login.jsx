@@ -92,17 +92,7 @@ const Login = () => {
 
                 {/* Social Login Buttons */}
                 <div className="flex items-center space-x-4">
-                    {/* <button
-                        onClick={handleGoogleLogin}
-                        className="w-full py-2 px-4 flex items-center justify-center text-secondary font-semibold rounded-lg border-primary border-2 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white focus:ring-offset-2"
-                    >
-                        <img
-                            src="https://i.ibb.co/TcB5YZK/icons8-google-48.png"
-                            alt="Google logo"
-                            className="h-5 w-5 mr-2"
-                        />
-                        Google
-                    </button> */}
+                        {/* google */}
                         <GoogleLogin></GoogleLogin>
                     <button
                         //   onClick={handleGithubLogin}
