@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import { useSnackbar } from "notistack";
+import GoogleLogin from "../../hooks/GoogleLogin";
 
 const Login = () => {
     const {userLogin, setUser} = UseAuth();
     const { enqueueSnackbar } = useSnackbar();
+
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -25,6 +27,8 @@ const Login = () => {
             });
           })
     }
+
+    // google 
     return (
         <div className="min-h-screen px-4 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
             <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -88,9 +92,8 @@ const Login = () => {
 
                 {/* Social Login Buttons */}
                 <div className="flex items-center space-x-4">
-                    <button
-
-                        //   onClick={handleGoogleLogin}
+                    {/* <button
+                        onClick={handleGoogleLogin}
                         className="w-full py-2 px-4 flex items-center justify-center text-secondary font-semibold rounded-lg border-primary border-2 focus:outline-none focus:ring-2 focus:ring-primary dark:text-white focus:ring-offset-2"
                     >
                         <img
@@ -99,8 +102,8 @@ const Login = () => {
                             className="h-5 w-5 mr-2"
                         />
                         Google
-                    </button>
-
+                    </button> */}
+                        <GoogleLogin></GoogleLogin>
                     <button
                         //   onClick={handleGithubLogin}
                         className="w-full py-2 px-4 flex items-center justify-center text-secondary font-semibold rounded-lg border-primary border-2  focus:outline-none focus:ring-2 focus:ring-primary dark:text-white focus:ring-offset-2"
