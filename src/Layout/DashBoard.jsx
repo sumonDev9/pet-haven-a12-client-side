@@ -17,6 +17,7 @@ const DashBoard = () => {
     const {user} = UseAuth();
     return (
         <div>
+            {/* responsive sidebar */}
           <div className='bg-white shadow-md'>
           <React.Fragment>
                 <Button className='bg-base-100 flex md:hidden'  onClick={openDrawer}><RiMenu2Fill className='text-2xl text-secondary'/></Button>
@@ -55,20 +56,23 @@ const DashBoard = () => {
                 </Drawer>
             </React.Fragment>
           </div>
+            {/* sidebar */}
             <div className='flex'>
-                <div className="w-72 hidden md:flex min-h-screen bg-primary">
-                    <ul className='p-5 w-full  navlinks text-base space-y-2'>
-                        <Typography className='text-white text-2xl font-bold'>
+                <div className="w-72 fixed hidden md:block min-h-screen bg-primary">
+                <Typography className='text-white px-5 py-5 text-2xl font-bold'>
                             {user?.displayName}
                         </Typography>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink>My added pets</NavLink></li>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink>Adoption Request</NavLink></li>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink>Create Donation Campaign</NavLink></li>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
-                        <li className=' p-1 hover:bg-white rounded-md'><NavLink>My Donations</NavLink></li>
+                    <ul className='px-5 w-full  navlinks text-base space-y-2'>
+                        
+                        <li className=' p-2 hover:bg-gray-100 rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                        <li className=' p-2 hover:bg-[#b6e1e4] rounded-md'><NavLink>My added pets</NavLink></li>
+                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>Adoption Request</NavLink></li>
+                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>Create Donation Campaign</NavLink></li>
+                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
+                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donations</NavLink></li>
                     </ul>
                 </div>
+                {/* content */}
                 <div className="flex-1 bg-gray-200 px-10 pt-10">
                     <Outlet></Outlet>
                 </div>
