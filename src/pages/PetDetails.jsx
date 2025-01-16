@@ -65,8 +65,6 @@ const PetDetails = () => {
     setOpen(false)
   }
 
-
-
   const { _id, image, name, longDescription, shortDescription, age, location } = pet || {}
   return (
     <section className='w-11/12 mx-auto'>
@@ -151,7 +149,7 @@ const PetDetails = () => {
           </CardBody>
           <CardFooter className="pt-0">
             
-              <Button variant="gradient"  type="submit" fullWidth>
+              <Button variant="gradient" type="submit" fullWidth>
                 Sign In
               </Button>
            

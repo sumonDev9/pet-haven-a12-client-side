@@ -5,6 +5,8 @@ import Login from "../pages/AuthLayout/Login";
 import Register from "../pages/AuthLayout/Register";
 import PetListing from "../pages/PetListing";
 import PetDetails from "../pages/PetDetails";
+import DashBoard from "../Layout/DashBoard";
+import AddPets from "../pages/Dashboard/UserDashboard/AddPets";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +40,16 @@ const router = createBrowserRouter([
         
       ]
     },
+    {
+      path: 'dashboard',
+      element: <DashBoard></DashBoard>,
+      children: [
+        {
+          path: 'addPets',
+          element: <AddPets></AddPets>
+        }
+      ]
+    }
   ]);
 
 export default router;

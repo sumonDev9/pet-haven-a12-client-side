@@ -41,12 +41,6 @@ const Navber = () => {
   }
 
   const profileMenuItems = [
-    // {
-    //   label: `${user?.displayName}`,
-    // },
-    {
-      label: "Dashboard",
-    },
     {
       label: "Sign Out",
     },
@@ -67,7 +61,7 @@ const Navber = () => {
             <img src="https://i.ibb.co/Pz23rXM/logo.webp" alt="Logo" className="h-8 w-8 rounded-full" />
             {/* <span className="text-2xl text-secondary">Pet Adoption</span> */}
           </Typography>
-
+          
           {/* nav menu*/}
           <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-4">
 
@@ -110,7 +104,13 @@ const Navber = () => {
                       />
                     </Button>
                   </MenuHandler>
+
                   <MenuList className="p-1">
+                    <Link to='/dashboard'>
+                      <Typography className="cursor-pointer ml-3 pb-1 text-secondary">
+                        Dashboard
+                      </Typography>
+                    </Link>
                     {profileMenuItems.map(({ label }, key) => {
                       const isLastItem = key === profileMenuItems.length - 1;
                       return (
