@@ -48,17 +48,6 @@ if(isPending){
                     </div>
                     {/* sort price */}
                     <div className="w-full mt-4 md:mt-0 md:w-72">
-                            {/* <Select 
-                                value={filter} // Set value for select input
-                            
-                               onChange={(e) => console.log(e.target.value)}
-                                className='bg-white'>
-                                <Option value=''>category by fillter</Option>
-                                <Option value='Cat'>Cat</Option>
-                                <Option value='Dog'>Dog</Option>
-                                <Option value='Rabbit'>Rabbit</Option>
-                                <Option value='Bird'>Bird</Option>
-                            </Select> */}
                             <select 
                             onChange={(e) => setFilter(e.target.value)}
                             className='border p-2 w-72 rounded-lg'

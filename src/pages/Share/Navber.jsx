@@ -54,7 +54,7 @@ const Navber = () => {
 
 
   return (
-    <div className="w-full dark:bg-gray-900 bg-white shadow-md">
+    <div className="w-full dark:bg-gray-900 bg-white shadow-lg sticky top-0 z-50">
       <Navbar className="rounded-none dark:bg-gray-900 border-none w-11/12 mx-auto px-0 shadow-none">
         <div className="flex items-center justify-between">
           {/* logo */}
