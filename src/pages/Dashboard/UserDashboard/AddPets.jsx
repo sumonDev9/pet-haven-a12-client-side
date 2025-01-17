@@ -5,7 +5,20 @@ import Select from "react-select";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import { useSnackbar } from 'notistack';
+
+
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const AddPets = () => {
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  const { enqueueSnackbar } = useSnackbar();
+
     const categoryOptions = [
         { value: "Dog", label: "Dog" },
         { value: "Cat", label: "Cat" },
@@ -35,16 +48,40 @@ const AddPets = () => {
             .required("Please provide a short description"),
             longDescription: Yup.string().required("Please provide a detailed description"),
         }),
-        onSubmit: (values, {resetForm}) => {
-          const formData = {
+        onSubmit: async (values, {resetForm}) => {
+          // image upload to imgbb and then get an url
+          const imageFile = new FormData();
+          imageFile.append("image", values.image);
+
+          const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+              'content-type': 'multipart/form-data'
+          }
+          })
+          
+          if(res.data.success){
+            // now send the menu item data to the server with the image url
+            const plainTextDescription = values.longDescription.replace(/<[^>]+>/g, '');
+
+          const petsData = {
             ...values,
+            longDescription: plainTextDescription,
             adopted: false,
             addedAt: new Date().toISOString(),
+            image: res.data.datadisplay_url
           };
+          
+          const petsRes = await axiosSecure.post('/pets', petsData)
+          console.log(petsRes.data)
+          if(petsRes.data.insertedId){
+            // show success popup
+            resetForm();
+            enqueueSnackbar('Pets added successful!', { variant: 'success' });
+          }
+        }
+          console.log('with image url',res.data)
           console.log("Submitted Data:", formData);
-          alert("Pet added successfully!");
-          resetForm();
-        },
+         },
       });
     return (
       

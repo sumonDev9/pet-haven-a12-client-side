@@ -59,9 +59,11 @@ const DashBoard = () => {
             {/* sidebar */}
             <div className='flex'>
                 <div className="w-72 top-0 left-0 fixed hidden md:block min-h-screen bg-primary">
+                <Link to='/'>
                 <Typography className='text-white px-5 py-5 text-2xl font-bold'>
                             {user?.displayName}
                         </Typography>
+                </Link>
                     <ul className='px-5 w-full  navlinks text-base space-y-2'>
                         
                         <li className=' p-2 hover:bg-gray-100 rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>

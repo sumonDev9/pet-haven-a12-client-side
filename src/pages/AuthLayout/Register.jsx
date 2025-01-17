@@ -29,7 +29,7 @@ const Register = () => {
               e.target.reset();
               enqueueSnackbar('User registration successful!', { variant: 'success' });
            
-              // user name and photo
+              //user name and photo
               UserProfile({ displayName: name, photoURL: photo })
                   .then(() => {
                       navigate('/')
