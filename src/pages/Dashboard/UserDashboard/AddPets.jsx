@@ -15,22 +15,22 @@ const AddPets = () => {
     
       const formik = useFormik({
         initialValues: {
-          petImage: null,
-          petName: "",
-          petAge: "",
-          petCategory: "",
-          petLocation: "",
+          image: null,
+          name: "",
+          age: "",
+          category: "",
+          location: "",
           shortDescription: "",
           longDescription: "",
         },
         validationSchema: Yup.object({
-          petImage: Yup.mixed().required("Please select a pet image"),
-          petName: Yup.string().required("Please provide the pet's name"),
-          petAge: Yup.number()
+          image: Yup.mixed().required("Please select a pet image"),
+          name: Yup.string().required("Please provide the pet's name"),
+          age: Yup.number()
             .required("Please provide the pet's age")
             .min(0, "Age must be zero or greater"),
-          petCategory: Yup.string().required("Please select a pet category"),
-          petLocation: Yup.string().required("Please provide a location"),
+            category: Yup.string().required("Please select a pet category"),
+            location: Yup.string().required("Please provide a location"),
           shortDescription: Yup.string()
             .required("Please provide a short description"),
             longDescription: Yup.string().required("Please provide a detailed description"),
@@ -48,8 +48,8 @@ const AddPets = () => {
       });
     return (
       
-         <div className="flex justify-center items-center">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+         <div className="flex  pb-20 justify-end mr-[180px] items-center">
+      <div className="w-full  max-w-2xl bg-white shadow-lg rounded-lg p-6">
         <Typography variant="h4" color="blue-gray" className="text-center mb-4">
           Add Pet
         </Typography>
@@ -58,14 +58,14 @@ const AddPets = () => {
           <div className="mb-4">
             <Input
               type="file"
-              id="petImage"
-              name="petImage"
+              id="image"
+              name="image"
               onChange={(e) =>
-                formik.setFieldValue("petImage", e.currentTarget.files[0])
+                formik.setFieldValue("image", e.currentTarget.files[0])
               }
               className="file-input"
             />
-            {formik.errors.petImage && (
+            {formik.errors.image && (
               <p className="text-red-500 text-sm">{formik.errors.petImage}</p>
             )}
           </div>
@@ -76,12 +76,12 @@ const AddPets = () => {
             <Input
               className='w-full'
               label="Pet Name"
-              name="petName"
+              name="name"
               onChange={formik.handleChange}
-              value={formik.values.petName}
+              value={formik.values.name}
             />
-            {formik.errors.petName && (
-              <p className="text-red-500 text-sm">{formik.errors.petName}</p>
+            {formik.errors.name && (
+              <p className="text-red-500 text-sm">{formik.errors.name}</p>
             )}
           </div>
           {/* Pet Age */}
@@ -89,12 +89,12 @@ const AddPets = () => {
             <Input
               type="number"
               label="Pet Age"
-              name="petAge"
+              name="age"
               onChange={formik.handleChange}
-              value={formik.values.petAge}
+              value={formik.values.age}
             />
-            {formik.errors.petAge && (
-              <p className="text-red-500 text-sm">{formik.errors.petAge}</p>
+            {formik.errors.age && (
+              <p className="text-red-500 text-sm">{formik.errors.age}</p>
             )}
           </div>
         </div>
@@ -106,23 +106,23 @@ const AddPets = () => {
               options={categoryOptions}
               placeholder="Select Pet Category"
               onChange={(option) =>
-                formik.setFieldValue("petCategory", option.value)
+                formik.setFieldValue("category", option.value)
               }
             />
-            {formik.errors.petCategory && (
-              <p className="text-red-500 text-sm">{formik.errors.petCategory}</p>
+            {formik.errors.category && (
+              <p className="text-red-500 text-sm">{formik.errors.category}</p>
             )}
           </div>
           {/* Pet Location */}
           <div className="mb-4 w-full">
             <Input
               label="Pet Location"
-              name="petLocation"
+              name="location"
               onChange={formik.handleChange}
-              value={formik.values.petLocation}
+              value={formik.values.location}
             />
-            {formik.errors.petLocation && (
-              <p className="text-red-500 text-sm">{formik.errors.petLocation}</p>
+            {formik.errors.location && (
+              <p className="text-red-500 text-sm">{formik.errors.location}</p>
             )}
           </div>
         </div>

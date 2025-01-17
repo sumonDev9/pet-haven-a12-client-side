@@ -58,7 +58,7 @@ const DashBoard = () => {
           </div>
             {/* sidebar */}
             <div className='flex'>
-                <div className="w-72 fixed hidden md:block min-h-screen bg-primary">
+                <div className="w-72 top-0 left-0 fixed hidden md:block min-h-screen bg-primary">
                 <Typography className='text-white px-5 py-5 text-2xl font-bold'>
                             {user?.displayName}
                         </Typography>
