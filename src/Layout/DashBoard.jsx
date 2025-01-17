@@ -58,7 +58,7 @@ const DashBoard = () => {
           </div>
             {/* sidebar */}
             <div className='flex'>
-                <div className="w-72 top-0 left-0 fixed hidden md:block min-h-screen bg-primary">
+                <div className="w-72  hidden md:block min-h-screen bg-primary">
                 <Link to='/'>
                 <Typography className='text-white px-5 py-5 text-2xl font-bold'>
                             {user?.displayName}
@@ -69,7 +69,7 @@ const DashBoard = () => {
                         <li className=' p-2 hover:bg-gray-100 rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
                         <li className=' p-2 hover:bg-[#b6e1e4] rounded-md'><NavLink>My added pets</NavLink></li>
                         <li className=' p-2 hover:bg-white rounded-md'><NavLink>Adoption Request</NavLink></li>
-                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>Create Donation Campaign</NavLink></li>
+                        <li className=' p-2 hover:bg-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                         <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                         <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donations</NavLink></li>
                     </ul>
