@@ -79,11 +79,11 @@ const AddPets = () => {
           if(petsRes.data.insertedId){
             // show success popup
             resetForm();
-            enqueueSnackbar('Pets added successful!', { variant: 'success' });
+            enqueueSnackbar('Pets added successful!', { variant: 'success',autoHideDuration: 1000   });
           }
         }
-          console.log('with image url',res.data)
-          console.log("Submitted Data:", formData);
+          // console.log('with image url',res.data)
+          // console.log("Submitted Data:", formData);
          },
       });
     return (

@@ -69,7 +69,7 @@ const CreateDonation = () => {
         if(donationRes.data.insertedId){
           // show success popup
           resetForm();
-          enqueueSnackbar('Pets added successful!', { variant: 'success' });
+          enqueueSnackbar('Pets added successful!', { variant: 'success', autoHideDuration: 1000   });
         }
         }
       }

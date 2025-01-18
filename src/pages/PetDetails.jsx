@@ -150,7 +150,7 @@ const PetDetails = () => {
           <CardFooter className="pt-0">
             
               <Button variant="gradient" type="submit" fullWidth>
-                Sign In
+               Submit
               </Button>
            
           </CardFooter>
