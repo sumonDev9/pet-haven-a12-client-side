@@ -26,7 +26,7 @@ const PetCard = ({pet}) => {
          {name}
         </Typography>
         <Typography className="flex items-center text-info gap-1 dark:text-white mt-1">
-        <MdOutlineDateRange /> {age}
+        <MdOutlineDateRange /> {age} year
         </Typography>
         <Typography className="flex items-center text-info gap-1 dark:text-white mt-1">
         <FaLocationDot /> {location}

@@ -11,6 +11,7 @@ import CreateDonation from "../pages/Dashboard/UserDashboard/createDonation";
 import AllUsers from "../pages/Dashboard/AdminDashBoard/AllUsers";
 import AllPets from "../pages/Dashboard/AdminDashBoard/AllPets";
 import AllDonations from "../pages/Dashboard/AdminDashBoard/AllDonations";
+import MyAddpets from "../pages/Dashboard/UserDashboard/MyAddpets";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         {
           path: 'addPets',
           element: <AddPets></AddPets>
+        },
+        {
+          path: 'myAddpets',
+          element: <MyAddpets></MyAddpets>
         },
         {
           path: 'createDonation',

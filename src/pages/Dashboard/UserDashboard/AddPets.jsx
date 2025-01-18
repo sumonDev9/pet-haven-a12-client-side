@@ -8,6 +8,7 @@ import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { useSnackbar } from 'notistack';
+import UseAuth from '../../../hooks/UseAuth';
 
 
 
@@ -18,6 +19,7 @@ const AddPets = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { enqueueSnackbar } = useSnackbar();
+  const {user} = UseAuth();
 
     const categoryOptions = [
         { value: "Dog", label: "Dog" },
@@ -68,7 +70,8 @@ const AddPets = () => {
             longDescription: plainTextDescription,
             adopted: false,
             addedAt: new Date().toISOString(),
-            image: res.data.data.display_url
+            image: res.data.data.display_url,
+            userEmail: user.email
           };
           
           const petsRes = await axiosSecure.post('/pets', petsData)

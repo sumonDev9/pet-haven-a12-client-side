@@ -20,7 +20,7 @@ const DashBoard = () => {
             {/* responsive sidebar */}
           <div className='bg-white shadow-md'>
           <React.Fragment>
-                <Button className='bg-base-100 flex md:hidden'  onClick={openDrawer}><RiMenu2Fill className='text-2xl text-secondary'/></Button>
+                <Button className='bg-base-100 flex md:hidden' onClick={openDrawer}><RiMenu2Fill className='text-2xl text-secondary'/></Button>
                 <Drawer open={open} onClose={closeDrawer} className="p-4">
                     <div className="mb-6 flex items-center justify-between">
                         <Typography variant="h5" color="blue-gray">
@@ -58,30 +58,36 @@ const DashBoard = () => {
           </div>
             {/* sidebar */}
             <div className='flex'>
-                <div className="w-72  hidden md:block min-h-screen bg-primary">
+                <div className="w-72 hidden md:block min-h-screen bg-primary">
                 <Link to='/'>
                 <Typography className='text-white px-5 py-5 text-2xl font-bold'>
                             {user?.displayName}
                         </Typography>
                 </Link>
                     <ul className='px-5 w-full text-white navlinks text-base space-y-2'>
-                       {
-                        isAdmin ? <>
-                        <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
-                        <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
-                        <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
-                        </> 
-                        : 
-                        <>
-                         <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
                         <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
                         <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
-                        </>
+                        
+                        {/* // isAdmin ? <>
+                        // <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
+                        // <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
+                        // <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
+                        // </> 
+                        // : 
+                        // <>
+                        //  <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
+                        // <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                        // <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
+                        // <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
+                        // <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
+                        // <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
+                        // </> */}
 
-                       }
+                       
                     </ul>
                 </div>
                 {/* content */}
@@ -90,6 +96,8 @@ const DashBoard = () => {
                 </div>
             </div>
         </div>
+
+   
     );
 };
 
