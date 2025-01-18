@@ -11,8 +11,8 @@ body{
 .navlinks .active {
     color: black;
     background-color: white;
-    display: block; /* Full-width effect */
-    width: 100%;    /* Stretch the background to full width */
+    display: block; 
+    width: 100%;    
     padding: 5px;
     border-radius: 8px;
 }

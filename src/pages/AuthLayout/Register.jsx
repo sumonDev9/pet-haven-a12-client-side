@@ -3,9 +3,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import UseAuth from '../../hooks/UseAuth';
 import { useSnackbar } from 'notistack';
 import GoogleLogin from '../../hooks/GoogleLogin';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
 
 const Register = () => {
-
+    const axiosPublic = useAxiosPublic();
     const {createUser,UserProfile, setUser} = UseAuth()
     const navigate = useNavigate();
     const { enqueueSnackbar } = useSnackbar();
@@ -24,20 +25,32 @@ const Register = () => {
           .then(result => {
               const user = (result.user);
               setUser(user)
-            //   console.log(user)
-             
-              e.target.reset();
-              enqueueSnackbar('User registration successful!', { variant: 'success' });
-           
-              //user name and photo
+              console.log(user)
+             //user name and photo
+            //  e.target.reset();
+            //  enqueueSnackbar('User registration successful!', { variant: 'success' });
               UserProfile({ displayName: name, photoURL: photo })
                   .then(() => {
-                      navigate('/')
-
-                  })
+                    // create user entry in the database
+                    const userInfo = {
+                        name: name,
+                        email: email,
+                        photo: photo,
+                        role: 'user'
+                    }
+                    axiosPublic.post('/users', userInfo)
+                     .then(res => {
+                        if(res.data.insertedId){
+                            console.log('user added to the database')
+                            e.target.reset();
+                            enqueueSnackbar(`${name} registration successful!`, { variant: 'success',  autoHideDuration: 1000 });
+                        }
+                     })
+                    })
                   .catch(err => {
                      enqueueSnackbar('Failed to update user profile. Please try again!', { variant: 'error' });
                   })
+                  navigate('/')
           })
           .catch((error) => {
             enqueueSnackbar('An error occurred during registration. Please try again!', { variant: 'error' });

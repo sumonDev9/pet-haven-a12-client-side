@@ -1,19 +1,35 @@
 import { useSnackbar } from 'notistack';
 import UseAuth from './UseAuth';
+import useAxiosPublic from './useAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const GoogleLogin = () => {
     const {logInbyGoogle} = UseAuth();
     const { enqueueSnackbar } = useSnackbar();
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
         alert("user ")
         logInbyGoogle()
         .then(result => {
             console.log(result.user)
-            enqueueSnackbar('The user login has been successfully.', {
-                variant: 'success',
-                autoHideDuration: 3000,
+            const userInfo = {
+                name: result.user?.displayName,
+                email: result.user?.email,
+                photo: result.user.photoURL,
+                role: 'user'
+            }
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                console.log(res.data)
+                enqueueSnackbar(`${result.user?.displayName} login has been successfully.`, {
+                    variant: 'success',
+                    autoHideDuration: 1000,
+                })
+                navigate('/')
             })
+           
         })
    
         .catch((error) => {
