@@ -10,11 +10,11 @@ import { RiMenu2Fill } from 'react-icons/ri';
 import UseAuth from '../hooks/UseAuth';
 const DashBoard = () => {
     const [open, setOpen] = React.useState(false);
-
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
 
     const {user} = UseAuth();
+    const isAdmin= true;
     return (
         <div>
             {/* responsive sidebar */}
@@ -65,13 +65,23 @@ const DashBoard = () => {
                         </Typography>
                 </Link>
                     <ul className='px-5 w-full text-white navlinks text-base space-y-2'>
-                        
-                        <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
+                       {
+                        isAdmin ? <>
+                        <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
+                        <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
+                        <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
+                        </> 
+                        : 
+                        <>
+                         <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
                         <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
                         <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
+                        </>
+
+                       }
                     </ul>
                 </div>
                 {/* content */}
