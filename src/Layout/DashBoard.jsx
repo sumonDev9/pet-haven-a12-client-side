@@ -48,7 +48,7 @@ const DashBoard = () => {
                             <li><Link to='/dashboard/addPets'>Add a pet</Link></li>
                             <li><Link>My added pets</Link></li>
                             <li><Link>Adoption Request</Link></li>
-                            <li><Link>Create Donation Campaign</Link></li>
+                            <li><Link to='/dashboard/createDonation'>Create Donation Campaign</Link></li>
                             <li><Link>My Donation Campaigns</Link></li>
                             <li><Link>My Donations</Link></li>
                         </ul>
@@ -64,14 +64,14 @@ const DashBoard = () => {
                             {user?.displayName}
                         </Typography>
                 </Link>
-                    <ul className='px-5 w-full  navlinks text-base space-y-2'>
+                    <ul className='px-5 w-full text-white navlinks text-base space-y-2'>
                         
-                        <li className=' p-2 hover:bg-gray-100 rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
-                        <li className=' p-2 hover:bg-[#b6e1e4] rounded-md'><NavLink>My added pets</NavLink></li>
-                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>Adoption Request</NavLink></li>
-                        <li className=' p-2 hover:bg-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
-                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
-                        <li className=' p-2 hover:bg-white rounded-md'><NavLink>My Donations</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
+                        <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
                     </ul>
                 </div>
                 {/* content */}

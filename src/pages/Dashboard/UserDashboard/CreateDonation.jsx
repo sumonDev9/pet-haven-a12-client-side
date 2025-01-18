@@ -1,200 +1,170 @@
-import React from 'react';
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import Select from "react-select";
+import { Input, Textarea, Button, Typography } from "@material-tailwind/react";
+import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useSnackbar } from "notistack";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import { Button, Input, Textarea, Typography } from "@material-tailwind/react";
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
-import { useSnackbar } from 'notistack';
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+const imageHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
+
 
 const CreateDonation = () => {
-  const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { enqueueSnackbar } = useSnackbar();
 
-    const categoryOptions = [
-        { value: "Dog", label: "Dog" },
-        { value: "Cat", label: "Cat" },
-        { value: "Bird", label: "Bird" },
-        { value: "Rabbit", label: "Rabbit" },
-      ];
-    
-      const formik = useFormik({
-        initialValues: {
-          image: null,
-          name: "",
-          age: "",
-          category: "",
-          location: "",
-          shortDescription: "",
-          longDescription: "",
-        },
-        validationSchema: Yup.object({
-          image: Yup.mixed().required("Please select a pet image"),
-          name: Yup.string().required("Please provide the pet's name"),
-          age: Yup.number()
-            .required("Please provide the pet's age")
-            .min(0, "Age must be zero or greater"),
-            category: Yup.string().required("Please select a pet category"),
-            location: Yup.string().required("Please provide a location"),
-          shortDescription: Yup.string()
-            .required("Please provide a short description"),
-            longDescription: Yup.string().required("Please provide a detailed description"),
-        }),
-        onSubmit: async (values, {resetForm}) => {
-          // image upload to imgbb and then get an url
-          const imageFile = new FormData();
-          imageFile.append("image", values.image);
 
-          const res = await axiosPublic.post(image_hosting_api, imageFile, {
-            headers: {
-              'content-type': 'multipart/form-data'
-          }
-          })
-          
-          if(res.data.success){
-            // now send the menu item data to the server with the image url
-            const plainTextDescription = values.longDescription.replace(/<[^>]+>/g, '');
+  const formik = useFormik({
+    initialValues: {
+      petImage: null,
+      maxDonation: "",
+      lastDate: "",
+      shortDescription: "",
+      longDescription: "",
+    },
+    validationSchema: Yup.object({
+      petImage: Yup.mixed().required("Please upload a pet image"),
+      maxDonation: Yup.number()
+        .required("Please specify the maximum donation amount")
+        .min(1, "Donation amount must be at least 1"),
+      lastDate: Yup.date().required("Please select the last date for donations"),
+      shortDescription: Yup.string()
+        .required("Please provide a short description"),
+        // .max(100, "Short description must be 100 characters or less"),
+      longDescription: Yup.string()
+        .required("Please provide a detailed description")
+        .min(50, "Long description must be at least 50 characters"),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        // Upload image to imgbb
+        const imageFile = new FormData();
+        imageFile.append("image", values.petImage);
 
-          const petsData = {
-            ...values,
-            longDescription: plainTextDescription,
-            adopted: false,
-            addedAt: new Date().toISOString(),
-            image: res.data.datadisplay_url
-          };
-          
-          const petsRes = await axiosSecure.post('/pets', petsData)
-          console.log(petsRes.data)
-          if(petsRes.data.insertedId){
-            // show success popup
-            resetForm();
-            enqueueSnackbar('Pets added successful!', { variant: 'success' });
-          }
+        const res = await axiosPublic.post(imageHostingAPI, imageFile, {
+          headers: {
+            'content-type': 'multipart/form-data'
         }
-          console.log('with image url',res.data)
-          console.log("Submitted Data:", formData);
-         },
-      });
+        })
+
+        if(res.data.success){
+          // Prepare data for the database
+        const plainTextDescription = values.longDescription.replace(/<[^>]+>/g, '');
+
+        const campaignData = {
+          petImage: res.data.data.display_url,
+          maxDonation: values.maxDonation,
+          lastDate: values.lastDate,
+          shortDescription: values.shortDescription,
+          longDescription: plainTextDescription,
+          createdAt: new Date().toISOString(),
+        };
+        
+        const donationRes = await axiosSecure.post('/donationCampaigns', campaignData)
+        console.log(donationRes.data)
+        if(donationRes.data.insertedId){
+          // show success popup
+          resetForm();
+          enqueueSnackbar('Pets added successful!', { variant: 'success' });
+        }
+        }
+      }
+      
+       catch (error) {
+        console.error("Error creating donation campaign:", error);
+        alert("Something went wrong. Please try again.");
+      }
+    },
+  });
+       
+  
+   
     return (
-        <div className="flex  pb-20 justify-end mr-[180px] items-center">
-        <div className="w-full  max-w-2xl bg-white shadow-lg rounded-lg p-6">
-          <Typography variant="h4" color="blue-gray" className="text-center mb-4">
-            Add Pet
-          </Typography>
-          <form onSubmit={formik.handleSubmit}>
-            {/* Image Upload */}
-            <div className="mb-4">
-              <Input
-                type="file"
-                id="image"
-                name="image"
-                onChange={(e) =>
-                  formik.setFieldValue("image", e.currentTarget.files[0])
-                }
-                className="file-input"
-              />
-              {formik.errors.image && (
-                <p className="text-red-500 text-sm">{formik.errors.petImage}</p>
-              )}
-            </div>
-  
-          <div className='md:flex gap-5'>
-                {/* Pet Name */}
-            <div className="mb-4 w-full">
-              <Input
-                className='w-full'
-                label="Pet Name"
-                name="name"
-                onChange={formik.handleChange}
-                value={formik.values.name}
-              />
-              {formik.errors.name && (
-                <p className="text-red-500 text-sm">{formik.errors.name}</p>
-              )}
-            </div>
-            {/* Pet Age */}
-            <div className="mb-4 w-full">
-              <Input
-                type="number"
-                label="Pet Age"
-                name="age"
-                onChange={formik.handleChange}
-                value={formik.values.age}
-              />
-              {formik.errors.age && (
-                <p className="text-red-500 text-sm">{formik.errors.age}</p>
-              )}
-            </div>
-          </div>
-  
-          <div className='md:flex gap-5'>
-                {/* Pet Category */}
-            <div className="mb-4 w-full">
-              <Select
-                options={categoryOptions}
-                placeholder="Select Pet Category"
-                onChange={(option) =>
-                  formik.setFieldValue("category", option.value)
-                }
-              />
-              {formik.errors.category && (
-                <p className="text-red-500 text-sm">{formik.errors.category}</p>
-              )}
-            </div>
-            {/* Pet Location */}
-            <div className="mb-4 w-full">
-              <Input
-                label="Pet Location"
-                name="location"
-                onChange={formik.handleChange}
-                value={formik.values.location}
-              />
-              {formik.errors.location && (
-                <p className="text-red-500 text-sm">{formik.errors.location}</p>
-              )}
-            </div>
-          </div>
-            {/* Short Description */}
-            <div className="mb-4">
-              <Textarea
-                label="Short Description"
-                name="shortDescription"
-                onChange={formik.handleChange}
-                value={formik.values.shortDescription}
-              />
-              {formik.errors.shortDescription && (
-                <p className="text-red-500 text-sm">
-                  {formik.errors.shortDescription}
-                </p>
-              )}
-            </div>
-            {/* Long Description */}
-            <div className="mb-4">
-              <ReactQuill
-                theme="snow"
-                value={formik.values.longDescription}
-                
-                onChange={(value) => formik.setFieldValue("longDescription", value)}
-              />
-              {formik.errors.longDescription && (
-                <p className="text-red-500 text-sm">
-                  {formik.errors.longDescription}
-                </p>
-              )}
-            </div>
-            {/* Submit Button */}
-            <Button type="submit" fullWidth className="bg-primary text-white">
-              Add Pet
-            </Button>
-          </form>
+      // <div className="flex  pb-20 justify-end mr-[180px] items-center">
+       
+      // </div>
+      <div className="w-full md:max-w-2xl mx-auto md:p-6 p-3 bg-white shadow-md rounded-lg">
+      <Typography variant="h4" className="text-center mb-4">
+        Create Donation Campaign
+      </Typography>
+      <form onSubmit={formik.handleSubmit}>
+        {/* Pet Image */}
+        <div className="mb-4">
+          <Input
+            type="file"
+            name="petImage"
+            onChange={(e) =>
+              formik.setFieldValue("petImage", e.currentTarget.files[0])
+            }
+          />
+          {formik.errors.petImage && (
+            <p className="text-red-500 text-sm">{formik.errors.petImage}</p>
+          )}
         </div>
-      </div>
+
+        {/* Maximum Donation */}
+        <div className="mb-4">
+          <Input
+            type="number"
+            label="Maximum Donation Amount"
+            name="maxDonation"
+            onChange={formik.handleChange}
+            value={formik.values.maxDonation}
+          />
+          {formik.errors.maxDonation && (
+            <p className="text-red-500 text-sm">{formik.errors.maxDonation}</p>
+          )}
+        </div>
+
+        {/* Last Date */}
+        <div className="mb-4">
+          <Input
+            type="date"
+            label="Last Date of Donation"
+            name="lastDate"
+            onChange={formik.handleChange}
+            value={formik.values.lastDate}
+          />
+          {formik.errors.lastDate && (
+            <p className="text-red-500 text-sm">{formik.errors.lastDate}</p>
+          )}
+        </div>
+
+        {/* Short Description */}
+        <div className="mb-4">
+          <Textarea
+            label="Short Description"
+            name="shortDescription"
+            onChange={formik.handleChange}
+            value={formik.values.shortDescription}
+          />
+          {formik.errors.shortDescription && (
+            <p className="text-red-500 text-sm">{formik.errors.shortDescription}</p>
+          )}
+        </div>
+
+        {/* Long Description */}
+        <div className="mb-4">
+          <ReactQuill
+            theme="snow"
+            value={formik.values.longDescription}
+            onChange={(value) => formik.setFieldValue("longDescription", value)}
+          />
+          {formik.errors.longDescription && (
+            <p className="text-red-500 text-sm">{formik.errors.longDescription}</p>
+          )}
+        </div>
+
+        {/* Submit Button */}
+        <Button type="submit" fullWidth className="bg-blue-500 text-white">
+          Create Campaign
+        </Button>
+      </form>
+    </div>
     );
 };
 

@@ -8,6 +8,11 @@ body{
     font-family: "Poppins", serif;
 }
 
-.navlinks  .active {
-    color:black;
+.navlinks .active {
+    color: black;
+    background-color: white;
+    display: block; /* Full-width effect */
+    width: 100%;    /* Stretch the background to full width */
+    padding: 5px;
+    border-radius: 8px;
 }
