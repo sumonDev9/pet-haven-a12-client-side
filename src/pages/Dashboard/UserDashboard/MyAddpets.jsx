@@ -37,12 +37,9 @@ const MyAddpets = () => {
         fetchData();
     }, [axiosSecure]);
 
-    //  delete record
-
-    const handleDelete = async(id) => {
-        // alert(id._id)
-        // alert(`Update functionality for ${pet.name} is under development.`);
-        const result =  await Swal.fire({
+    // Delete record
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -52,52 +49,44 @@ const MyAddpets = () => {
             confirmButtonText: "Yes, delete it!"
         })
         if (result.isConfirmed) {
-          const { data } = await axiosSecure.delete(`/pets/${id._id}`);
-          console.log(data)
-          if (data.deletedCount > 0) {
-            Swal.fire({
-              title: 'pets Deleted!',
-              text: 'Your pets has been deleted successfully.',
-              icon: 'success',
-              confirmButtonText: 'Okay',
-            });
-            fetchData();
-          }
-        }
-
-    }
-
-    //  update record
-    const handleUpdate = (id) => {
-        alert(id._id);
-    }
-
-
-
-    const handleAdopt = async (id) => {
-        try {
-            // Send a request to update the adopted status in the database
-            const response = await axiosSecure.patch(`/pets/adopt/${id._id}`, { adopted: true });
-            if (response.data.modifiedCount > 0) {
-                enqueueSnackbar('Adoption status updated successfully!', { variant: 'success', autoHideDuration: 1000  });
-                fetchData(); 
-            } else {
-                enqueueSnackbar('Failed to update adoption status.!', { variant: 'error', autoHideDuration: 1000  });
+            const { data } = await axiosSecure.delete(`/pets/${id._id}`);
+            console.log(data)
+            if (data.deletedCount > 0) {
+                Swal.fire({
+                    title: 'Pets Deleted!',
+                    text: 'Your pets has been deleted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Okay',
+                });
+                fetchData();
             }
-        } catch (error) {
-            enqueueSnackbar('An error occurred while updating adoption status.', { variant: 'error', autoHideDuration: 1000  });
         }
     };
 
+    // Update record
+    const handleUpdate = (id) => {
+        alert(id._id);
+    };
 
-
+    const handleAdopt = async (id) => {
+        try {
+            const response = await axiosSecure.patch(`/pets/adopt/${id._id}`, { adopted: true });
+            if (response.data.modifiedCount > 0) {
+                enqueueSnackbar('Adoption status updated successfully!', { variant: 'success', autoHideDuration: 1000 });
+                fetchData();
+            } else {
+                enqueueSnackbar('Failed to update adoption status.', { variant: 'error', autoHideDuration: 1000 });
+            }
+        } catch (error) {
+            enqueueSnackbar('An error occurred while updating adoption status.', { variant: 'error', autoHideDuration: 1000 });
+        }
+    };
 
     // Define table columns
-
     const columnsDiff = [
         {
-            header: 'Serial No', // Column header
-            cell: (info) => info.row.index + 1, // Dynamically calculate row index
+            header: 'Serial No', 
+            cell: (info) => info.row.index + 1, 
         },
         {
             accessorKey: 'name',
@@ -118,21 +107,20 @@ const MyAddpets = () => {
             accessorKey: 'category',
             header: 'Category',
         },
-
     ];
 
     // Create a table instance
     const tableInstance = useReactTable({
         columns: columnsDiff,
-        data: data, // Use dynamic data
-        state: { sorting }, // Pass sorting state to the table
-        onSortingChange: setSorting, // Handle sorting changes
+        data: data,
+        state: { sorting },
+        onSortingChange: setSorting,
         getCoreRowModel: getCoreRowModel(),
-        getSortedRowModel: getSortedRowModel(), // Enable sorting
-        getPaginationRowModel: getPaginationRowModel(), // Enable pagination
+        getSortedRowModel: getSortedRowModel(),
+        getPaginationRowModel: getPaginationRowModel(),
         initialState: {
             pagination: {
-                pageSize: 5, // Default rows per page
+                pageSize: 10, // Set to show a maximum of 10 pets
             },
         },
     });
@@ -148,7 +136,7 @@ const MyAddpets = () => {
                                 {headerGroup.headers.map((header) => (
                                     <th
                                         key={header.id}
-                                        onClick={header.column.getToggleSortingHandler()} // Enable sorting on click
+                                        onClick={header.column.getToggleSortingHandler()}
                                         className="px-4 py-3 text-sm font-medium tracking-wide cursor-pointer"
                                         style={{ userSelect: 'none' }}
                                     >
@@ -180,7 +168,6 @@ const MyAddpets = () => {
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
                                 ))}
-                                {/* Adoption Status */}
                                 <td className="px-4 py-3 border-b border-gray-200 text-sm">
                                     {row.original.adopted ? (
                                         <span className="text-green-600 p-1 bg-green-50 rounded-lg font-semibold">Adopted</span>
@@ -188,10 +175,8 @@ const MyAddpets = () => {
                                         <span className="text-red-700 bg-red-50 p-1 rounded-lg font-semibold">Not Adopted</span>
                                     )}
                                 </td>
-                                {/* Action Buttons */}
                                 <td className="px-4 py-3 border-b border-gray-200 text-sm">
                                     <div className="flex justify-center space-x-2">
-                                        {/* Update Button */}
                                         <Link to={`/dashboard/updatePet/${row.original._id}`}>
                                             <Button
                                                 className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
@@ -200,14 +185,12 @@ const MyAddpets = () => {
                                                 Update
                                             </Button>
                                         </Link>
-                                        {/* Delete Button */}
                                         <Button
                                             className="bg-red-600 text-white p-2 hover:bg-red-700"
                                             onClick={() => handleDelete(row.original)}
                                         >
                                             Delete
                                         </Button>
-                                        {/* Adopted Button */}
                                         <Button
                                             className="p-2 bg-green-600 text-white hover:bg-green-700"
                                             onClick={() => handleAdopt(row.original)}
@@ -224,76 +207,54 @@ const MyAddpets = () => {
             </div>
 
             {/* Pagination Controls */}
-            <div className="flex flex-col md:flex-row items-center justify-between mt-6 space-y-4 md:space-y-0">
-                {/* Navigation Buttons */}
-                <div className="flex space-x-2">
-                    <Button
-                        onClick={() => tableInstance.setPageIndex(0)}
-                        disabled={!tableInstance.getCanPreviousPage()}
-                        className="btn btn-sm bg-primary text-white disabled:bg-gray-400 "
-                    >
-                        <SlArrowLeft className='text-white font-bold text-lg' />
-                    </Button>
-                    {/* Page Number Buttons */}
+            {data.length > 10 && (
+                <div className="flex flex-col md:flex-row items-center justify-between mt-6 space-y-4 md:space-y-0">
                     <div className="flex space-x-2">
-                        {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => tableInstance.setPageIndex(index)}
-                                className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
-                                    ? 'bg-primary text-white'
-                                    : 'bg-white text-secondary hover:bg-indigo-100'
-                                    } focus:outline-none`}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
+                        <Button
+                            onClick={() => tableInstance.setPageIndex(0)}
+                            disabled={!tableInstance.getCanPreviousPage()}
+                            className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
+                        >
+                            <SlArrowLeft className='text-white font-bold text-lg' />
+                        </Button>
+                        <div className="flex space-x-2">
+                            {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => tableInstance.setPageIndex(index)}
+                                    className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
+                                        ? 'bg-primary text-white'
+                                        : 'bg-white text-secondary hover:bg-indigo-100'
+                                        } focus:outline-none`}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                        <Button
+                            onClick={() => tableInstance.setPageIndex(tableInstance.getPageCount() - 1)}
+                            disabled={!tableInstance.getCanNextPage()}
+                            className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
+                        >
+                            <SlArrowRight className='text-white font-bold text-lg' />
+                        </Button>
                     </div>
-                    <Button
-                        onClick={() => tableInstance.setPageIndex(tableInstance.getPageCount() - 1)}
-                        disabled={!tableInstance.getCanNextPage()}
-                        className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
-                    >
-                        <SlArrowRight className='text-white font-bold text-lg' />
-                    </Button>
-                </div>
 
-                {/* Page Info
-                 <div className="flex items-center space-x-2">
-                     <span className="text-sm">
-                         Page{' '}
-                         <strong>{tableInstance.getState().pagination.pageIndex + 1}</strong> of{' '}
-                         <strong>{tableInstance.getPageCount()}</strong>
-                     </span>
-                     <span className="text-sm">| Go to page:</span>
-                     <input
-                         type="number"
-                         min="1"
-                         max={tableInstance.getPageCount()}
-                         defaultValue={tableInstance.getState().pagination.pageIndex + 1}
-                         onChange={(e) => {
-                             const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                             tableInstance.setPageIndex(page);
-                         }}
-                         className="input input-bordered input-sm w-16 border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                     />
-                 </div> */}
-
-                {/* Rows per Page */}
-                <div>
-                    <select
-                        value={tableInstance.getState().pagination.pageSize}
-                        onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
-                        className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                    >
-                        {[5, 10, 20].map((pageSize) => (
-                            <option key={pageSize} value={pageSize}>
-                                Show {pageSize}
-                            </option>
-                        ))}
-                    </select>
+                    <div>
+                        <select
+                            value={tableInstance.getState().pagination.pageSize}
+                            onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
+                            className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                        >
+                            {[10, 20].map((pageSize) => (
+                                <option key={pageSize} value={pageSize}>
+                                    Show {pageSize}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 };
