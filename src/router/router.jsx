@@ -12,6 +12,7 @@ import AllUsers from "../pages/Dashboard/AdminDashBoard/AllUsers";
 import AllPets from "../pages/Dashboard/AdminDashBoard/AllPets";
 import AllDonations from "../pages/Dashboard/AdminDashBoard/AllDonations";
 import MyAddpets from "../pages/Dashboard/UserDashboard/MyAddpets";
+import UpdatePet from "../pages/Dashboard/UserDashboard/UpdatePet";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,12 @@ const router = createBrowserRouter([
         {
           path: 'myAddpets',
           element: <MyAddpets></MyAddpets>
+        },
+        {
+          path: 'updatePet/:id',
+          element: <UpdatePet></UpdatePet>,
+          // loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+          loader:({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
         },
         {
           path: 'createDonation',

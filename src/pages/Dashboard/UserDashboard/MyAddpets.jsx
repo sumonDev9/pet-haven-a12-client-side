@@ -12,6 +12,7 @@ import { Button } from '@material-tailwind/react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { useSnackbar } from 'notistack';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MyAddpets = () => {
     const axiosSecure = useAxiosSecure();
@@ -79,7 +80,7 @@ const MyAddpets = () => {
             const response = await axiosSecure.patch(`/pets/adopt/${id._id}`, { adopted: true });
             if (response.data.modifiedCount > 0) {
                 enqueueSnackbar('Adoption status updated successfully!', { variant: 'success', autoHideDuration: 1000  });
-                fetchData(); // Refetch data to update the table
+                fetchData(); 
             } else {
                 enqueueSnackbar('Failed to update adoption status.!', { variant: 'error', autoHideDuration: 1000  });
             }
@@ -191,12 +192,14 @@ const MyAddpets = () => {
                                 <td className="px-4 py-3 border-b border-gray-200 text-sm">
                                     <div className="flex justify-center space-x-2">
                                         {/* Update Button */}
-                                        <Button
-                                            className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
-                                            onClick={() => handleUpdate(row.original)}
-                                        >
-                                            Update
-                                        </Button>
+                                        <Link to={`/dashboard/updatePet/${row.original._id}`}>
+                                            <Button
+                                                className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
+                                                onClick={() => handleUpdate(row.original)}
+                                            >
+                                                Update
+                                            </Button>
+                                        </Link>
                                         {/* Delete Button */}
                                         <Button
                                             className="bg-red-600 text-white p-2 hover:bg-red-700"
