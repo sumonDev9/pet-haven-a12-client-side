@@ -29,6 +29,7 @@ const PetDetails = () => {
   const fetchAllPet = async () => {
     const { data } = await axios.get(`http://localhost:5000/pets/${id}`)
     SetPets(data)
+    console.log(data)
   }
 
   const [open, setOpen] = React.useState(false);
@@ -41,18 +42,20 @@ const PetDetails = () => {
     const form = e.target;
     const phone = form.phone.value;
     const address = form.address.value;
-    console.log(phone)
+    // console.log(phone)
     const adoptionData = {
       petId: pet._id,
       petName: pet.name,
       petimage: pet.image,
       userName: user?.displayName,
       userEmail: user?.email,
+      email: pet.userEmail,
+
       phone,
       address
     }
-
-    console.log(adoptionData )
+ console.log(pet.userEmail)
+    // console.log(adoptionData )
 
     await axios.post('http://localhost:5000/adoptions', adoptionData)
       .then(res => {
@@ -65,7 +68,9 @@ const PetDetails = () => {
     setOpen(false)
   }
 
-  const { _id, image, name, longDescription, shortDescription, age, location } = pet || {}
+  const { _id, 
+    userEmail,
+     image, name, longDescription, shortDescription, age, location } = pet || {}
   return (
     <section className='w-11/12 mx-auto'>
       <Card className="mt-6 shadow-md max-w-3xl mx-auto">
@@ -78,7 +83,7 @@ const PetDetails = () => {
         </CardHeader>
         <CardBody className='pt-0'>
           <Typography className="mb-2 text-4xl text-secondary">
-            {name}
+            {name} 
           </Typography>
           <Typography className="mb-2 text-2xl text-info">
             {shortDescription

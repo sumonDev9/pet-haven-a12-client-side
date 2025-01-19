@@ -57,7 +57,7 @@ const DashBoard = () => {
                           <>
                           <li className='rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
                           <li className='rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
-                          <li className='rounded-md'><NavLink>Adoption Request</NavLink></li>
+                          <li className='rounded-md'><NavLink to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
                           <li className='rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                           <li className='rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                           <li className='rounded-md'><NavLink>My Donations</NavLink></li>
@@ -95,7 +95,7 @@ const DashBoard = () => {
                           <>
                           <li className='text-white rounded-md'><NavLink to='/dashboard/addPets'>Add a pet</NavLink></li>
                           <li className='text-white rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
-                          <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
                           <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                           <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                           <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
