@@ -10,14 +10,14 @@ const CallToAction = () => {
             subHeading={'Every pet deserves a loving home. You can make a difference in their life by adopting. Let’s create a better world for them, one adoption at a time.'
             }
             ></SectionTitle>
-        <div className="w-11/12 mx-auto bg-white p-6 rounded-lg  flex flex-col lg:flex-row items-center justify-between">
+        <div className="w-11/12 mx-auto  p-6 rounded-lg  flex flex-col lg:flex-row items-center justify-between">
        
           {/* Left Content (Title, Description, Button) */}
           <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
-            <Typography variant="h2" className="text-3xl lg:text-5xl font-bold leading-tight">
+            <Typography variant="h2" className="text-3xl dark:text-white lg:text-5xl font-bold leading-tight">
               Give a Pet a Second Chance
             </Typography>
-            <Typography variant="body1" className="text-lg lg:text-xl opacity-80">
+            <Typography variant="body1" className="text-lg dark:text-white lg:text-xl opacity-80">
               By adopting a pet, you provide them with a loving home and a better life. Make a difference today and help create a world full of love, happiness, and wagging tails.
             </Typography>
             

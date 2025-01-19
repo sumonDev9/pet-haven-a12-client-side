@@ -64,9 +64,9 @@ const MyAddpets = () => {
     };
 
     // Update record
-    const handleUpdate = (id) => {
-        alert(id._id);
-    };
+    // const handleUpdate = (id) => {
+    //     alert(id._id);
+    // };
 
     const handleAdopt = async (id) => {
         try {

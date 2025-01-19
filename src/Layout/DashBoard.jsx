@@ -8,13 +8,14 @@ import {
 } from "@material-tailwind/react";
 import { RiMenu2Fill } from 'react-icons/ri';
 import UseAuth from '../hooks/UseAuth';
+import UseAdmin from '../hooks/UseAdmin';
 const DashBoard = () => {
     const [open, setOpen] = React.useState(false);
     const openDrawer = () => setOpen(true);
     const closeDrawer = () => setOpen(false);
 
     const {user} = UseAuth();
-    const isAdmin= true;
+    const [isAdmin] = UseAdmin();
     return (
         <div>
             {/* responsive sidebar */}
@@ -45,12 +46,23 @@ const DashBoard = () => {
                     </div>
                     <div>
                         <ul className='navlinks space-y-4'>
-                            <li><Link to='/dashboard/addPets'>Add a pet</Link></li>
-                            <li><Link>My added pets</Link></li>
-                            <li><Link>Adoption Request</Link></li>
-                            <li><Link to='/dashboard/createDonation'>Create Donation Campaign</Link></li>
-                            <li><Link>My Donation Campaigns</Link></li>
-                            <li><Link>My Donations</Link></li>
+                        {
+                          isAdmin ? <>
+
+                          <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
+                          <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
+                          <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
+                          </> 
+                          : 
+                          <>
+                          <li className='rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
+                          <li className='rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                          <li className='rounded-md'><NavLink>Adoption Request</NavLink></li>
+                          <li className='rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
+                          <li className='rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
+                          <li className='rounded-md'><NavLink>My Donations</NavLink></li>
+                          </>
+                       }
                         </ul>
                     </div>
                 </Drawer>
@@ -65,27 +77,30 @@ const DashBoard = () => {
                         </Typography>
                 </Link>
                     <ul className='px-5 w-full text-white navlinks text-base space-y-2'>
-                        <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
+                        {/* <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
                         <li className='text-white rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
                         <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
                         <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
-                        
-                        {/* // isAdmin ? <>
-                        // <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
-                        // <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
-                        // <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
-                        // </> 
-                        // : 
-                        // <>
-                        //  <li className='text-white rounded-md'><NavLink>My added pets</NavLink></li>
-                        // <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
-                        // <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
-                        // <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
-                        // <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
-                        // <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
-                        // </> */}
+                         */}
+                       {
+                          isAdmin ? <>
+
+                          <li><NavLink to='/dashboard/allUsers'>All Users</NavLink></li>
+                          <li><NavLink to='/dashboard/allPets'>All Pets</NavLink></li>
+                          <li><NavLink to='/dashboard/allDonations'>All Donations</NavLink></li>
+                          </> 
+                          : 
+                          <>
+                          <li className='text-white rounded-md'><NavLink to='/dashboard/addPets'>Add a pet</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
+                          </>
+                       }
 
                        
                     </ul>

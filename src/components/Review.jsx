@@ -13,8 +13,8 @@ const Review = () => {
           
       },[])
     return (
-        <section className=" py-10">
-        <div className="w-11/12 bg-gray-50 dark:bg-slate-900 p-4 rounded-lg mx-auto text-center">
+        <section className="bg-gray-100 dark:bg-gray-900 py-10">
+        <div className="w-11/12   p-4 rounded-lg mx-auto text-center">
             <SectionTitle
             heading={"What Our Clients Say"}
             subHeading={"Discover how our services have made a positive impact on our clients. Read their experiences and see why they trust us for their needs."}
@@ -23,7 +23,7 @@ const Review = () => {
           <Marquee pauseOnHover={true} speed={50}>
             {review.map((review) => (
          <div key={review.id} 
-         className="flex flex-col   lg:flex-row items-center dark:bg-slate-700 mx-5  p-5 rounded-lg shadow-md max-w-xs lg:max-w-lg">
+         className="flex flex-col  dark:bg-gray-800 lg:flex-row items-center  mx-5  p-8 rounded-tl-[25px] rounded-tr-[25px] rounded-bl-[70px] rounded-br-[20px] shadow-2xl max-w-xs lg:max-w-xl">
        
          {/* Review Image */}
          <img src={review.photo} alt={review.name} className="w-24 h-24 rounded-full mb-4 lg:mb-0 lg:mr-4 object-cover" />
