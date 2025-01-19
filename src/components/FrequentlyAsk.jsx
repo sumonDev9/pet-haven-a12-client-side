@@ -4,6 +4,7 @@ import {
     AccordionHeader,
     AccordionBody,
 } from "@material-tailwind/react";
+import SectionTitle from "./SectionTitle";
 
 const CUSTOM_ANIMATION = {
     mount: { scale: 1 },
@@ -21,10 +22,11 @@ const FrequentlyAsk = () => {
         <section class="bg-gray-50 dark:bg-gray-900  py-8 md:py-16">
             <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
                 <div class="text-center mb-10">
-                    <h2 class="text-4xl font-bold dark:text-white text-secondary">Frequently Asked Questions</h2>
-                    <p class="text-lg text-info dark:text-white mt-2">
-                        Find quick answers to common questions about our adoption process.
-                    </p>
+
+                    <SectionTitle
+                        heading={"Frequently Asked Questions"}
+                        subHeading={"Find quick answers to common questions about our adoption process."}
+                    ></SectionTitle>
                 </div>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* let Content:*/}
@@ -42,7 +44,7 @@ const FrequentlyAsk = () => {
                                 What documents are needed for adoption?
                             </AccordionHeader>
                             <AccordionBody>
-                               <p className="text-info dark:text-white"> A government-issued ID, proof of residence, and a completed adoption form.</p>
+                                <p className="text-info dark:text-white"> A government-issued ID, proof of residence, and a completed adoption form.</p>
                             </AccordionBody>
                         </Accordion>
                         {/* box-3 */}
@@ -51,7 +53,7 @@ const FrequentlyAsk = () => {
                                 How long does the adoption process take?
                             </AccordionHeader>
                             <AccordionBody>
-                               <p className="text-info dark:text-white">The process usually takes 2-3 days after submitting all the required documents.</p>
+                                <p className="text-info dark:text-white">The process usually takes 2-3 days after submitting all the required documents.</p>
                             </AccordionBody>
                         </Accordion>
                         {/* box-4 */}
@@ -60,7 +62,7 @@ const FrequentlyAsk = () => {
                                 Can I adopt more than one pet?
                             </AccordionHeader>
                             <AccordionBody>
-                               <p className="text-info dark:text-white"> Yes, you can adopt multiple pets if you meet the adoption criteria.</p>
+                                <p className="text-info dark:text-white"> Yes, you can adopt multiple pets if you meet the adoption criteria.</p>
                             </AccordionBody>
                         </Accordion>
                         {/* box-5 */}
@@ -69,10 +71,10 @@ const FrequentlyAsk = () => {
                                 Is there an adoption fee?
                             </AccordionHeader>
                             <AccordionBody>
-                               <p className="text-info dark:text-white"> Yes, the fee covers vaccinations, microchipping, and spaying/neutering.</p>
+                                <p className="text-info dark:text-white"> Yes, the fee covers vaccinations, microchipping, and spaying/neutering.</p>
                             </AccordionBody>
                         </Accordion>
-                       
+
                     </div>
 
                     {/* <!-- right image--> */}
@@ -89,7 +91,7 @@ const FrequentlyAsk = () => {
                         ></div>
                     </div>
 
-                    
+
                 </div>
             </div>
 

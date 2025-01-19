@@ -3,6 +3,7 @@ import Bannar from '../components/Bannar';
 import CallToAction from '../components/CallToAction';
 import AboutUS from '../components/AboutUS';
 import FrequentlyAsk from '../components/FrequentlyAsk';
+import Review from '../components/Review';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
            <CallToAction></CallToAction>
            <AboutUS></AboutUS>
            <FrequentlyAsk></FrequentlyAsk>
+           <Review></Review>
         </div>
     );
 };
