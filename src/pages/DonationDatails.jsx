@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import UseAuth from '../hooks/UseAuth';
 import axios from 'axios';
-import { Button, Card, CardBody, CardFooter, CardHeader, Dialog, Input, Typography } from '@material-tailwind/react';
+import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
+import DonationModal from '../components/DonationModal';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
-// const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk)
+const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 const DonationDatails = () => {
     const {id} = useParams();
     const [donation, setDonation] = useState({})
-    const { user } = UseAuth();
+   
      
     const fetchAllPet = async () => {
         const { data } = await axios.get(`http://localhost:5000/donationCampaigns/${id}`)
@@ -23,10 +25,7 @@ const DonationDatails = () => {
           const [open, setOpen] = React.useState(false);
           const handleOpen = () => setOpen((cur) => !cur);
 
-        // donation now
-        const handleSubmit = (e) => {
-
-        }
+     
 
 
 
@@ -60,31 +59,9 @@ const DonationDatails = () => {
       </Card>
 
       {/* donate now modal */}
-      <Dialog
-        size="sm"
-        open={open}
-        handler={handleOpen}
-        className="bg-white shadow"
-      >
-
-        <Card className="mx-auto w-full shadow-sm rounded-none max-w-[24rem]">
-        <form onSubmit={handleSubmit}>
-          <CardBody className="flex flex-col gap-4">
-            <Typography className="-mb-2" variant="h6">
-              Pet image
-            </Typography>
-            <Input label="text" size="xl" />
-           </CardBody>
-            <CardFooter className="pt-0">
-             <Button variant="gradient" type="submit" fullWidth>
-             Donate Now
-              </Button>
-           
-          </CardFooter>
-          </form>
-        </Card>
-
-      </Dialog>
+      <Elements stripe={stripePromise}>
+      <DonationModal open={open} setOpen={setOpen} name={name} _id={_id} ></DonationModal>
+      </Elements>
 
     </section>
     );
