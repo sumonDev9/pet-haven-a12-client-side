@@ -13,7 +13,7 @@ const DonationCard = ({donation}) => {
     console.log(donation)
     const {petImage, maxDonation, name, _id} = donation || {}
     return (
-        <Card className="mt-6 dark:bg-gray-700 ">
+        <Card className="mt-6 dark:bg-gray-800 ">
         <CardHeader color="blue-gray" className="relative m-0 h-56">
           <img
             className="w-full object-cover rounded-none"
@@ -26,11 +26,11 @@ const DonationCard = ({donation}) => {
           Name: {name}
           </Typography>
           <Typography className="flex items-center text-info  dark:text-white mt-1">
-           <span className="text-secondary">Maximum Donation:</span><MdCurrencyRupee /> {maxDonation}
+           <span className="text-secondary dark:text-white">Maximum Donation:</span><MdCurrencyRupee /> {maxDonation}
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
-          <Link to={`/petdetails/${_id}`}>
+          <Link to={`/donation/${_id}`}>
           <Button className="bg-primary">view details</Button>
           </Link>
         </CardFooter>

@@ -21,7 +21,7 @@ const PetDetails = () => {
   const [pet, SetPets] = useState({})
   const { user } = UseAuth();
   const { id } = useParams();
-
+  
   useEffect(() => {
     fetchAllPet()
   }, []);

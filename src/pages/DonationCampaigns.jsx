@@ -16,7 +16,7 @@ const DonationCampaigns = () => {
         }
     })
     return (
-        <div className='py-10 '>
+        <div className='py-10 dark:bg-gray-900'>
          <SectionTitle heading={'Support Our Donation Campaigns'}
          subHeading={"Join us in helping pets in need. Explore and contribute to ongoing donation campaigns. Scroll down to discover more."}
          ></SectionTitle>
