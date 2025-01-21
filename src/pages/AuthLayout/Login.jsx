@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import { useSnackbar } from "notistack";
 import GoogleLogin from "../../hooks/GoogleLogin";
@@ -6,6 +6,10 @@ import GoogleLogin from "../../hooks/GoogleLogin";
 const Login = () => {
     const {userLogin, setUser} = UseAuth();
     const { enqueueSnackbar } = useSnackbar();
+    const navigate = useNavigate();
+    const location = useLocation();
+    console.log('state in the location login page', location.state)
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -20,7 +24,7 @@ const Login = () => {
             console.log(result.user)
             e.target.reset();
             enqueueSnackbar('The user login has been successfully.', {variant: 'success',});
-            // navigate(location.state ? location.state : "/");
+            navigate(from, { replace: true });
         })
         .catch((error) => {
             enqueueSnackbar('Login failed. Please check your credentials and try again!', {variant: 'error',autoHideDuration: 5000,

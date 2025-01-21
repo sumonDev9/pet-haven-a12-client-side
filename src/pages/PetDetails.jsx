@@ -94,7 +94,7 @@ const PetDetails = () => {
           </Typography>
           <div className='flex gap-5'>
             <Typography className="flex items-center text-info gap-1 dark:text-white mt-1">
-              <MdOutlineDateRange /> {age}
+              <MdOutlineDateRange /> {age} Year
             </Typography>
             <Typography className="flex items-center text-info gap-1 dark:text-white mt-1">
               <FaLocationDot /> {location}

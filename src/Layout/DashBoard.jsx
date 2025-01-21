@@ -7,8 +7,9 @@ import {
     IconButton,
 } from "@material-tailwind/react";
 import { RiMenu2Fill } from 'react-icons/ri';
-import UseAuth from '../hooks/UseAuth';
+
 import UseAdmin from '../hooks/UseAdmin';
+import UseAuth from '../hooks/UseAuth';
 const DashBoard = () => {
     const [open, setOpen] = React.useState(false);
     const openDrawer = () => setOpen(true);

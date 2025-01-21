@@ -16,6 +16,7 @@ import UpdatePet from "../pages/Dashboard/UserDashboard/UpdatePet";
 import AdoptionRequests from "../pages/Dashboard/UserDashboard/adoptionRequests";
 import DonationCampaigns from "../pages/DonationCampaigns";
 import DonationDatails from "../pages/donationDatails";
+import PrivetRoute from "../provider/PrivetRoute";
 
 const router = createBrowserRouter([
     {
@@ -59,38 +60,38 @@ const router = createBrowserRouter([
       children: [
         {
           path: 'addPets',
-          element: <AddPets></AddPets>
+          element: <PrivetRoute><AddPets></AddPets></PrivetRoute>
         },
         {
           path: 'myAddpets',
-          element: <MyAddpets></MyAddpets>
+          element: <PrivetRoute><MyAddpets></MyAddpets></PrivetRoute>
         },
         {
           path: 'updatePet/:id',
-          element: <UpdatePet></UpdatePet>,
+          element: <PrivetRoute><UpdatePet></UpdatePet></PrivetRoute>,
           // loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
           loader:({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
         },
         {
           path: 'createDonation',
-          element: <CreateDonation></CreateDonation>
+          element: <PrivetRoute><CreateDonation></CreateDonation></PrivetRoute>
         },
         {
           path: 'adoptionRequests',
-          element: <AdoptionRequests></AdoptionRequests>
+          element: <PrivetRoute><AdoptionRequests></AdoptionRequests></PrivetRoute>
         },
         // admin route
         {
           path: 'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <PrivetRoute><AllUsers></AllUsers></PrivetRoute>
         },
         {
           path: 'allPets',
-          element: <AllPets></AllPets>
+          element: <PrivetRoute><AllPets></AllPets></PrivetRoute>
         },
         {
           path: 'allDonations',
-          element: <AllDonations></AllDonations>
+          element: <PrivetRoute><AllDonations></AllDonations></PrivetRoute>
         },
       ]
     }
