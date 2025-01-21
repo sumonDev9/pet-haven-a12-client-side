@@ -5,6 +5,7 @@ import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from '@mat
 import DonationModal from '../components/DonationModal';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import { MdCurrencyRupee } from 'react-icons/md';
 
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 const DonationDatails = () => {
@@ -29,7 +30,7 @@ const DonationDatails = () => {
 
 
 
-        const { _id, petImage, name, longDescription, shortDescription,  } = donation || {}
+        const { _id, petImage, name, donatedAmount, maxDonation, longDescription, shortDescription,  } = donation || {}
     return (
     <section>
          <Card className="mt-6 shadow-md max-w-3xl mx-auto">
@@ -44,6 +45,12 @@ const DonationDatails = () => {
           <Typography className="mb-2 text-4xl text-secondary">
             {name} 
           </Typography>
+          <Typography className="flex items-center text-info  dark:text-white mt-1">
+                     <span className="text-secondary dark:text-white">Maximum Donation:</span><MdCurrencyRupee /> {maxDonation}
+                    </Typography>
+                    <Typography className="flex items-center text-info  dark:text-white mt-1">
+                     <span className="text-secondary dark:text-white">Total Donation:</span><MdCurrencyRupee /> {donatedAmount}
+                    </Typography>
           <Typography className="mb-2 text-2xl text-info">
             {shortDescription
             }

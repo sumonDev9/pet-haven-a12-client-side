@@ -18,6 +18,7 @@ import DonationCampaigns from "../pages/DonationCampaigns";
 import DonationDatails from "../pages/donationDatails";
 import PrivetRoute from "../provider/PrivetRoute";
 import MyDonationCampaign from "../pages/Dashboard/UserDashboard/MyDonationCampaign";
+import UpdatedDonation from "../pages/Dashboard/UserDashboard/UpdatedDonation";
 
 const router = createBrowserRouter([
     {
@@ -81,10 +82,11 @@ const router = createBrowserRouter([
           path: 'myDonationCampaign',
           element: <PrivetRoute><MyDonationCampaign></MyDonationCampaign></PrivetRoute>
         },
-        // {
-        //   path: 'myDonationUpdated',
-        //   element: <PrivetRoute><MyDonationCampaign></MyDonationCampaign></PrivetRoute>
-        // },
+        {
+          path: 'updateDonation/:id',
+          element: <PrivetRoute><UpdatedDonation></UpdatedDonation></PrivetRoute>,
+          loader:({params}) => fetch(`http://localhost:5000/donationCampaigns/${params.id}`)
+        },
         {
           path: 'adoptionRequests',
           element: <PrivetRoute><AdoptionRequests></AdoptionRequests></PrivetRoute>

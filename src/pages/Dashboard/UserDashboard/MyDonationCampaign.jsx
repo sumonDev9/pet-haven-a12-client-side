@@ -17,7 +17,7 @@ const MyDonationCampaign = () => {
     // Fetch data from the server
         const fetchData = async () => {
             try {
-                const response = await axiosSecure.get("/donationCampaigns");
+                const response = await axiosSecure.get(`/donationCampaigns/user/${user?.email}`);
                 setData(response.data); // Set the fetched data to state
                 console.log(response.data);
             } catch (error) {
@@ -122,12 +122,14 @@ const MyDonationCampaign = () => {
                             <td className="px-4 py-3 border-b border-gray-200 text-sm">
                                 <div className="flex justify-center space-x-2">
                                   
-                                    <Button
+                                  <Link to={`/dashboard/updateDonation/${row.original._id}`}>
+                                  <Button
                                         className="bg-green-600 text-white p-2 hover:bg-red-700"
                                         onClick={() => handleEdit(row.original)}
                                     >
                                         Edit 
                                     </Button>
+                                  </Link>
                                     <Button
                                         className="p-2 bg-red-600 text-white hover:bg-green-700"
                                         onClick={() => handleView(row.original)}
