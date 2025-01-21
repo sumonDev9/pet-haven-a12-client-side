@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 const DonationCard = ({donation}) => {
     console.log(donation)
-    const {petImage, maxDonation, name, _id} = donation || {}
+    const {petImage, maxDonation, donatedAmount, name, _id} = donation || {}
     return (
         <Card className="mt-6 dark:bg-gray-800 ">
         <CardHeader color="blue-gray" className="relative m-0 h-56">
@@ -27,6 +27,9 @@ const DonationCard = ({donation}) => {
           </Typography>
           <Typography className="flex items-center text-info  dark:text-white mt-1">
            <span className="text-secondary dark:text-white">Maximum Donation:</span><MdCurrencyRupee /> {maxDonation}
+          </Typography>
+          <Typography className="flex items-center text-info  dark:text-white mt-1">
+           <span className="text-secondary dark:text-white">Total Donation:</span><MdCurrencyRupee /> {donatedAmount}
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">

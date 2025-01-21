@@ -7,17 +7,20 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useSnackbar } from "notistack";
 import ReactQuill from "react-quill";
+import UseAuth from "../../../hooks/UseAuth";
 
 
 
 const imageHostingKey = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const imageHostingAPI = `https://api.imgbb.com/1/upload?key=${imageHostingKey}`;
 
+  
 
 const CreateDonation = () => {
   const axiosSecure = useAxiosSecure();
   const axiosPublic = useAxiosPublic();
   const { enqueueSnackbar } = useSnackbar();
+  const {user} = UseAuth();
 
   const categoryOptions = [
     { value: "Dog", label: "Dog" },
@@ -72,15 +75,18 @@ const CreateDonation = () => {
             name: values.name,
             category: values.category,
             maxDonation: values.maxDonation,
+            donatedAmount: 0,
             lastDate: values.lastDate,
             shortDescription: values.shortDescription,
             longDescription: plainTextDescription,
             createdAt: new Date().toISOString(),
+            userEmail: user?.email
           };
 
           const donationRes = await axiosSecure.post('/donationCampaigns', campaignData)
           console.log(donationRes.data)
           if (donationRes.data.insertedId) {
+            
             // show success popup
             resetForm();
             enqueueSnackbar('Pets added successful!', { variant: 'success', autoHideDuration: 1000 });

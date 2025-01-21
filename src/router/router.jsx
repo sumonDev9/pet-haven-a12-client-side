@@ -83,15 +83,15 @@ const router = createBrowserRouter([
         // admin route
         {
           path: 'allUsers',
-          element: <PrivetRoute><AllUsers></AllUsers></PrivetRoute>
+          element: <AllUsers></AllUsers>
         },
         {
           path: 'allPets',
-          element: <PrivetRoute><AllPets></AllPets></PrivetRoute>
+          element: <AllPets></AllPets>
         },
         {
           path: 'allDonations',
-          element: <PrivetRoute><AllDonations></AllDonations></PrivetRoute>
+          element: <AllDonations></AllDonations>
         },
       ]
     }
