@@ -47,11 +47,11 @@ const PetCategory = () => {
          heading={"Explore Pet Categories"}
          subHeading={"Explore pet categories like Cats, Dogs, Rabbits, Birds, and more to find your perfect companion."}
         ></SectionTitle>
-          <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 flex-wrap bg-gray-50 dark:bg-gray-900 ">
+          <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5  bg-gray-50 dark:bg-gray-900 ">
             {
                 uniqueCategories.map((item, index) => (
                     <Link to={`/category/${item.category}`}>
-                        <Card key={index} className="mt-6 w-72">
+                        <Card key={index} className="mt-6">
                             <CardBody>
                                 <img
                                     src={item.image}

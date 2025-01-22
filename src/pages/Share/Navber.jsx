@@ -17,7 +17,7 @@ import {
   MenuItem
 } from "@material-tailwind/react";
 
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { IoMoon, IoSunny } from "react-icons/io5";
 import UseAuth from "../../hooks/UseAuth";
 
@@ -50,7 +50,7 @@ const Navber = () => {
   return (
     <div className="w-full dark:bg-gray-900 bg-white shadow-lg sticky top-0 z-50">
       <Navbar className="rounded-none dark:bg-gray-900 border-none w-11/12 mx-auto px-0 shadow-none">
-        <div className="flex items-center justify-between">
+        <div className="flex navlink items-center justify-between">
           {/* logo */}
           <Typography
             as="a"
@@ -65,21 +65,21 @@ const Navber = () => {
           {/* nav menu*/}
           <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-4">
 
-            <Link to='/'>
+            <NavLink to='/'>
               <Typography className="cursor-pointer">
                 Home
               </Typography>
-            </Link>
-            <Link to='/petListing'>
+            </NavLink>
+            <NavLink to='/petListing'>
               <Typography className="cursor-pointer">
                 Pet Listing
               </Typography>
-            </Link>
-            <Link to='/donationCampaigns'>
+            </NavLink>
+            <NavLink to='/donationCampaigns'>
               <Typography className="cursor-pointer">
                 Donation Campaigns
               </Typography>
-            </Link>
+            </NavLink>
 
           </div>
 
@@ -187,22 +187,22 @@ const Navber = () => {
 
         {/* samll seceen dropdown menu*/}
         <Collapse open={openNav}>
-          <div className="flex flex-col text-secondary dark:text-white items-start gap-2 mt-4">
-            <Link to='/'>
+          <div className="flex navlinks flex-col text-secondary dark:text-white items-start gap-2 mt-4">
+            <NavLink to='/'>
               <Typography className="cursor-pointer">
                 Home
               </Typography>
-            </Link>
-            <Link to='/petListing'>
+            </NavLink>
+            <NavLink to='/petListing'>
               <Typography className="cursor-pointer">
                 Pet Listing
               </Typography>
-            </Link>
-            <Link to='/donationCampaigns'>
+            </NavLink>
+            <NavLink to='/donationCampaigns'>
               <Typography className="cursor-pointer">
                 Donation Campaigns
               </Typography>
-            </Link>
+            </NavLink>
           </div>
         </Collapse>
       </Navbar>

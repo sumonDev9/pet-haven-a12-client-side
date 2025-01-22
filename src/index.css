@@ -16,3 +16,7 @@ body{
     padding: 5px;
     border-radius: 8px;
 }
+
+.navlink  .active {
+    color:#0E7A81;
+}
