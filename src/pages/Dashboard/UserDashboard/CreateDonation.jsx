@@ -90,7 +90,7 @@ const CreateDonation = () => {
             
             // show success popup
             resetForm();
-            enqueueSnackbar('Pets added successful!', { variant: 'success', autoHideDuration: 1000 });
+            enqueueSnackbar(`${values.name} added successful!`, { variant: 'success', autoHideDuration: 1000 });
           }
         }
       }

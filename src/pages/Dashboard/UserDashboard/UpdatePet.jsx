@@ -82,11 +82,9 @@ const UpdatePet = () => {
             if(petsRes.data.modifiedCount > 0){
               // show success popup
               resetForm();
-              enqueueSnackbar('Pets updated successful!', { variant: 'success',autoHideDuration: 1000  });
+              enqueueSnackbar(`${name} updated successful!`, { variant: 'success',autoHideDuration: 1000  });
             }
           }
-            // console.log('with image url',res.data)
-            // console.log("Submitted Data:", formData);
            },
         });
         

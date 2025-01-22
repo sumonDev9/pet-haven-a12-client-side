@@ -91,11 +91,9 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
           }
            
          const res = await axiosSecure.post('/payments', payment);
-         console.log('payments saved', res)
          if(res.data.paymentResult.insertedId){
           fetchAllPet();
-
-          enqueueSnackbar(
+            enqueueSnackbar(
             `Thank you for your donation of ${donationAmount} taka! Your support makes a difference.`, 
             { 
               variant: 'success',  
@@ -103,6 +101,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
             }
           );
          }
+         setOpen(false)
         }
       }
 

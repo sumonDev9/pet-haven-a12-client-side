@@ -15,42 +15,36 @@ const DonationDatails = () => {
   const [donation, setDonation] = useState({})
   const [recommendedDonations, setRecommendedDonations] = useState([]);
   const axiosPublic = useAxiosPublic();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen((cur) => !cur);
 
   const fetchAllPet = async () => {
     const { data } = await axios.get(`http://localhost:5000/donationCampaigns/${id}`)
     setDonation(data)
   }
-
   useEffect(() => {
     fetchAllPet()
   }, []);
-
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen((cur) => !cur);
-
-// 
 
 // recommended donation
 const fetchRandomDonations = async () => {
     const { data } = await axiosPublic.get('/donationCampaigns/recommended');
     setRecommendedDonations(data);
-    console.log(data)
 }
 
 useEffect(() => {
   fetchRandomDonations();
 }, []);
 
+ const { _id, petImage, name, donatedAmount, maxDonation, longDescription, shortDescription, } = donation || {}
 
-
-  const { _id, petImage, name, donatedAmount, maxDonation, longDescription, shortDescription, } = donation || {}
   return (
-    <section className='bg-gray-200 py-10'>
+    <section className='bg-gray-200 dark:bg-gray-900 py-10'>
       <div className='w-11/12 mx-auto'>
       <p className='text-3xl text-secondary dark:text-white text-center pb-6 font-semibold'>{`${name} Donation details`}</p>
       </div>
-      <Card className="rounded-xl shadow-md max-w-3xl mx-auto">
-        <CardHeader className="relative shadow-none m-0 p-2 md:p-6 md:h-[420px]">
+      <Card className="rounded-xl bg-white dark:bg-gray-800 shadow-md max-w-3xl mx-auto">
+        <CardHeader className="relative dark:bg-gray-800  shadow-none m-0 p-2 md:p-6 md:h-[420px]">
           <img
             className='rounded-md w-full object-cover h-full'
             src={petImage}
@@ -58,7 +52,7 @@ useEffect(() => {
           />
         </CardHeader>
         <CardBody className='pt-0 space-y-2'>
-          <Typography className="mb-2 text-4xl text-secondary">
+          <Typography className="mb-2 text-4xl dark:text-white text-secondary">
             {name}
           </Typography>
           <Typography className="flex items-center text-info  dark:text-white mt-1">
@@ -67,11 +61,11 @@ useEffect(() => {
           <Typography className="flex items-center text-info  dark:text-white mt-1">
             <span className="text-secondary dark:text-white font-semibold">Total Donation:</span><MdCurrencyRupee /> {donatedAmount}
           </Typography>
-          <Typography className="mb-2 text-xl text-info">
+          <Typography className="mb-2 text-xl dark:text-white text-info">
             {shortDescription
             }
           </Typography>
-          <Typography className='text-info text-lg'>
+          <Typography className='text-info dark:text-white text-lg'>
             {longDescription}
           </Typography>
 
@@ -90,8 +84,8 @@ useEffect(() => {
       <div className='py-10 md:py-20 '>
         {/* heading */}
         <div>
-          <p className='text-xl lg:text-3xl md:text-2xl text-center font-semibold text-secondary'>Recommended Donation</p>
-          <p className='text-lg md:text-xl lg:text-xl text-info max-w-3xl mx-auto text-center'>This section displays 3 active donation campaigns, showing the latest ones that need support.</p>
+          <p className='text-xl lg:text-3xl md:text-2xl dark:text-white text-center font-semibold text-secondary'>Recommended Donation</p>
+          <p className='text-lg md:text-xl lg:text-xl dark:text-white text-info max-w-3xl mx-auto text-center'>This section displays 3 active donation campaigns, showing the latest ones that need support.</p>
         </div>
         {/* card */}
         <div className='w-11/12 mx-auto pt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>

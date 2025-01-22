@@ -59,7 +59,6 @@ const PetDetails = () => {
 
     await axios.post('http://localhost:5000/adoptions', adoptionData)
       .then(res => {
-        console.log(res.data)
         if (res.data.insertedId) {
           enqueueSnackbar(`Congratulations, ${user?.displayName}! You’ve successfully adopted ${pet.name}!`, { variant: 'success',  autoHideDuration: 1000 });
         }

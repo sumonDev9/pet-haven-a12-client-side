@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import ProgressBar from "@ramonak/react-progress-bar";
 import PaymentView from '../../../components/PaymentView';
+import { CiEdit } from 'react-icons/ci';
+import { FaRegEye } from 'react-icons/fa';
 
 const MyDonationCampaign = () => {
        
@@ -23,8 +25,7 @@ const MyDonationCampaign = () => {
         const fetchData = async () => {
             try {
                 const response = await axiosSecure.get(`/donationCampaigns/user/${user?.email}`);
-                setData(response.data); // Set the fetched data to state
-                console.log(response.data);
+                setData(response.data); 
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -158,18 +159,18 @@ const MyDonationCampaign = () => {
                                   
                                   <Link to={`/dashboard/updateDonation/${row.original._id}`}>
                                   <Button
-                                        className="bg-green-600 text-white p-2 hover:bg-red-700"
+                                        className="bg-primary text-white p-2"
                                         onClick={() => handleEdit(row.original)}
                                     >
-                                        Edit 
+                                        <CiEdit className='text-xl text-white'/>
                                     </Button>
                                   </Link>
                                     <Button
-                                        className="p-2 bg-red-600 text-white hover:bg-green-700"
+                                        className="p-2 bg-red-600 text-white"
                                         onClick={() => handleView(row.original._id)} 
                                         disabled={row.original.adopted}
                                     >
-                                        View 
+                                      <FaRegEye className='text-xl text-white'/>
                                     </Button>
 
                                     <Button

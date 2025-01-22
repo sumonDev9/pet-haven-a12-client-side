@@ -13,6 +13,7 @@ import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 
 import { Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
+import Swal from 'sweetalert2';
 
 const MyAddpets = () => {
     const axiosSecure = useAxiosSecure();
@@ -62,17 +63,12 @@ const MyAddpets = () => {
             }
         }
     };
-
-    // Update record
-    // const handleUpdate = (id) => {
-    //     alert(id._id);
-    // };
-
+    // Adopt
     const handleAdopt = async (id) => {
         try {
             const response = await axiosSecure.patch(`/pets/adopt/${id._id}`, { adopted: true });
             if (response.data.modifiedCount > 0) {
-                enqueueSnackbar('Adoption status updated successfully!', { variant: 'success', autoHideDuration: 1000 });
+                enqueueSnackbar(`Adoption status updated successfully!`, { variant: 'success', autoHideDuration: 1000 });
                 fetchData();
             } else {
                 enqueueSnackbar('Failed to update adoption status.', { variant: 'error', autoHideDuration: 1000 });

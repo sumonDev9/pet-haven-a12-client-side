@@ -51,19 +51,19 @@ const PetCategory = () => {
             {
                 uniqueCategories.map((item, index) => (
                     <Link to={`/category/${item.category}`}>
-                        <Card key={index} className="mt-6">
+                        <Card key={index} className="mt-6 bg-white dark:bg-gray-800">
                             <CardBody>
                                 <img
                                     src={item.image}
                                     alt={item.category}
                                     className="w-full h-48 object-cover rounded-lg mb-4"
                                 />
-                                <Typography variant="h5" color="blue-gray" className="text-center">
+                                <Typography variant="h5" color="blue-gray" className="dark:text-white text-center">
                                     {item.category}
                                 </Typography>
                             </CardBody>
                             <CardFooter className="pt-0">
-                              <p className="flex gap-1 items-center justify-center">  Explore More  <GoArrowRight /></p>
+                              <p className="flex gap-1 items-center justify-center dark:text-white">  Explore More  <GoArrowRight /></p>
                             </CardFooter>
                         </Card>
                     </Link>

@@ -82,11 +82,9 @@ const UpdatedDonation = () => {
                 if (donationRes.data.modifiedCount > 0) {
                     // show success popup
                     resetForm();
-                    enqueueSnackbar('Donation campigan updated successful!', { variant: 'success', autoHideDuration: 1000 });
+                    enqueueSnackbar(`${name} Donation campigan updated successful!`, { variant: 'success', autoHideDuration: 1000 });
                 }
             }
-            // console.log('with image url',res.data)
-            // console.log("Submitted Data:", formData);
         },
     });
 
