@@ -50,15 +50,16 @@ const MyDonation = () => {
     };
 
     return (
-        <Card className="h-auto w-full overflow-scroll p-4">
+   <section className='bg-gray-100'>
+         <Card className="h-auto w-full overflow-x-scroll p-4">
         <table className="w-full min-w-max table-auto text-left">
             <thead>
                 <tr>
-                    <th className="border-b p-4 bg-blue-gray-50">Pet Image
+                    <th className="border-b p-4 bg-primary text-white">Pet Image
                     </th>
-                    <th className="border-b p-4 bg-blue-gray-50">Pet Name</th>
-                    <th className="border-b p-4 bg-blue-gray-50">Donated Amount</th>
-                    <th className="border-b p-4 bg-blue-gray-50">Refund</th>
+                    <th className="border-b p-4 bg-primary text-white">Pet Name</th>
+                    <th className="border-b p-4 bg-primary text-white">Donated Amount</th>
+                    <th className="border-b p-4 bg-primary text-white">Refund</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,12 +69,12 @@ const MyDonation = () => {
                             <img src={payment.petImage} alt={payment.petName} className="h-16 w-16 object-cover rounded-full" />
                         </td>
                         <td className="p-4 border-b">
-                            <Typography variant="small" className="font-normal">
+                            <Typography variant="small" className="font-normal text-secondary">
                                 {payment.petName}
                             </Typography>
                         </td>
                         <td className="p-4 border-b">
-                            <Typography variant="small" className="font-normal">
+                            <Typography variant="small" className="font-normal text-secondary">
                                 ${payment.donationAmount}
                             </Typography>
                         </td>
@@ -91,6 +92,7 @@ const MyDonation = () => {
             </tbody>
         </table>
     </Card>
+   </section>
         
     );
 };

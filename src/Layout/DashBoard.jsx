@@ -20,7 +20,7 @@ const DashBoard = () => {
     return (
         <div>
             {/* responsive sidebar */}
-          <div className='bg-white shadow-md'>
+          <div className='bg-white sticky top-0 z-50 shadow-md'>
           <React.Fragment>
                 <Button className='bg-base-100 flex md:hidden' onClick={openDrawer}><RiMenu2Fill className='text-2xl text-secondary'/></Button>
                 <Drawer open={open} onClose={closeDrawer} className="p-4">
