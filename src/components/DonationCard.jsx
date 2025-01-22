@@ -10,7 +10,6 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const DonationCard = ({donation}) => {
-    console.log(donation)
     const {petImage, maxDonation, donatedAmount, name, _id} = donation || {}
     return (
         <Card className="mt-6 dark:bg-gray-800 ">

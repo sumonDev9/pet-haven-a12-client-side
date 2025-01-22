@@ -15,13 +15,14 @@ import {
 } from "@material-tailwind/react";
 import { FaLocationDot } from 'react-icons/fa6';
 import { MdOutlineDateRange } from 'react-icons/md';
+import { useSnackbar } from 'notistack';
 
 
 const PetDetails = () => {
   const [pet, SetPets] = useState({})
   const { user } = UseAuth();
   const { id } = useParams();
-  
+  const { enqueueSnackbar } = useSnackbar();
   useEffect(() => {
     fetchAllPet()
   }, []);
@@ -60,8 +61,7 @@ const PetDetails = () => {
       .then(res => {
         console.log(res.data)
         if (res.data.insertedId) {
-          alert('added to your carts')
-
+          enqueueSnackbar(`Congratulations, ${user?.displayName}! You’ve successfully adopted ${pet.name}!`, { variant: 'success',  autoHideDuration: 1000 });
         }
       })
     setOpen(false)
@@ -121,7 +121,7 @@ const PetDetails = () => {
             <Typography variant="h4" className="text-center text-secondary">
               {name}
             </Typography>
-            <Typography className="-mb-2" variant="h6">
+            {/* <Typography className="-mb-2" variant="h6">
               Pet ID
             </Typography>
             <Input label="text" defaultValue={_id} disabled size="xl" />
@@ -132,7 +132,7 @@ const PetDetails = () => {
             <Typography className="-mb-2" variant="h6">
               Pet image
             </Typography>
-            <Input label="text" defaultValue={image} disabled size="xl" />
+            <Input label="text" defaultValue={image} disabled size="xl" /> */}
             <Typography className="-mb-2" variant="h6">
               User name
             </Typography>

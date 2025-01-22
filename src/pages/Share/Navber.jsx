@@ -159,11 +159,8 @@ const Navber = () => {
                 !dark && <IoMoon className="text-black text-xl" />
               }
             </button>
-
-          </div>
-
-          {/* menu toggle icon */}
-          <IconButton
+ {/* menu toggle icon */}
+ <IconButton
             variant="text"
             className="lg:hidden"
             onClick={handleNavToggle}
@@ -183,6 +180,9 @@ const Navber = () => {
               />
             </svg>
           </IconButton>
+          </div>
+
+         {/*  */}
         </div>
 
         {/* samll seceen dropdown menu*/}
@@ -205,6 +205,7 @@ const Navber = () => {
             </NavLink>
           </div>
         </Collapse>
+        
       </Navbar>
     </div>
   );
