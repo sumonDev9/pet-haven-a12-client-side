@@ -20,6 +20,7 @@ import PrivetRoute from "../provider/PrivetRoute";
 import MyDonationCampaign from "../pages/Dashboard/UserDashboard/MyDonationCampaign";
 import UpdatedDonation from "../pages/Dashboard/UserDashboard/UpdatedDonation";
 import MyDonation from "../pages/Dashboard/UserDashboard/MyDonation";
+import CategoryList from "../pages/CategoryList";
 
 const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         {
           path: '/donationCampaigns',
           element: <DonationCampaigns></DonationCampaigns>
+        },
+        {
+          path: 'category/:name',
+          element: <CategoryList></CategoryList>
         },
         {
           path: '/petdetails/:id',
