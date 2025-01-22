@@ -6,6 +6,7 @@ import { flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, 
 import { Link } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
 import ProgressBar from "@ramonak/react-progress-bar";
+import PaymentView from '../../../components/PaymentView';
 
 const MyDonationCampaign = () => {
        
@@ -13,7 +14,11 @@ const MyDonationCampaign = () => {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
-   const [payment, setPayment] = useState([]);
+    const [donators, setDonators] = useState([]);
+
+   const [open, setOpen] = React.useState(false);
+ 
+   const handleOpen = () => setOpen(!open);
     // Fetch data from the server
         const fetchData = async () => {
             try {
@@ -99,11 +104,11 @@ const MyDonationCampaign = () => {
         });
     }, [data]); // This effect runs whenever data changes
 
-    const handleView = async (record) => {
-        const response = await axiosSecure.get(`/payments/user/${record._id}`);
-                 setPayment(response.data); // Set the fetched data to state
-                 console.log(payment);
-    }
+    const handleView = async (petId) => {
+        const response = await axiosSecure.get(`/payments/user/${petId}`);
+            setDonators(response.data); // Set the fetched data to state
+            handleOpen(); 
+         }
 
     return (
         <div className="p-6 bg-gray-100 rounded-lg shadow-md">
@@ -161,7 +166,7 @@ const MyDonationCampaign = () => {
                                   </Link>
                                     <Button
                                         className="p-2 bg-red-600 text-white hover:bg-green-700"
-                                        onClick={() => handleView(row.original)}
+                                        onClick={() => handleView(row.original._id)} 
                                         disabled={row.original.adopted}
                                     >
                                         View 
@@ -242,6 +247,8 @@ const MyDonationCampaign = () => {
                 </div>
             </div>
         )}
+
+        <PaymentView open={open} setOpen={setOpen} donators={donators}  handleOpen={handleOpen}></PaymentView>
     </div>
     );
 };
