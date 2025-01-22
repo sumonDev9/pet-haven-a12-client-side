@@ -80,7 +80,8 @@ const CreateDonation = () => {
             shortDescription: values.shortDescription,
             longDescription: plainTextDescription,
             createdAt: new Date().toISOString(),
-            userEmail: user?.email
+            userEmail: user?.email,
+            isDonationStopped: false
           };
 
           const donationRes = await axiosSecure.post('/donationCampaigns', campaignData)

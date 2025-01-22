@@ -50,7 +50,6 @@ const PetDetails = () => {
       userName: user?.displayName,
       userEmail: user?.email,
       email: pet.userEmail,
-
       phone,
       address
     }

@@ -17,7 +17,7 @@ const PetListing = () => {
    const {data: pets, isPending} = useQuery({
     queryKey: ['pets', filter, search],
     queryFn: async () => {
-        const res = await axios.get(`http://localhost:5000/pets?filter=${filter}&search=${search}`);
+        const res = await axios.get(`http://localhost:5000/pets?filter=${filter}&search=${search}&adopted=false `);
         return res.data;
     }
 })

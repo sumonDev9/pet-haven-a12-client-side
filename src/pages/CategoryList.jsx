@@ -11,7 +11,7 @@ const {name} = useParams();
     const {data: pets, isPending} = useQuery({
         queryKey: ['pets',name],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/pets/${name}`);
+            const res = await axios.get(`http://localhost:5000/pets/category/${name}`);
             return res.data;
         },
         enabled: !!name, // Only fetch if name is not null or undefined

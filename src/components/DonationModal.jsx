@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 
 
 
-const DonationModal = ({ open, setOpen, name, petImage, _id }) => {
+const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
   console.log(name, _id)
   const [error, setError] = useState('');
     const { user } = UseAuth();
@@ -93,6 +93,8 @@ const DonationModal = ({ open, setOpen, name, petImage, _id }) => {
          const res = await axiosSecure.post('/payments', payment);
          console.log('payments saved', res)
          if(res.data.paymentResult.insertedId){
+          fetchAllPet();
+
           enqueueSnackbar(
             `Thank you for your donation of ${donationAmount} taka! Your support makes a difference.`, 
             { 

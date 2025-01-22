@@ -11,7 +11,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_Pk);
 const DonationDatails = () => {
     const {id} = useParams();
     const [donation, setDonation] = useState({})
-   
+   console.log(donation)
      
     const fetchAllPet = async () => {
         const { data } = await axios.get(`http://localhost:5000/donationCampaigns/${id}`)
@@ -61,13 +61,13 @@ const DonationDatails = () => {
           
         </CardBody>
         <CardFooter className="pt-0">
-          <Button onClick={handleOpen} className='text-base bg-primary'>Donate now</Button>
+          <Button onClick={handleOpen} disabled={donation.isDonationStopped} className='text-base bg-primary'>Donate now</Button>
         </CardFooter>
       </Card>
 
       {/* donate now modal */}
       <Elements stripe={stripePromise}>
-      <DonationModal open={open} setOpen={setOpen} name={name} petImage={petImage} _id={_id} ></DonationModal>
+      <DonationModal open={open} fetchAllPet={fetchAllPet} setOpen={setOpen} name={name} petImage={petImage} _id={_id} ></DonationModal>
       </Elements>
 
     </section>

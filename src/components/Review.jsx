@@ -14,7 +14,7 @@ const Review = () => {
       },[])
     return (
         <section className="bg-gray-100 dark:bg-gray-900 py-10">
-        <div className="w-11/12   p-4 rounded-lg mx-auto text-center">
+        <div className="w-11/12  p-4 rounded-lg mx-auto text-center">
             <SectionTitle
             heading={"What Our Clients Say"}
             subHeading={"Discover how our services have made a positive impact on our clients. Read their experiences and see why they trust us for their needs."}

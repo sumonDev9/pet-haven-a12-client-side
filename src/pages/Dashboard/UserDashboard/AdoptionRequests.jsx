@@ -9,6 +9,7 @@ import { Button } from '@material-tailwind/react';
 const AdoptionRequests = () => {
     const axiosSecure = useAxiosSecure();
     const [data, setData] = useState([]);
+    console.log(data)
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
     // const { enqueueSnackbar } = useSnackbar();
@@ -25,6 +26,7 @@ const AdoptionRequests = () => {
     const fetchData = async () => {
         try {
             const response = await axiosSecure.get(`/adoptions/user/${user?.email}`);
+            console.log(data)
             setData(response.data); // Set the fetched data to state
             console.log(response.data);
         } catch (error) {

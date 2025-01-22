@@ -13,7 +13,7 @@ const MyDonationCampaign = () => {
     const [data, setData] = useState([]);
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
-
+   const [payment, setPayment] = useState([]);
     // Fetch data from the server
         const fetchData = async () => {
             try {
@@ -51,9 +51,9 @@ const MyDonationCampaign = () => {
             accessorKey: 'donatedAmount',
             header: 'donatedAmount',
             cell: (info) => {
-                const row = info.row.original; // Access the row's data
-                const maxCompleted = row.maxDonation; // Maximum donation target
-                const completed = row.donatedAmount; // Current donated amount
+                const row = info.row.original;
+                const maxCompleted = row.maxDonation; 
+                const completed = row.donatedAmount; 
            return (
                      
                     <ProgressBar completed={completed} maxCompleted={maxCompleted}    />
@@ -76,6 +76,35 @@ const MyDonationCampaign = () => {
             },
         },
     });
+
+    const handlePushDonation = async (record) =>
+        {
+            const newStatus = !record.isDonationStopped;  // Toggle the status (true <=> false)
+            const response = await axiosSecure.patch(`/donationCampaigns/stop/${record._id}`,{ isDonationStopped: newStatus });
+             if(response.data.modifiedCount)
+             {
+                alert(newStatus ? 'Donation stopped successfully' : 'Donation resumed successfully');
+                 fetchData();
+             }
+        }
+
+
+
+         // Run handlePushDonation automatically when condition is met
+    useEffect(() => {
+        data.forEach((record) => {
+            if (record.donatedAmount >= record.maxDonation && !record.isDonationStopped) {
+                handlePushDonation(record);
+            }
+        });
+    }, [data]); // This effect runs whenever data changes
+
+    const handleView = async (record) => {
+        const response = await axiosSecure.get(`/payments/user/${record._id}`);
+                 setPayment(response.data); // Set the fetched data to state
+                 console.log(payment);
+    }
+
     return (
         <div className="p-6 bg-gray-100 rounded-lg shadow-md">
         {/* Table */}
@@ -139,12 +168,23 @@ const MyDonationCampaign = () => {
                                     </Button>
 
                                     <Button
-                                        className="p-2 bg-red-600 text-white hover:bg-green-700"
-                                        onClick={() => handlePushDonation(row.original)}
-                                        disabled={row.original.adopted}
-                                    >
-                                        Push
-                                    </Button>
+                                                   className="p-2 bg-red-600 text-white hover:bg-green-700"
+                                                   onClick={() =>
+                                                    handlePushDonation(row.original)
+                                                   }
+                                                   
+                                                 
+                                                //    disabled={}
+                                               >
+
+                                                {
+                                                    row.original.donatedAmount >=row.original.maxDonation || row.original.isDonationStopped ?
+                                                     'Stop'
+                                                     :
+                                                     'Push'
+                                                }
+                                                   
+                                               </Button>
                                 </div>
                             </td>
                         </tr>
