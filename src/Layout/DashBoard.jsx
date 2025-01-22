@@ -61,7 +61,7 @@ const DashBoard = () => {
                           <li className='rounded-md'><NavLink to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
                           <li className='rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                           <li className='rounded-md'><NavLink to='/dashboard/myDonationCampaign'>My Donation Campaigns</NavLink></li>
-                          <li className='rounded-md'><NavLink>My Donations</NavLink></li>
+                          <li className='rounded-md'><NavLink to='/dashboard/myDonation'>My Donations</NavLink></li>
                           </>
                        }
                         </ul>
@@ -77,14 +77,8 @@ const DashBoard = () => {
                             {user?.displayName}
                         </Typography>
                 </Link>
-                    <ul className='px-5 w-full text-white navlinks text-base space-y-2'>
-                        {/* <li className='text-white rounded-md'><NavLink  to='/dashboard/addPets'>Add a pet</NavLink></li>
-                        <li className='text-white rounded-md'><NavLink to='/dashboard/myAddpets'>My added pets</NavLink></li>
-                        <li className='text-white rounded-md'><NavLink>Adoption Request</NavLink></li>
-                        <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
-                        <li className='text-white rounded-md'><NavLink>My Donation Campaigns</NavLink></li>
-                        <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
-                         */}
+                    <ul className='px-5 w-full text-white navlinks text-base  space-y-3'>
+                       
                        {
                           isAdmin ? <>
 
@@ -99,7 +93,7 @@ const DashBoard = () => {
                           <li className='text-white rounded-md'><NavLink to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
                           <li className='text-white rounded-md'><NavLink to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
                           <li className='text-white rounded-md'><NavLink to='/dashboard/myDonationCampaign'>My Donation Campaigns</NavLink></li>
-                          <li className='text-white rounded-md'><NavLink>My Donations</NavLink></li>
+                          <li className='text-white rounded-md'><NavLink to='/dashboard/myDonation'>My Donations</NavLink></li>
                           </>
                        }
 

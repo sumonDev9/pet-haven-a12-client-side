@@ -8,7 +8,7 @@ import DonationCard from '../components/donationCard';
 const DonationCampaigns = () => {
     const axiosPublic = useAxiosPublic();
 
-    const {data: donationCampaigns, isPending} = useQuery({
+    const {data: donationCampaigns} = useQuery({
         queryKey: ['donationCampaigns'],
         queryFn: async () => {
             const res = await axiosPublic.get('/donationCampaigns');

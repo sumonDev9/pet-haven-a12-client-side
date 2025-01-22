@@ -10,9 +10,9 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import UseAuth from '../../../hooks/UseAuth';
 import { Button } from '@material-tailwind/react';
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-import { useSnackbar } from 'notistack';
-import Swal from 'sweetalert2';
+
 import { Link } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
 
 const MyAddpets = () => {
     const axiosSecure = useAxiosSecure();

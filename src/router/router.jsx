@@ -19,6 +19,7 @@ import DonationDatails from "../pages/donationDatails";
 import PrivetRoute from "../provider/PrivetRoute";
 import MyDonationCampaign from "../pages/Dashboard/UserDashboard/MyDonationCampaign";
 import UpdatedDonation from "../pages/Dashboard/UserDashboard/UpdatedDonation";
+import MyDonation from "../pages/Dashboard/UserDashboard/MyDonation";
 
 const router = createBrowserRouter([
     {
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
         {
           path: 'adoptionRequests',
           element: <PrivetRoute><AdoptionRequests></AdoptionRequests></PrivetRoute>
+        },
+        {
+          path: 'myDonation',
+          element: <PrivetRoute><MyDonation></MyDonation></PrivetRoute>
         },
         // admin route
         {

@@ -7,7 +7,7 @@ import { useSnackbar } from 'notistack';
 
 
 
-const DonationModal = ({ open, setOpen, name, _id }) => {
+const DonationModal = ({ open, setOpen, name, petImage, _id }) => {
   console.log(name, _id)
   const [error, setError] = useState('');
     const { user } = UseAuth();
@@ -86,6 +86,7 @@ const DonationModal = ({ open, setOpen, name, _id }) => {
             donationDate: new Date().toISOString(),
             transactionId: paymentIntent.id,
             petName: name,
+            petImage: petImage,
             petId: _id
           }
            

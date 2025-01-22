@@ -67,7 +67,7 @@ const DonationDatails = () => {
 
       {/* donate now modal */}
       <Elements stripe={stripePromise}>
-      <DonationModal open={open} setOpen={setOpen} name={name} _id={_id} ></DonationModal>
+      <DonationModal open={open} setOpen={setOpen} name={name} petImage={petImage} _id={_id} ></DonationModal>
       </Elements>
 
     </section>
