@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { Link } from 'react-router-dom';
 import { Button } from '@material-tailwind/react';
+import Swal from 'sweetalert2';
 
 const AdoptionRequests = () => {
     const axiosSecure = useAxiosSecure();
@@ -38,7 +39,76 @@ const AdoptionRequests = () => {
     useEffect(() => {
         fetchData();
     }, [axiosSecure]);
+//  reject adaption
+const handleReject = async (record) => {
 
+
+
+    const result = await  Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Reject it!"
+      }) ;
+          if (result.isConfirmed) {
+
+              const response = await axiosSecure.patch(`/adoptions/reject/${record._id}`);
+
+              if (response.data.modifiedCount > 0) {
+                  fetchData();
+                  Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Adoption is Reject!",
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+              }
+          }
+       
+  }
+
+
+
+  //  handel accept adoption request
+  const handleAccept = async (record)=>
+  {
+      const result = await  Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, Accept it!"
+      }) ;
+          if (result.isConfirmed) {
+
+              const response = await axiosSecure.patch(`/adoptions/accept/${record._id}`);
+              if(response.data.message === "Adoption request already accepted")
+              {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'Adoption request already accepted!',
+                  });
+                  return;
+              }
+              if (response.data.modifiedCount > 0) {
+                  fetchData();
+                  Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Adoption is Accept!",
+                      showConfirmButton: false,
+                      timer: 1500
+                    });
+              }
+          }
+  }
 
  
     // Define table columns
@@ -115,15 +185,34 @@ const AdoptionRequests = () => {
                                 key={row.id}
                                 className="hover:bg-indigo-100 transition-colors duration-200"
                             >
-                                {row.getVisibleCells().map((cell) => (
+                                {/* {row.getVisibleCells().map((cell) => (
                                     <td
                                         key={cell.id}
                                         className="px-4 py-3 border-b border-gray-200 text-sm"
                                     >
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                     </td>
-                                ))}
-                                <td className="px-4 py-3 border-b border-gray-200 text-sm">
+                                ))} */}
+                                {row.getVisibleCells().map((cell) => (
+                                    row.original.status === 'reject' ?
+
+                                        <td
+                                            key={cell.id}
+                                            className="px-4 py-3 border-b border-gray-200 text-sm"
+                                            style={{ backgroundColor: 'rgba(224, 143, 143, 0.2)' }}
+                                        >
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </td>
+                                        :
+                                        <td
+                                            key={cell.id}
+                                            className="px-4 py-3 border-b border-gray-200 text-sm"
+                                        >
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </td>
+
+                                   ))}
+                                {/* <td className="px-4 py-3 border-b border-gray-200 text-sm">
                                     <div className="flex justify-center space-x-2">
                                       
                                         <Button
@@ -140,7 +229,54 @@ const AdoptionRequests = () => {
                                             Reject 
                                         </Button>
                                     </div>
-                                </td>
+                                </td> */}
+                                {
+                                     row.original.status==='reject' ?
+                                     <td className="px-4 py-3 border-b border-gray-200 text-sm" style={{backgroundColor: 'rgba(224, 143, 143, 0.2)'}}>
+                                     <div className="flex justify-center space-x-2"  >
+ 
+                                         <Button
+                                             className={ ` ${row.original.status==='reject'? 'bg-red-600': 'bg-green-600'}  text-white p-2 hover:bg-red-700`}
+                                             onClick={() => handleAccept(row.original)}
+                                             disabled={row.original.status==='reject'}
+                                         >
+                                            {
+                                                row.original.status==='reject' ? 'Reject' : ' Accept'
+                                            }
+                                            
+                                         </Button>
+                                         <Button
+                                             className="p-2 bg-red-600 text-white hover:bg-green-700"
+                                             onClick={() => handleReject(row.original)}
+                                             
+                                             disabled={row.original.status==='accept' || row.original.status==='reject'}
+                                             
+                                         >
+                                             Reject
+                                         </Button>
+                                     </div>
+                                 </td>
+                                 :
+                                 <td className="px-4 py-3 border-b border-gray-200 text-sm">
+                                 <div className="flex justify-center space-x-2">
+
+                                     <Button
+                                         className="bg-green-600 text-white p-2 hover:bg-red-700"
+                                         onClick={() => handleAccept(row.original)}
+                                     >
+                                         Accept
+                                     </Button>
+                                     <Button
+                                         className="p-2 bg-red-600 text-white hover:bg-green-700"
+                                         onClick={() => handleReject(row.original)}
+                                         disabled={row.original.status==='accept' || row.original.status==='reject'}
+                                     >
+                                         Reject
+                                     </Button>
+                                 </div>
+                             </td>
+
+                                }
                             </tr>
                         ))}
                     </tbody>
