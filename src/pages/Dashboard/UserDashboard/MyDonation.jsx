@@ -3,13 +3,14 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import UseAuth from '../../../hooks/UseAuth';
 import { useQuery } from '@tanstack/react-query';
 import { Card, Typography, Button  } from "@material-tailwind/react";
+import Swal from 'sweetalert2';
  
 const TABLE_HEAD = ["Name", "Job", "Employed", ""];
 const MyDonation = () => {
      const axiosSecure = useAxiosSecure();
      const {user} = UseAuth();
 
-     const { data: payments, isLoading, error } = useQuery({
+     const { data: payments, isLoading, error, refetch } = useQuery({
         queryKey: ['payments', user?.email],
         queryFn: async () => {
             console.log('Fetching payments for:', user?.email);
@@ -34,20 +35,42 @@ const MyDonation = () => {
     }
  
        // Handle refund operation (DELETE request)
-       const handleRefund = async (id) => {
+    //    const handleRefund = async (id) => {
         
-        try {
-            const res = await axiosSecure.delete(`/payments/${id}`);
-            if (res.data.message === 'Donation removed successfully.') {
+    //     try {
+    //         const res = await axiosSecure.delete(`/payments/${id}`);
+    //         if (res.data.message === 'Donation removed successfully.') {
                 
-                console.log('Refund successful');
-            } else {
-                console.log('Failed to refund');
-            }
-        } catch (error) {
-            console.error('Error during refund:', error);
-        }
-    };
+    //             console.log('Refund successful');
+    //         } else {
+    //             console.log('Failed to refund');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error during refund:', error);
+    //     }
+    // };
+
+    // Handle refund operation (DELETE request)
+    const handleRefund = async (record) => {
+        
+        console.log(record);
+      
+           const res = await axiosSecure.patch(`/payments/refund/${record._id}`,{payment:record});
+        
+           if(res.data.modifiedCount > 0)
+           {
+               refetch();
+               Swal.fire({
+                   position: "top-end",
+                   icon: "success",
+                   title: "Payment is Refunded!",
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+           }
+          
+       
+   };
 
     return (
    <section className='bg-gray-100'>
@@ -79,12 +102,14 @@ const MyDonation = () => {
                             </Typography>
                         </td>
                         <td className="p-4 border-b">
-                            <Button
+                        <Button
                                 size="sm"
                                 color="red"
-                                onClick={() => handleRefund(payment._id)}
+                                onClick={() => handleRefund(payment)}
+                                disabled={payment.refund}
                             >
-                                 Refund
+                                {payment.refund === 'true'? 'Refunded':'Refund'}
+                                
                             </Button>
                         </td>
                     </tr>

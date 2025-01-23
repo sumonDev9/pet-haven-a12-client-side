@@ -21,6 +21,7 @@ import MyDonationCampaign from "../pages/Dashboard/UserDashboard/MyDonationCampa
 import UpdatedDonation from "../pages/Dashboard/UserDashboard/UpdatedDonation";
 import MyDonation from "../pages/Dashboard/UserDashboard/MyDonation";
 import CategoryList from "../pages/CategoryList";
+import AdminRoute from "../provider/AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -105,15 +106,15 @@ const router = createBrowserRouter([
         // admin route
         {
           path: 'allUsers',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },
         {
           path: 'allPets',
-          element: <AllPets></AllPets>
+          element: <AdminRoute><AllPets></AllPets></AdminRoute>
         },
         {
           path: 'allDonations',
-          element: <AllDonations></AllDonations>
+          element: <AdminRoute><AllDonations></AllDonations></AdminRoute>
         },
       ]
     }
