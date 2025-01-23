@@ -174,23 +174,20 @@ const MyDonationCampaign = () => {
                                     </Button>
 
                                     <Button
-                                                   className="p-2 bg-red-600 text-white hover:bg-green-700"
-                                                   onClick={() =>
-                                                    handlePushDonation(row.original)
-                                                   }
-                                                   
-                                                 
-                                                //    disabled={}
-                                               >
+                                        className="p-2 bg-red-600 text-white hover:bg-green-700"
+                                        onClick={() =>
+                                            handlePushDonation(row.original)
+                                        }
+                                    >
 
-                                                {
-                                                    row.original.donatedAmount >=row.original.maxDonation || row.original.isDonationStopped ?
-                                                     'Stop'
-                                                     :
-                                                     'Push'
-                                                }
-                                                   
-                                               </Button>
+                                        {
+                                            row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped ?
+                                                'Stop'
+                                                :
+                                                'Push'
+                                        }
+
+                                    </Button>
                                 </div>
                             </td>
                         </tr>

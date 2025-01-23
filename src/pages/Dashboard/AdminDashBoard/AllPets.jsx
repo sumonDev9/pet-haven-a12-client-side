@@ -27,7 +27,7 @@ const AllPets = () => {
         try {
             const response = await axiosSecure.get("/admin/all-pets");
             setData(response.data); // Set the fetched data to state
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -64,11 +64,7 @@ const AllPets = () => {
         }
     };
 
-    // Update record
-    // const handleUpdate = (id) => {
-    //     alert(id._id);
-    // };
-
+    // Adopt 
     const handleAdopt = async (id) => {
         try {
             const response = await axiosSecure.patch(`/pets/adopt/${id._id}`, { adopted: true });

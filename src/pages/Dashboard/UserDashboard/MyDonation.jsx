@@ -84,7 +84,7 @@ const MyDonation = () => {
                                 color="red"
                                 onClick={() => handleRefund(payment._id)}
                             >
-                                রিফান্ড
+                                 Refund
                             </Button>
                         </td>
                     </tr>

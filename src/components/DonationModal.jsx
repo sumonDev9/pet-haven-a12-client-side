@@ -87,7 +87,8 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
             transactionId: paymentIntent.id,
             petName: name,
             petImage: petImage,
-            petId: _id
+            petId: _id,
+            refund: false
           }
            
          const res = await axiosSecure.post('/payments', payment);
