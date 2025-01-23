@@ -39,20 +39,32 @@ const AllDonations = () => {
         fetchData();
     }, [axiosSecure]);
 
-    // Adopt
-    // const handleDonationStopped = async (id) => {
-    //     try {
-    //         const response = await axiosSecure.patch(`/admin/paused/${id._id}`, { isDonationStopped: true });
-    //         if (response.data.modifiedCount > 0) {
-    //             enqueueSnackbar(`isDonationStopped status updated successfully!`, { variant: 'success', autoHideDuration: 1000 });
-    //             fetchData();
-    //         } else {
-    //             enqueueSnackbar('Failed to update isDonationStopped status.', { variant: 'error', autoHideDuration: 1000 });
-    //         }
-    //     } catch (error) {
-    //         enqueueSnackbar('An error occurred while updating adoption status.', { variant: 'error', autoHideDuration: 1000 });
-    //     }
-    // };
+
+    // Delete record
+    const handleDelete = async (id) => {
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        })
+        if (result.isConfirmed) {
+            const { data } = await axiosSecure.delete(`/donationCampaigns/${id._id}`);
+            console.log(data)
+            if (data.deletedCount > 0) {
+                Swal.fire({
+                    title: 'Pets Deleted!',
+                    text: 'Your donation has been deleted successfully.',
+                    icon: 'success',
+                    confirmButtonText: 'Okay',
+                });
+                fetchData();
+            }
+        }
+    };
 
     // Updated handleDonationStopped function
 const handleDonationStopped = async (rowData) => {
@@ -174,7 +186,7 @@ const handleDonationStopped = async (rowData) => {
                                         >
                                             Delete
                                         </Button>
-                                        <Link to={`/dashboard/updatePet/${row.original._id}`}>
+                                        <Link to={`/dashboard/updateDonation/${row.original._id}`}>
                                             <Button
                                                 className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
                                                 onClick={() => handleUpdate(row.original)}
@@ -183,20 +195,16 @@ const handleDonationStopped = async (rowData) => {
                                             </Button>
                                         </Link>
                                         <Button
-                                            className="p-2 bg-red-600 text-white hover:bg-green-700"
-                                            onClick={() =>
-                                                handleDonationStopped(row.original)
-                                            }
+                                            className={`p-2 text-white ${row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'}`}
+                                            onClick={() => handleDonationStopped(row.original)}
                                         >
-
                                             {
-                                                row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped ?
-                                                    'Stop'
-                                                    :
-                                                    'Push'
+                                                row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped
+                                                    ? 'Stop'
+                                                    : 'Push'
                                             }
-
                                         </Button>
+
                                     </div>
                                 </td>
                             </tr>

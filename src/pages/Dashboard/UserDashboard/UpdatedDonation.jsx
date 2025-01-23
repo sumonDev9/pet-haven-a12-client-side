@@ -91,7 +91,7 @@ const UpdatedDonation = () => {
     return (
 
         <div className="flex  pb-20 justify-end mr-[180px] items-center">
-            <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+            <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-6">
                 <Typography variant="h4" color="blue-gray" className="text-center mb-4">
                     Updated Donation Campaigns
                 </Typography>
