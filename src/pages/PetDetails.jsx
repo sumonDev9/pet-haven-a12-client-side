@@ -70,24 +70,25 @@ const PetDetails = () => {
     userEmail,
      image, name, longDescription, shortDescription, age, location } = pet || {}
   return (
-    <section className='w-11/12 mx-auto'>
-      <Card className="mt-6 shadow-md max-w-3xl mx-auto">
-        <CardHeader className="relative shadow-none m-0 p-2 md:p-6 md:h-[420px] rounded-none">
+  <section className='bg-gray-50 dark:bg-blue-gray-900'>
+      <div className='w-11/12 py-10  mx-auto'>
+      <Card className="mt-6 dark:bg-blue-gray-800 rounded-md shadow-md max-w-3xl mx-auto">
+        <CardHeader className="relative dark:bg-blue-gray-800 shadow-none m-0 p-2 md:p-6 md:h-[420px] rounded-none">
           <img
-            className='rounded-md w-full object-cover h-full'
+            className='rounded-md w-full  object-cover h-full'
             src={image}
             alt=''
           />
         </CardHeader>
         <CardBody className='pt-0'>
-          <Typography className="mb-2 text-4xl text-secondary">
+          <Typography className="mb-2 text-4xl dark:text-white text-secondary">
             {name} 
           </Typography>
-          <Typography className="mb-2 text-2xl text-info">
+          <Typography className="mb-2 text-2xl dark:text-white text-info">
             {shortDescription
             }
           </Typography>
-          <Typography className='text-info'>
+          <Typography className='text-info dark:text-white'>
             {longDescription}
           </Typography>
           <div className='flex gap-5'>
@@ -118,7 +119,7 @@ const PetDetails = () => {
         <form onSubmit={handleSubmit}>
           <CardBody className="flex flex-col gap-4">
             <Typography variant="h4" className="text-center text-secondary">
-              {name}
+            Adopt {name}
             </Typography>
             {/* <Typography className="-mb-2" variant="h6">
               Pet ID
@@ -143,12 +144,12 @@ const PetDetails = () => {
             <Typography className="-mb-2" variant="h6">
               Phone no
             </Typography>
-            <Input label="number" name="phone" size="xl" />
+            <Input label="number" name="phone" size="xl" required/>
             {/* <input type="text" placeholder='Your number' name="phone" /> */}
             <Typography className="-mb-2" variant="h6">
         Address
       </Typography>
-      <Textarea name="address" label="Address" />
+      <Textarea required name="address" label="Address" />
           </CardBody>
           <CardFooter className="pt-0">
             
@@ -162,7 +163,8 @@ const PetDetails = () => {
 
       </Dialog>
 
-    </section>
+    </div>
+  </section>
   );
 };
 

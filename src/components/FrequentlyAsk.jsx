@@ -20,7 +20,7 @@ const FrequentlyAsk = () => {
 
     return (
         <section class="bg-gray-50 dark:bg-gray-900  py-8 md:py-16">
-            <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-20">
+            <div class="w-11/12 mx-auto">
                 <div class="text-center mb-10">
 
                     <SectionTitle
@@ -28,7 +28,7 @@ const FrequentlyAsk = () => {
                         subHeading={"Find quick answers to common questions about our adoption process."}
                     ></SectionTitle>
                 </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class=" grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* let Content:*/}
                     <div>
                         {/* box -1  */}

@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUS = () => {
   return (
 
-    <section class="bg-gray-50 dark:bg-gray-900 py-16">
+    <section class="bg-gray-50 dark:bg-gray-900 py-10 md:py-16">
       <div class="max-w-7xl mx-auto  px-6 sm:px-12 lg:px-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* <!-- Left Content: Image --> */}
@@ -26,7 +26,7 @@ const AboutUS = () => {
               About Us
             </h2>
             <p class="mt-6 text-lg dark:text-white text-info leading-relaxed">
-              Welcome to <span class="text-primary font-semibold">Pet Adoption Platform</span>, where we help pets find loving homes. Our mission is to simplify the adoption process, making it a joyful experience for both pets and families.
+              Welcome to <strong class="text-primary font-semibold">Pet Adoption Platform</strong>, where we help pets find loving homes. Our mission is to simplify the adoption process, making it a joyful experience for both pets and families.
             </p>
             <p class="mt-4 text-info dark:text-white leading-relaxed">
               This platform is designed to connect pet lovers with their future companions while ensuring every adoption is handled responsibly. From playful puppies to serene cats, we’re here to make sure your pet adoption journey is seamless and trustworthy.

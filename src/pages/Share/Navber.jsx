@@ -61,7 +61,7 @@ const Navber = () => {
             <img src="https://i.ibb.co/Pz23rXM/logo.webp" alt="Logo" className="h-8 w-8 rounded-full" />
             {/* <span className="text-2xl text-secondary">Pet Adoption</span> */}
           </Typography>
-          
+
           {/* nav menu*/}
           <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-4">
 
@@ -84,7 +84,7 @@ const Navber = () => {
           </div>
 
           {/* proile pic and dropDown menu */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {
               user && user?.email ? <>
                 {/* profile */}
@@ -123,8 +123,8 @@ const Navber = () => {
                             }
                           }}
                           className={`flex items-center gap-2 rounded ${isLastItem
-                              ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                              : ""
+                            ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                            : ""
                             }`}
                         >
                           <Typography
@@ -159,30 +159,28 @@ const Navber = () => {
                 !dark && <IoMoon className="text-black text-xl" />
               }
             </button>
- {/* menu toggle icon */}
- <IconButton
-            variant="text"
-            className="lg:hidden"
-            onClick={handleNavToggle}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              stroke="currentColor"
-              className="h-6 w-6 dark:text-white"
+            {/* menu toggle icon */}
+            <IconButton
+              variant="text"
+              className="lg:hidden"
+              onClick={handleNavToggle}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4 6h16M4 12h16m-7 6h7"
-              />
-            </svg>
-          </IconButton>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                stroke="currentColor"
+                className="h-6 w-6 dark:text-white"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </IconButton>
           </div>
-
-         {/*  */}
         </div>
 
         {/* samll seceen dropdown menu*/}
@@ -205,7 +203,7 @@ const Navber = () => {
             </NavLink>
           </div>
         </Collapse>
-        
+
       </Navbar>
     </div>
   );

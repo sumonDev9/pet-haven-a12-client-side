@@ -25,7 +25,7 @@ useEffect(() => {
       const entry = entries[0];
       setInView(entry.isIntersecting); // Update state when the card is in view
     },
-    { threshold: 0.8 } // Trigger when 20% of the card is visible
+    { threshold: 0.4 } // Trigger when 20% of the card is visible
   );
 
   if (cardRef.current) {

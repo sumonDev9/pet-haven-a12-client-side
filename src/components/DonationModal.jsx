@@ -128,6 +128,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
             size="xl"
             value={donationAmount}
             onChange={(e) => setDonationAmount(Number(e.target.value) || '')}
+            required
              />
                 <Typography className="-mb-2" variant="h6">
                 Card Details

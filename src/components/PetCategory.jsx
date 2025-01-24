@@ -51,7 +51,7 @@ const PetCategory = () => {
             {
                 uniqueCategories.map((item, index) => (
                     <Link to={`/category/${item.category}`}>
-                        <Card key={index} className="mt-6 bg-white dark:bg-gray-800">
+                        <Card key={index} className="mt-3 md:mt-6 bg-white dark:bg-gray-800">
                             <CardBody>
                                 <img
                                     src={item.image}

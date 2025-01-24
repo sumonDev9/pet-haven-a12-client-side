@@ -4,17 +4,17 @@ import SectionTitle from './SectionTitle';
 
 const CallToAction = () => {
     return (
-        <section className="py-16 px-6  bg-gray-50 dark:bg-gray-900 ">
+        <section className="py-8 md:py-16  bg-gray-50 dark:bg-gray-900 ">
             <SectionTitle 
             heading={"Give Love, Adopt a Pet"}
             subHeading={'Every pet deserves a loving home. You can make a difference in their life by adopting. Let’s create a better world for them, one adoption at a time.'
             }
             ></SectionTitle>
-        <div className="w-11/12 mx-auto  p-6 rounded-lg  flex flex-col lg:flex-row items-center justify-between">
+        <div className="w-11/12 mx-auto bg-white dark:bg-gray-800 lg:p-6 rounded-lg  flex flex-col md:flex-row items-center justify-between">
        
           {/* Left Content (Title, Description, Button) */}
-          <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
-            <Typography variant="h2" className="text-3xl dark:text-white lg:text-5xl font-bold leading-tight">
+          <div className="md:w-1/2 space-y-6 text-center lg:text-left">
+            <Typography variant="h2" className="text-2xl md:text-3xl dark:text-white lg:text-5xl font-bold leading-tight">
               Give a Pet a Second Chance
             </Typography>
             <Typography variant="body1" className="text-lg dark:text-white lg:text-xl opacity-80">
@@ -22,18 +22,18 @@ const CallToAction = () => {
             </Typography>
             
             <Button
-              className="bg-blue-800 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-900 transition duration-300"
+              className="bg-primary text-white font-semibold px-6 py-3 rounded-lg transition duration-300"
             >
               Adopt a Pet
             </Button>
           </div>
           
           {/* Right Image */}
-          <div className="lg:w-1/2 mt-12 lg:mt-0">
+          <div className="md:w-1/2 mt-5  lg:mt-0">
             <img
-              src="https://i.ibb.co/k1JKWVB/image.png" // Replace with a real image
+              src="https://i.ibb.co/ZgCwhLT/image-1-removebg-preview.png" 
               alt="Happy Pet Adoption"
-              className="w-full h-auto  object-cover transform transition-transform duration-300 hover:scale-105"
+              className="w-[350px] h-auto mx-auto object-cover transform transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>

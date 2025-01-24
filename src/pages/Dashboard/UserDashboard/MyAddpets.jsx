@@ -123,7 +123,8 @@ const MyAddpets = () => {
 
     return (
         <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-            {/* Table */}
+        {data.length > 0 ? (
+            // Table
             <div className="overflow-x-auto">
                 <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
                     <thead className="bg-primary text-center text-white">
@@ -201,57 +202,63 @@ const MyAddpets = () => {
                     </tbody>
                 </table>
             </div>
+        ) : (
+            // Fallback message when no data is available
+            <div className="flex justify-center items-center h-48">
+                <p className="text-secondary text-lg">No pets found. Please add a pet or check back later.</p>
+            </div>
+        )}
 
-            {/* Pagination Controls */}
-            {data.length > 10 && (
-                <div className="flex flex-col md:flex-row items-center justify-between mt-6 space-y-4 md:space-y-0">
+        {/* Pagination Controls */}
+        {data.length > 10 && (
+            <div className="flex flex-col md:flex-row items-center justify-between mt-6 space-y-4 md:space-y-0">
+                <div className="flex space-x-2">
+                    <Button
+                        onClick={() => tableInstance.setPageIndex(0)}
+                        disabled={!tableInstance.getCanPreviousPage()}
+                        className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
+                    >
+                        <SlArrowLeft className='text-white font-bold text-lg' />
+                    </Button>
                     <div className="flex space-x-2">
-                        <Button
-                            onClick={() => tableInstance.setPageIndex(0)}
-                            disabled={!tableInstance.getCanPreviousPage()}
-                            className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
-                        >
-                            <SlArrowLeft className='text-white font-bold text-lg' />
-                        </Button>
-                        <div className="flex space-x-2">
-                            {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => tableInstance.setPageIndex(index)}
-                                    className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
-                                        ? 'bg-primary text-white'
-                                        : 'bg-white text-secondary hover:bg-indigo-100'
-                                        } focus:outline-none`}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
-                        <Button
-                            onClick={() => tableInstance.setPageIndex(tableInstance.getPageCount() - 1)}
-                            disabled={!tableInstance.getCanNextPage()}
-                            className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
-                        >
-                            <SlArrowRight className='text-white font-bold text-lg' />
-                        </Button>
+                        {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => tableInstance.setPageIndex(index)}
+                                className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
+                                    ? 'bg-primary text-white'
+                                    : 'bg-white text-secondary hover:bg-indigo-100'
+                                    } focus:outline-none`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
                     </div>
-
-                    <div>
-                        <select
-                            value={tableInstance.getState().pagination.pageSize}
-                            onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
-                            className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                        >
-                            {[10, 20].map((pageSize) => (
-                                <option key={pageSize} value={pageSize}>
-                                    Show {pageSize}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+                    <Button
+                        onClick={() => tableInstance.setPageIndex(tableInstance.getPageCount() - 1)}
+                        disabled={!tableInstance.getCanNextPage()}
+                        className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
+                    >
+                        <SlArrowRight className='text-white font-bold text-lg' />
+                    </Button>
                 </div>
-            )}
-        </div>
+
+                <div>
+                    <select
+                        value={tableInstance.getState().pagination.pageSize}
+                        onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
+                        className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
+                    >
+                        {[10, 20].map((pageSize) => (
+                            <option key={pageSize} value={pageSize}>
+                                Show {pageSize}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+            </div>
+        )}
+    </div>
     );
 };
 
