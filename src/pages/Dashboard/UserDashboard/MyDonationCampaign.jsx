@@ -9,6 +9,7 @@ import ProgressBar from "@ramonak/react-progress-bar";
 import PaymentView from '../../../components/PaymentView';
 import { CiEdit } from 'react-icons/ci';
 import { FaRegEye } from 'react-icons/fa';
+import { useSnackbar } from 'notistack';
 
 const MyDonationCampaign = () => {
        
@@ -17,8 +18,8 @@ const MyDonationCampaign = () => {
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
     const [donators, setDonators] = useState([]);
-
-   const [open, setOpen] = React.useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+    const [open, setOpen] = React.useState(false);
  
    const handleOpen = () => setOpen(!open);
     // Fetch data from the server
@@ -60,10 +61,10 @@ const MyDonationCampaign = () => {
                 const row = info.row.original;
                 const maxCompleted = row.maxDonation; 
                 const completed = row.donatedAmount; 
+                const percentage = ((completed / maxCompleted) * 100).toFixed(2);
            return (
                      
-                    <ProgressBar completed={completed} maxCompleted={maxCompleted}    />
-                );
+            <ProgressBar completed={completed} maxCompleted={maxCompleted} percentage={percentage} />                );
             },
         },
     ];
@@ -89,8 +90,15 @@ const MyDonationCampaign = () => {
             const response = await axiosSecure.patch(`/donationCampaigns/stop/${record._id}`,{ isDonationStopped: newStatus });
              if(response.data.modifiedCount)
              {
-                alert(newStatus ? 'Donation stopped successfully' : 'Donation resumed successfully');
-                 fetchData();
+                enqueueSnackbar(
+                    newStatus 
+                        ? `Donation for ${record.name} stopped successfully` 
+                        : `Donation for ${record.name} resumed successfully`, 
+                    { 
+                        variant: 'success', 
+                        autoHideDuration: 1000 
+                    }
+                );                 fetchData();
              }
         }
 
@@ -174,19 +182,17 @@ const MyDonationCampaign = () => {
                                     </Button>
 
                                     <Button
-                                        className="p-2 bg-red-600 text-white hover:bg-green-700"
-                                        onClick={() =>
-                                            handlePushDonation(row.original)
-                                        }
+                                        className={`p-2 text-white ${row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped
+                                                ? 'bg-red-600 hover:bg-red-700'  // Stop button color
+                                                : 'bg-green-600 hover:bg-green-700' // Push button color
+                                            }`}
+                                        onClick={() => handlePushDonation(row.original)}
                                     >
-
                                         {
-                                            row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped ?
-                                                'Stop'
-                                                :
-                                                'Push'
+                                            row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped
+                                                ? 'Stop'
+                                                : 'Push'
                                         }
-
                                     </Button>
                                 </div>
                             </td>
