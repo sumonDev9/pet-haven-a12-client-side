@@ -31,9 +31,9 @@ const CallToAction = () => {
           {/* Right Image */}
           <div className="md:w-1/2 mt-5  lg:mt-0">
             <img
-              src="https://i.ibb.co/ZgCwhLT/image-1-removebg-preview.png" 
+              src="https://i.ibb.co/cFMnMCB/image.png" 
               alt="Happy Pet Adoption"
-              className="w-[350px] h-auto mx-auto object-cover transform transition-transform duration-300 hover:scale-105"
+              className="w-[450px] h-auto rounded-md mx-auto object-cover transform transition-transform duration-300 hover:scale-105"
             />
           </div>
         </div>

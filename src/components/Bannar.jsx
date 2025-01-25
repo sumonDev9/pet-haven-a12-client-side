@@ -6,7 +6,7 @@ const Bannar = () => {
         <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
           {/* Left Content */}
           <div className="md:w-1/2 text-center pt-3 md:pt-0 md:text-left space-y-6">
-            <Typography variant="h1" className="text-2xl md:text-4xl lg:text-5xl font-bold text-secondary dark:text-white">
+            <Typography variant="h1" className="text-2xl italic md:text-4xl lg:text-5xl font-bold text-secondary dark:text-white">
               Adopt Your New Best Friend
             </Typography>
             <Typography variant="body1" className="text-base md:text-lg text-info dark:text-gray-400">
