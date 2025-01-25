@@ -39,8 +39,8 @@ const AllUsers = () => {
  
 
     return (
-<div className="container mx-auto my-10 px-4">
-      <h1 className="text-3xl font-bold mb-6 text-center">
+<div className="container mx-auto my-10 ">
+      <h1 className="text-xl md:text-3xl font-bold mb-6 text-center">
         User Management ({users.length})
       </h1>
       {users.length > 0 ? (

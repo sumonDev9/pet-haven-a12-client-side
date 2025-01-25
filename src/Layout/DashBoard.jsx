@@ -181,7 +181,7 @@ const DashBoard = () => {
         </React.Fragment>
 
         {/* Main Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-[250px,1fr]">
+        <div className="grid grid-cols-1 md:grid-cols-[300px,1fr]">
             {/* Sidebar */}
             <div className="hidden md:flex flex-col bg-primary text-white h-screen sticky top-0">
                 <Link to='/' className="px-6 py-5 text-2xl font-bold">
