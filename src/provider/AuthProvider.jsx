@@ -1,12 +1,14 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 import { app } from "../firebase/firebase";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 
+
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -38,6 +40,10 @@ const AuthProvider = ({children}) => {
         // google provider
         const logInbyGoogle = () => {
             return signInWithPopup(auth, googleProvider);
+        };
+        // github provider
+        const logInbyGithub = () => {
+            return signInWithPopup(auth, githubProvider);
         };
 
     useEffect(() => {
@@ -72,7 +78,8 @@ const AuthProvider = ({children}) => {
         userLogin,
         userLogout,
         UserProfile,
-        logInbyGoogle
+        logInbyGoogle,
+        logInbyGithub
     }
 
     return (

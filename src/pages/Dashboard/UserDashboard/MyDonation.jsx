@@ -72,7 +72,7 @@ const MyDonation = () => {
 
     return (
         <section className="bg-gray-100">
-             <ScrollRestoration></ScrollRestoration>
+            
         {payments.length === 0 ? (
           <div className="text-center text-gray-500">
             <Typography variant="h6" className="mb-4">

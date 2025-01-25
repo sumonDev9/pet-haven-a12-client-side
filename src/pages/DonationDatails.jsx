@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { ScrollRestoration, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Card, CardBody, CardFooter, CardHeader, Typography } from '@material-tailwind/react';
 import DonationModal from '../components/DonationModal';
@@ -40,6 +40,7 @@ useEffect(() => {
 
   return (
     <section className='bg-gray-200 dark:bg-gray-900 py-10'>
+       <ScrollRestoration></ScrollRestoration>
       <div className='w-11/12 mx-auto'>
       <p className='text-3xl text-secondary dark:text-white text-center pb-6 font-semibold'>{`${name} Donation details`}</p>
       </div>

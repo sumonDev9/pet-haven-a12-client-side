@@ -4,6 +4,7 @@ import UseAuth from '../../hooks/UseAuth';
 import { useSnackbar } from 'notistack';
 import GoogleLogin from '../../hooks/GoogleLogin';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import GithubLogin from '../../components/GithubLogin';
 
 const Register = () => {
     const axiosPublic = useAxiosPublic();
@@ -152,17 +153,7 @@ const Register = () => {
                 <div className="flex items-center space-x-4">
                   {/* google */}
                     <GoogleLogin></GoogleLogin>
-                    <button
-                        //   onClick={handleGithubLogin}
-                        className="w-full py-2 px-4 flex items-center justify-center text-secondary font-semibold rounded-lg border-primary border-2  focus:outline-none focus:ring-2 focus:ring-primary dark:text-white focus:ring-offset-2"
-                    >
-                        <img
-                            src="https://i.ibb.co/SXZGcCv/image.png"
-                            alt="GitHub logo"
-                            className="h-5 w-5 mr-2"
-                        />
-                        GitHub
-                    </button>
+                    <GithubLogin></GithubLogin>
                 </div>
                 <div>
                     <p className='text-center text-sm mt-4 md:text-lg ml-8'><span className='text-black dark:text-white opacity-80'>Already have an account?</span> <Link to='/login' className='text-blue-500 hover:underline'>Login here</Link></p>

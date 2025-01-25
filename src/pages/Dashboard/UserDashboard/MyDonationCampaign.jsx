@@ -120,87 +120,92 @@ const MyDonationCampaign = () => {
          }
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="bg-gray-100 rounded-lg shadow-md">
         {/* Table */}
-        <div className="overflow-x-auto">
-            <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
-                <thead className="bg-primary text-center text-white">
-                    {tableInstance.getHeaderGroups().map((headerGroup) => (
-                        <tr key={headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <th
-                                    key={header.id}
-                                    onClick={header.column.getToggleSortingHandler()}
-                                    className="px-4 py-3 text-sm font-medium tracking-wide cursor-pointer"
-                                    style={{ userSelect: 'none' }}
-                                >
-                                    {flexRender(header.column.columnDef.header, header.getContext())}
-                                    {header.column.getIsSorted() === 'asc' && (
-                                        <span className="text-sm bg-white ml-1">🔼</span>
-                                    )}
-                                    {header.column.getIsSorted() === 'desc' && (
-                                        <span className="text-sm ml-1">🔽</span>
-                                    )}
-                                </th>
-                            ))}
-                            <th className="px-4 py-3 text-sm font-medium tracking-wide">Actions</th>
-                        </tr>
-                    ))}
-                </thead>
-                <tbody className="bg-white text-center">
-                    {tableInstance.getRowModel().rows.map((row) => (
-                        <tr
-                            key={row.id}
-                            className="hover:bg-indigo-100 transition-colors duration-200"
-                        >
-                            {row.getVisibleCells().map((cell) => (
-                                <td
-                                    key={cell.id}
-                                    className="px-4 py-3 border-b border-gray-200 text-sm"
-                                >
-                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    
-                                </td>
-                            ))}
-                            <td className="px-4 py-3 border-b border-gray-200 text-sm">
-                                <div className="flex justify-center space-x-2">
-                                  
-                                  <Link to={`/dashboard/updateDonation/${row.original._id}`}>
-                                  <Button
-                                        className="bg-primary text-white p-2"
-                                        onClick={() => handleEdit(row.original)}
+        {data.length > 0 ? (
+            <div className="overflow-x-auto">
+                <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
+                    <thead className="bg-primary text-center text-white">
+                        {tableInstance.getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <th
+                                        key={header.id}
+                                        onClick={header.column.getToggleSortingHandler()}
+                                        className="px-4 py-3 text-sm font-medium tracking-wide cursor-pointer"
+                                        style={{ userSelect: 'none' }}
                                     >
-                                        <CiEdit className='text-xl text-white'/>
-                                    </Button>
-                                  </Link>
-                                    <Button
-                                        className="p-2 bg-red-600 text-white"
-                                        onClick={() => handleView(row.original._id)} 
-                                        disabled={row.original.adopted}
+                                        {flexRender(header.column.columnDef.header, header.getContext())}
+                                        {header.column.getIsSorted() === 'asc' && (
+                                            <span className="text-sm bg-white ml-1">🔼</span>
+                                        )}
+                                        {header.column.getIsSorted() === 'desc' && (
+                                            <span className="text-sm ml-1">🔽</span>
+                                        )}
+                                    </th>
+                                ))}
+                                <th className="px-4 py-3 text-sm font-medium tracking-wide">Actions</th>
+                            </tr>
+                        ))}
+                    </thead>
+                    <tbody className="bg-white text-center">
+                        {tableInstance.getRowModel().rows.map((row) => (
+                            <tr
+                                key={row.id}
+                                className="hover:bg-indigo-100 transition-colors duration-200"
+                            >
+                                {row.getVisibleCells().map((cell) => (
+                                    <td
+                                        key={cell.id}
+                                        className="px-4 py-3 border-b border-gray-200 text-sm"
                                     >
-                                      <FaRegEye className='text-xl text-white'/>
-                                    </Button>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                                <td className="px-4 py-3 border-b border-gray-200 text-sm">
+                                    <div className="flex justify-center space-x-2">
+                                        <Link to={`/dashboard/updateDonation/${row.original._id}`}>
+                                            <Button
+                                                className="bg-primary text-white p-2"
+                                                onClick={() => handleEdit(row.original)}
+                                            >
+                                                <CiEdit className="text-xl text-white" />
+                                            </Button>
+                                        </Link>
+                                        <Button
+                                            className="p-2 bg-red-600 text-white"
+                                            onClick={() => handleView(row.original._id)}
+                                            disabled={row.original.adopted}
+                                        >
+                                            <FaRegEye className="text-xl text-white" />
+                                        </Button>
 
-                                    <Button
-                                        className={`p-2 text-white ${row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped
-                                                ? 'bg-red-600 hover:bg-red-700'  // Stop button color
-                                                : 'bg-green-600 hover:bg-green-700' // Push button color
+                                        <Button
+                                            className={`p-2 text-white ${
+                                                row.original.donatedAmount >= row.original.maxDonation ||
+                                                row.original.isDonationStopped
+                                                    ? 'bg-red-600 hover:bg-red-700'
+                                                    : 'bg-green-600 hover:bg-green-700'
                                             }`}
-                                        onClick={() => handlePushDonation(row.original)}
-                                    >
-                                        {
-                                            row.original.donatedAmount >= row.original.maxDonation || row.original.isDonationStopped
+                                            onClick={() => handlePushDonation(row.original)}
+                                        >
+                                            {row.original.donatedAmount >= row.original.maxDonation ||
+                                            row.original.isDonationStopped
                                                 ? 'Stop'
-                                                : 'Push'
-                                        }
-                                    </Button>
-                                </div>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+                                                : 'Push'}
+                                        </Button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        ) : (
+            <div className="p-6 text-center text-gray-700">
+                <p>No donation campaigns found.</p>
+            </div>
+        )}
 
         {/* Pagination Controls */}
         {data.length > 10 && (
@@ -211,17 +216,18 @@ const MyDonationCampaign = () => {
                         disabled={!tableInstance.getCanPreviousPage()}
                         className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
                     >
-                        <SlArrowLeft className='text-white font-bold text-lg' />
+                        <SlArrowLeft className="text-white font-bold text-lg" />
                     </Button>
                     <div className="flex space-x-2">
                         {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
                             <button
                                 key={index}
                                 onClick={() => tableInstance.setPageIndex(index)}
-                                className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
-                                    ? 'bg-primary text-white'
-                                    : 'bg-white text-secondary hover:bg-indigo-100'
-                                    } focus:outline-none`}
+                                className={`w-8 h-8 flex items-center justify-center rounded-full border ${
+                                    tableInstance.getState().pagination.pageIndex === index
+                                        ? 'bg-primary text-white'
+                                        : 'bg-white text-secondary hover:bg-indigo-100'
+                                } focus:outline-none`}
                             >
                                 {index + 1}
                             </button>
@@ -232,7 +238,7 @@ const MyDonationCampaign = () => {
                         disabled={!tableInstance.getCanNextPage()}
                         className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
                     >
-                        <SlArrowRight className='text-white font-bold text-lg' />
+                        <SlArrowRight className="text-white font-bold text-lg" />
                     </Button>
                 </div>
 
@@ -252,7 +258,7 @@ const MyDonationCampaign = () => {
             </div>
         )}
 
-        <PaymentView open={open} setOpen={setOpen} donators={donators}  handleOpen={handleOpen}></PaymentView>
+        <PaymentView open={open} setOpen={setOpen} donators={donators} handleOpen={handleOpen} />
     </div>
     );
 };
