@@ -123,136 +123,94 @@ const AllPets = () => {
     });
 
     return (
-       <div className="p-6 bg-gray-100 rounded-lg shadow-md">
-                  {/* Table */}
-                  <div className="overflow-x-auto">
-                      <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
-                          <thead className="bg-primary text-center text-white">
-                              {tableInstance.getHeaderGroups().map((headerGroup) => (
-                                  <tr key={headerGroup.id}>
-                                      {headerGroup.headers.map((header) => (
-                                          <th
-                                              key={header.id}
-                                              onClick={header.column.getToggleSortingHandler()}
-                                              className="px-4 py-3 text-sm font-medium tracking-wide cursor-pointer"
-                                              style={{ userSelect: 'none' }}
-                                          >
-                                              {flexRender(header.column.columnDef.header, header.getContext())}
-                                              {header.column.getIsSorted() === 'asc' && (
-                                                  <span className="text-sm bg-white ml-1">🔼</span>
-                                              )}
-                                              {header.column.getIsSorted() === 'desc' && (
-                                                  <span className="text-sm ml-1">🔽</span>
-                                              )}
-                                          </th>
-                                      ))}
-                                      <th className="px-4 py-3 text-sm font-medium tracking-wide">Adoption Status</th>
-                                      <th className="px-4 py-3 text-sm font-medium tracking-wide">Actions</th>
-                                  </tr>
-                              ))}
-                          </thead>
-                          <tbody className="bg-white text-center">
-                              {tableInstance.getRowModel().rows.map((row) => (
-                                  <tr
-                                      key={row.id}
-                                      className="hover:bg-indigo-100 transition-colors duration-200"
-                                  >
-                                      {row.getVisibleCells().map((cell) => (
-                                          <td
-                                              key={cell.id}
-                                              className="px-4 py-3 border-b border-gray-200 text-sm"
-                                          >
-                                              {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                          </td>
-                                      ))}
-                                      <td className="px-4 py-3 border-b border-gray-200 text-sm">
-                                          {row.original.adopted ? (
-                                              <span className="text-green-600 p-1 bg-green-50 rounded-lg font-semibold">Adopted</span>
-                                          ) : (
-                                              <span className="text-red-700 bg-red-50 p-1 rounded-lg font-semibold">Not Adopted</span>
-                                          )}
-                                      </td>
-                                      <td className="px-4 py-3 border-b border-gray-200 text-sm">
-                                          <div className="flex justify-center space-x-2">
-                                              <Link to={`/dashboard/updatePet/${row.original._id}`}>
-                                                  <Button
-                                                      className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
-                                                      onClick={() => handleUpdate(row.original)}
-                                                  >
-                                                      Update
-                                                  </Button>
-                                              </Link>
-                                              <Button
-                                                  className="bg-red-600 text-white p-2 hover:bg-red-700"
-                                                  onClick={() => handleDelete(row.original)}
-                                              >
-                                                  Delete
-                                              </Button>
-                                              <Button
-                                                  className="p-2 bg-green-600 text-white hover:bg-green-700"
-                                                  onClick={() => handleAdopt(row.original)}
-                                                  disabled={row.original.adopted}
-                                              >
-                                                  Adopted
-                                              </Button>
-                                          </div>
-                                      </td>
-                                  </tr>
-                              ))}
-                          </tbody>
-                      </table>
-                  </div>
-      
-                  {/* Pagination Controls */}
-                  {data.length > 10 && (
-                      <div className="flex flex-col md:flex-row items-center justify-between mt-6 space-y-4 md:space-y-0">
-                          <div className="flex space-x-2">
-                              <Button
-                                  onClick={() => tableInstance.setPageIndex(0)}
-                                  disabled={!tableInstance.getCanPreviousPage()}
-                                  className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
-                              >
-                                  <SlArrowLeft className='text-white font-bold text-lg' />
-                              </Button>
-                              <div className="flex space-x-2">
-                                  {Array.from({ length: tableInstance.getPageCount() }, (_, index) => (
-                                      <button
-                                          key={index}
-                                          onClick={() => tableInstance.setPageIndex(index)}
-                                          className={`w-8 h-8 flex items-center justify-center rounded-full border ${tableInstance.getState().pagination.pageIndex === index
-                                              ? 'bg-primary text-white'
-                                              : 'bg-white text-secondary hover:bg-indigo-100'
-                                              } focus:outline-none`}
-                                      >
-                                          {index + 1}
-                                      </button>
-                                  ))}
-                              </div>
-                              <Button
-                                  onClick={() => tableInstance.setPageIndex(tableInstance.getPageCount() - 1)}
-                                  disabled={!tableInstance.getCanNextPage()}
-                                  className="btn btn-sm bg-primary text-white disabled:bg-gray-400"
-                              >
-                                  <SlArrowRight className='text-white font-bold text-lg' />
-                              </Button>
-                          </div>
-      
-                          <div>
-                              <select
-                                  value={tableInstance.getState().pagination.pageSize}
-                                  onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
-                                  className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
-                              >
-                                  {[10, 20].map((pageSize) => (
-                                      <option key={pageSize} value={pageSize}>
-                                          Show {pageSize}
-                                      </option>
-                                  ))}
-                              </select>
-                          </div>
-                      </div>
-                  )}
-              </div>
+        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        {data.length > 0 ? (
+            <>
+                <div className="overflow-x-auto">
+                    <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
+                        <thead className="bg-primary text-center text-white">
+                            {tableInstance.getHeaderGroups().map((headerGroup) => (
+                                <tr key={headerGroup.id}>
+                                    {headerGroup.headers.map((header) => (
+                                        <th
+                                            key={header.id}
+                                            onClick={header.column.getToggleSortingHandler()}
+                                            className="px-4 py-3 text-sm font-medium tracking-wide cursor-pointer"
+                                            style={{ userSelect: 'none' }}
+                                        >
+                                            {flexRender(header.column.columnDef.header, header.getContext())}
+                                            {header.column.getIsSorted() === 'asc' && <span className="text-sm bg-white ml-1">🔼</span>}
+                                            {header.column.getIsSorted() === 'desc' && <span className="text-sm ml-1">🔽</span>}
+                                        </th>
+                                    ))}
+                                    <th className="px-4 py-3 text-sm font-medium tracking-wide">Adoption Status</th>
+                                    <th className="px-4 py-3 text-sm font-medium tracking-wide">Actions</th>
+                                </tr>
+                            ))}
+                        </thead>
+                        <tbody className="bg-white text-center">
+                            {tableInstance.getRowModel().rows.map((row) => (
+                                <tr
+                                    key={row.id}
+                                    className="hover:bg-indigo-100 transition-colors duration-200"
+                                >
+                                    {row.getVisibleCells().map((cell) => (
+                                        <td
+                                            key={cell.id}
+                                            className="px-4 py-3 border-b border-gray-200 text-sm"
+                                        >
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </td>
+                                    ))}
+                                    <td className="px-4 py-3 border-b border-gray-200 text-sm">
+                                        {row.original.adopted ? (
+                                            <span className="text-green-600 p-1 bg-green-50 rounded-lg font-semibold">Adopted</span>
+                                        ) : (
+                                            <span className="text-red-700 bg-red-50 p-1 rounded-lg font-semibold">Not Adopted</span>
+                                        )}
+                                    </td>
+                                    <td className="px-4 py-3 border-b border-gray-200 text-sm">
+                                        <div className="flex justify-center space-x-2">
+                                            <Link to={`/dashboard/updatePet/${row.original._id}`}>
+                                                <Button
+                                                    className=" bg-blue-600 p-2 text-white hover:bg-blue-700"
+                                                >
+                                                    Update
+                                                </Button>
+                                            </Link>
+                                            <Button
+                                                className="bg-red-600 text-white p-2 hover:bg-red-700"
+                                                onClick={() => handleDelete(row.original)}
+                                            >
+                                                Delete
+                                            </Button>
+                                            <Button
+                                                className="p-2 bg-green-600 text-white hover:bg-green-700"
+                                                onClick={() => handleAdopt(row.original)}
+                                                disabled={row.original.adopted}
+                                            >
+                                                Adopted
+                                            </Button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </>
+        ) : (
+            <div className="flex flex-col items-center justify-center h-full p-10 text-center">
+                <h2 className="text-xl font-bold text-gray-700 mb-4">No Pets Available</h2>
+                <p className="text-gray-500">It looks like there are no pets to display at the moment.</p>
+                <img
+                    src="/path-to-placeholder-image.png"
+                    alt="No Pets"
+                    className="w-64 mt-6"
+                />
+            </div>
+        )}
+    </div>
     );
 };
 
