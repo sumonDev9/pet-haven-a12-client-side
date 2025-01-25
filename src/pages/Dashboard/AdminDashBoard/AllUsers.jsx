@@ -41,79 +41,161 @@ const AllUsers = () => {
     return (
    
 
-    <div className="container mx-auto my-10">
-    <h1 className="text-2xl font-bold mb-5">User Management ({users.length})</h1>
-    <div>
-        <Card className="h-full overflow-x-auto w-full px-6">
-            <div>
-                <table className="w-full min-w-max table-auto text-left">
-                    <thead>
-                        <tr>
-                            {TABLE_HEAD.map((head) => (
-                                <th key={head} className="border-b border-gray-300 pb-4 pt-10">
-                                    <Typography variant="small" color="blue-gray" className="font-bold leading-none text-sm sm:text-base">
-                                        {head}
-                                    </Typography>
-                                </th>
-                            ))}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users?.map(({ _id, name, email, photo, role }, index) => {
-                            const isLast = index === users.length - 1;
-                            const classes = isLast ? "py-4" : "py-4 border-b border-gray-300";
+//     <div className="container mx-auto my-10">
+//     <h1 className="text-2xl font-bold mb-5">User Management ({users.length})</h1>
+//     <div>
+//         <Card className="h-full overflow-x-auto w-full px-6">
+//             <div>
+//                 <table className="w-full min-w-max table-auto text-left">
+//                     <thead>
+//                         <tr>
+//                             {TABLE_HEAD.map((head) => (
+//                                 <th key={head} className="border-b border-gray-300 pb-4 pt-10">
+//                                     <Typography variant="small" color="blue-gray" className="font-bold leading-none text-sm sm:text-base">
+//                                         {head}
+//                                     </Typography>
+//                                 </th>
+//                             ))}
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {users?.map(({ _id, name, email, photo, role }, index) => {
+//                             const isLast = index === users.length - 1;
+//                             const classes = isLast ? "py-4" : "py-4 border-b border-gray-300";
 
-                            return (
-                                <tr key={_id} className="hover:bg-gray-50">
-                                    {/* Sl No */}
-                                    <td className={classes}>
-                                        <Typography variant="small" color="blue-gray" className="font-bold text-sm sm:text-base">
-                                            {index + 1}
-                                        </Typography>
-                                    </td>
+//                             return (
+//                                 <tr key={_id} className="hover:bg-gray-50">
+//                                     {/* Sl No */}
+//                                     <td className={classes}>
+//                                         <Typography variant="small" color="blue-gray" className="font-bold text-sm sm:text-base">
+//                                             {index + 1}
+//                                         </Typography>
+//                                     </td>
 
-                                    {/* Photo */}
-                                    <td className={classes}>
-                                        <img src={photo} alt={name} className="w-10 h-10 object-cover rounded-full" />
-                                    </td>
+//                                     {/* Photo */}
+//                                     <td className={classes}>
+//                                         <img src={photo} alt={name} className="w-10 h-10 object-cover rounded-full" />
+//                                     </td>
 
-                                    {/* Name */}
-                                    <td className={classes}>
-                                        <Typography variant="small" color="blue-gray" className="font-bold text-sm sm:text-base">
-                                            {name}
-                                        </Typography>
-                                    </td>
+//                                     {/* Name */}
+//                                     <td className={classes}>
+//                                         <Typography variant="small" color="blue-gray" className="font-bold text-sm sm:text-base">
+//                                             {name}
+//                                         </Typography>
+//                                     </td>
 
-                                    {/* Email */}
-                                    <td className={classes}>
-                                        <Typography variant="small" className="font-normal text-gray-600 text-sm sm:text-base">
-                                            {email}
-                                        </Typography>
-                                    </td>
+//                                     {/* Email */}
+//                                     <td className={classes}>
+//                                         <Typography variant="small" className="font-normal text-gray-600 text-sm sm:text-base">
+//                                             {email}
+//                                         </Typography>
+//                                     </td>
 
-                                    {/* Role */}
-                                    <td className={classes}>
-                                        <Typography variant="small" className="font-normal text-gray-600 text-sm sm:text-base">
-                                            {role || "User"}
-                                           { console.log(role)}
-                                        </Typography>
-                                    </td>
+//                                     {/* Role */}
+//                                     <td className={classes}>
+//                                         <Typography variant="small" className="font-normal text-gray-600 text-sm sm:text-base">
+//                                             {role || "User"}
+//                                            { console.log(role)}
+//                                         </Typography>
+//                                     </td>
 
-                                    {/* Action */}
-                                    <td className={classes}>
-                                    <Button onClick={() => handleMakeAdmin(_id)}>
-                                                Make Admin
-                                            </Button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+//                                     {/* Action */}
+//                                     <td className={classes}>
+//                                     <Button onClick={() => handleMakeAdmin(_id)}>
+//                                                 Make Admin
+//                                             </Button>
+//                                     </td>
+//                                 </tr>
+//                             );
+//                         })}
+//                     </tbody>
+//                 </table>
+//             </div>
+//         </Card>
+//     </div>
+// </div>
+<div className="container mx-auto my-10 px-4">
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        User Management ({users.length})
+      </h1>
+      {users.length > 0 ? (
+        <Card className="overflow-x-auto w-full">
+          <table className="min-w-full table-auto text-left">
+            <thead>
+              <tr>
+                {TABLE_HEAD.map((head) => (
+                  <th
+                    key={head}
+                    className="border-b border-gray-300 py-4 px-4 text-sm sm:text-base font-bold text-gray-600"
+                  >
+                    {head}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {users.map(({ _id, name, email, photo, role }, index) => {
+                const isLast = index === users.length - 1;
+                const rowClass = isLast ? "py-4 px-4" : "py-4 px-4 border-b border-gray-300";
+
+                return (
+                  <tr key={_id} className="hover:bg-gray-50">
+                    {/* Sl No */}
+                    <td className={rowClass}>{index + 1}</td>
+
+                    {/* Photo */}
+                    <td className={rowClass}>
+                      <img
+                        src={photo || "/placeholder-image.jpg"}
+                        alt={name}
+                        className="w-12 h-12 object-cover rounded-full"
+                      />
+                    </td>
+
+                    {/* Name */}
+                    <td className={rowClass}>{name || "N/A"}</td>
+
+                    {/* Email */}
+                    <td className={rowClass}>{email || "N/A"}</td>
+
+                    {/* Role */}
+                    <td className={rowClass}>{role || "User"}</td>
+
+                    {/* Action */}
+                    <td className={rowClass}>
+                      {role !== "admin" ? (
+                        <Button
+                          size="sm"
+                          color="blue"
+                          onClick={() => handleMakeAdmin(_id)}
+                        >
+                          Make Admin
+                        </Button>
+                      ) : (
+                        <Typography className="text-sm font-medium text-secondary">
+                          Admin
+                        </Typography>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </Card>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-60">
+          <img
+            src="/no-data.svg"
+            alt="No Users"
+            className="w-40 h-40 mb-4"
+          />
+          <Typography className="text-lg font-medium text-gray-600">
+            No users found.
+          </Typography>
+        </div>
+      )}
     </div>
-</div>
     );
 };
 
