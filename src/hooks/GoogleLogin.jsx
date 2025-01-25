@@ -10,7 +10,7 @@ const GoogleLogin = () => {
     const navigate = useNavigate();
 
     const handleGoogleLogin = () => {
-        alert("user ")
+        
         logInbyGoogle()
         .then(result => {
             // console.log(result.user)
