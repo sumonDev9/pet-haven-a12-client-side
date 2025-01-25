@@ -120,7 +120,12 @@ const MyDonationCampaign = () => {
          }
 
     return (
-        <div className="bg-gray-100 rounded-lg shadow-md">
+    <section>
+            {/* Heading */}
+            <div className="py-4 px-6 text-center text-secondary text-2xl font-semibold ">
+                Donation Campaigns Overview
+            </div>
+            <div className="bg-gray-100 rounded-lg shadow-md">
         {/* Table */}
         {data.length > 0 ? (
             <div className="overflow-x-auto">
@@ -260,6 +265,7 @@ const MyDonationCampaign = () => {
 
         <PaymentView open={open} setOpen={setOpen} donators={donators} handleOpen={handleOpen} />
     </div>
+    </section>
     );
 };
 

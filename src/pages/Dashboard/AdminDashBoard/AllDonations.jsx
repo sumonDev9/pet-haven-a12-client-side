@@ -129,7 +129,7 @@ const handleDonationStopped = async (rowData) => {
 
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="bg-gray-100 rounded-lg shadow-md">
             {/* Table */}
             <div className="overflow-x-auto">
                 <table className="table-auto w-full text-left border-collapse border border-gray-200 rounded-md shadow-md">
@@ -152,7 +152,7 @@ const handleDonationStopped = async (rowData) => {
                                         )}
                                     </th>
                                 ))}
-                                <th className="px-4 py-3 text-sm font-medium tracking-wide">Adoption Status</th>
+                                <th className="px-4 py-3 text-sm font-medium tracking-wide">Donation Status</th>
                                 <th className="px-4 py-3 text-sm font-medium tracking-wide">Actions</th>
                             </tr>
                         ))}

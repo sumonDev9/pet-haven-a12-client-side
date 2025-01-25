@@ -122,7 +122,14 @@ const MyAddpets = () => {
     });
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        
+<section>
+<div className="text-center mb-6">
+    <h1 className="text-2xl md:text-3xl font-bold text-primary">My Added Pets</h1>
+    <p className="text-base md:text-lg text-secondary mt-2">Manage your pets, track adoption status, and make updates.</p>
+</div>
+<div className="bg-gray-100 rounded-lg shadow-md">
+
         {data.length > 0 ? (
             // Table
             <div className="overflow-x-auto">
@@ -259,6 +266,7 @@ const MyAddpets = () => {
             </div>
         )}
     </div>
+</section>
     );
 };
 

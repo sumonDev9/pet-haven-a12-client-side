@@ -20,7 +20,7 @@ const Bannar = () => {
           {/* Right Content */}
           <div className="md:w-1/2 flex justify-center mt-8 md:mt-0">
             <img
-              src="https://i.ibb.co/vs4SLhs/pet.png"
+              src="https://i.ibb.co/Gndn6X2/image.png"
               alt="Pet Picture"
               className="w-full max-w-md bg-transparent rounded-lg object-cover"
             />

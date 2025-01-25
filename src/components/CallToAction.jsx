@@ -14,7 +14,7 @@ const CallToAction = () => {
        
           {/* Left Content (Title, Description, Button) */}
           <div className="md:w-1/2 space-y-6 text-center lg:text-left">
-            <Typography variant="h2" className="text-2xl md:text-3xl dark:text-white lg:text-5xl font-bold leading-tight">
+            <Typography variant="h2" className="text-2xl md:text-3xl dark:text-white lg:text-4xl font-bold leading-tight">
               Give a Pet a Second Chance
             </Typography>
             <Typography variant="body1" className="text-lg dark:text-white lg:text-xl opacity-80">

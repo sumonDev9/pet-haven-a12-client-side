@@ -123,7 +123,7 @@ const AllPets = () => {
     });
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className=" bg-gray-100 rounded-lg shadow-md">
         {data.length > 0 ? (
             <>
                 <div className="overflow-x-auto">

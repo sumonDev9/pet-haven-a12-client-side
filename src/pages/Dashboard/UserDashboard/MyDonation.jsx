@@ -71,10 +71,14 @@ const MyDonation = () => {
    };
 
     return (
-        <section className="bg-gray-100">
-            
+        <section className="">
+            <div className="max-w-7xl mx-auto px-6">
+                <Typography variant="h4" className="text-center text-primary mb-6">
+                    Your Donation History
+                </Typography>
+                </div>
         {payments.length === 0 ? (
-          <div className="text-center text-gray-500">
+          <div className="text-center bg-gray-100 text-gray-500">
             <Typography variant="h6" className="mb-4">
               No donations found.
             </Typography>

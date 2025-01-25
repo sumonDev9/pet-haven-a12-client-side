@@ -142,7 +142,12 @@ const handleReject = async (record) => {
     });
 
     return (
-        <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+        <div className="">
+             {/* Heading Section */}
+             <div className="text-center mb-6">
+                <h2 className="text-2xl md:text-3xl font-semibold text-primary">Adoption Requests</h2>
+                <div className="text-base md:text-lg text-gray-600">Manage and review adoption requests from users</div>
+            </div>
         {data.length > 0 ? (
             <>
                 {/* Table */}
