@@ -251,7 +251,7 @@ const AllPets = () => {
                                     onChange={(e) => tableInstance.setPageSize(Number(e.target.value))}
                                     className="select select-bordered select-sm border-gray-300 focus:ring-indigo-500 focus:border-indigo-500"
                                 >
-                                    {[10, 20].map((pageSize) => (
+                                    {[5, 10, 20].map((pageSize) => (
                                         <option key={pageSize} value={pageSize}>
                                             Show {pageSize}
                                         </option>

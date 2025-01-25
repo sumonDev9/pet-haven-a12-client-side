@@ -37,7 +37,7 @@ useEffect(() => {
 }, []);
 
  const { _id, petImage, name, donatedAmount, maxDonation, longDescription, shortDescription, } = donation || {}
-
+//  console.log(maxDonation)
   return (
     <section className='bg-gray-200 dark:bg-gray-900 py-10'>
        <ScrollRestoration></ScrollRestoration>
@@ -78,7 +78,7 @@ useEffect(() => {
 
       {/* donate now modal */}
       <Elements stripe={stripePromise}>
-        <DonationModal open={open} fetchAllPet={fetchAllPet} setOpen={setOpen} name={name} petImage={petImage} _id={_id} ></DonationModal>
+        <DonationModal open={open} fetchAllPet={fetchAllPet} setOpen={setOpen} maxDonation={maxDonation} name={name} petImage={petImage} _id={_id} ></DonationModal>
       </Elements>
 
       {/* recommended Donations */}

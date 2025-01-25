@@ -4,12 +4,11 @@ import UseAuth from '../hooks/UseAuth';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { useSnackbar } from 'notistack';
-// import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
-const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
-
+const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, maxDonation, _id }) => {
+// console.log(maxDonation)
   const [error, setError] = useState('');
     const { user } = UseAuth();
     const [donationAmount, setDonationAmount] = useState('');
@@ -19,13 +18,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { enqueueSnackbar } = useSnackbar();
-    // const navigate = useNavigate();
-    // const location = useLocation();
-    // const from = location.state?.from?.pathname || '/';
-
-    // if(!user){
-    //   navigate(from, { replace: true });
-    // }
+    
     useEffect(()=> {
         if(donationAmount > 0){
           axiosSecure.post('/create-payment-intent', {donationAmount})
@@ -39,6 +32,11 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
        // donation now
        const handleSubmit = async (e) => {
        e.preventDefault();
+       if(maxDonation < donationAmount){
+        setOpen(false)
+        return enqueueSnackbar(`Donation amount exceeds the maximum allowable limit.`, { variant: 'error', autoHideDuration: 1000 });
+
+       }
         // console.log(donationAmount)
        if(!stripe || !elements){
         return
@@ -63,6 +61,8 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
       console.log('[PaymentMethod]', paymentMethod);
       setError('')
     }
+
+   
 
       // confirm payment
       const { paymentIntent, error: confirmError} = await stripe.confirmCardPayment(clientSecret, {
@@ -127,13 +127,14 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
         <form onSubmit={handleSubmit}>
           <CardBody className="flex flex-col gap-4">
             <Typography className="-mb-2" variant="h6">
-              Donation Amount
+            Maximum Donation Amount Allowed: {maxDonation}
             </Typography>
             <Input  
             label="Amount" 
             type="number" 
             size="xl"
             value={donationAmount}
+            
             onChange={(e) => setDonationAmount(Number(e.target.value) || '')}
             required
              />
