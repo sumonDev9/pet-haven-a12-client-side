@@ -16,7 +16,7 @@ const {name} = useParams();
         },
         enabled: !!name, // Only fetch if name is not null or undefined
     })
-    console.log(pets)
+    // console.log(pets)
 
     return (
         <div className='bg-gray-50 dark:bg-gray-900  py-10'>

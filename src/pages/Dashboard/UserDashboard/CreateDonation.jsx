@@ -85,7 +85,7 @@ const CreateDonation = () => {
           };
 
           const donationRes = await axiosSecure.post('/donationCampaigns', campaignData)
-          console.log(donationRes.data)
+          // console.log(donationRes.data)
           if (donationRes.data.insertedId) {
             
             // show success popup

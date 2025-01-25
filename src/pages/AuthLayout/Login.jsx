@@ -24,8 +24,7 @@ const Login = () => {
             setUser(result.user);
             console.log(result.user)
             e.target.reset();
-            enqueueSnackbar('The user login has been successfully.', {variant: 'success',});
-            navigate(from, { replace: true });
+            enqueueSnackbar(`Welcome, ${result.user.displayName}! You have successfully logged in.`, {variant: 'success',});            navigate(from, { replace: true });
         })
         .catch((error) => {
             enqueueSnackbar('Login failed. Please check your credentials and try again!', {variant: 'error',autoHideDuration: 5000,

@@ -14,7 +14,7 @@ const GithubLogin = () => {
  const handleGithubLogin = () => {
     logInbyGithub()
     .then(result => {
-        console.log(result.user);
+        // console.log(result.user);
         enqueueSnackbar(`${result.user?.displayName} login has been successfully.`, {
             variant: 'success',
             autoHideDuration: 1000,

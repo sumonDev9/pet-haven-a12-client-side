@@ -26,7 +26,7 @@ const Register = () => {
           .then(result => {
               const user = (result.user);
               setUser(user)
-              console.log(user)
+            //   console.log(user)
              //user name and photo
             //  e.target.reset();
             //  enqueueSnackbar('User registration successful!', { variant: 'success' });
@@ -42,7 +42,7 @@ const Register = () => {
                     axiosPublic.post('/users', userInfo)
                      .then(res => {
                         if(res.data.insertedId){
-                            console.log('user added to the database')
+                            // console.log('user added to the database')
                             e.target.reset();
                             enqueueSnackbar(`${name} registration successful!`, { variant: 'success',  autoHideDuration: 1000 });
                         }

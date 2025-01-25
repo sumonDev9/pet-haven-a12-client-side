@@ -20,7 +20,7 @@ const AllUsers = () => {
 
     // // admin 
     const handleMakeAdmin = async(id) => {
-        console.log(id)
+        // console.log(id)
         try {
             const response = await axiosSecure.patch(`/users/admin/${id}`, { role: "admin"  });
             if (response.data.modifiedCount > 0) {

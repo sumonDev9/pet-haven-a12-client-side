@@ -17,15 +17,15 @@ const MyDonation = () => {
      const { data: payments, isLoading, error, refetch } = useQuery({
         queryKey: ['payments', user?.email],
         queryFn: async () => {
-            console.log('Fetching payments for:', user?.email);
+            // console.log('Fetching payments for:', user?.email);
 
             if (!user?.email) return [];
             const res = await axiosSecure.get(`/payments/${user.email}`);
-            console.log('API Response:', res.data);
+            // console.log('API Response:', res.data);
             return res.data;
         },
     });
-    console.log('Payments Data:', payments);
+    // console.log('Payments Data:', payments);
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -57,7 +57,7 @@ const MyDonation = () => {
     // Handle refund operation (DELETE request)
     const handleRefund = async (record) => {
         
-        console.log(record);
+        // console.log(record);
       
            const res = await axiosSecure.patch(`/payments/refund/${record._id}`,{payment:record});
         

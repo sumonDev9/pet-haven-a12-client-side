@@ -17,7 +17,7 @@ const AllDonations = () => {
 
     const axiosSecure = useAxiosSecure();
     const [data, setData] = useState([]);
-    console.log(data)
+    // console.log(data)
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
     const { enqueueSnackbar } = useSnackbar();
@@ -28,7 +28,7 @@ const AllDonations = () => {
         try {
             const response = await axiosSecure.get("/admin/all-donationCampaigns");
             setData(response.data); // Set the fetched data to state
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }

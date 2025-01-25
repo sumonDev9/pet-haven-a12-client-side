@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import {
     Drawer,
     Button,
@@ -17,6 +17,17 @@ const DashBoard = () => {
 
     const {user} = UseAuth();
     const [isAdmin] = UseAdmin();
+    const navigate = useNavigate(); // React Router navigation
+
+    // Automatically navigate to the default route based on user type
+    useEffect(() => {
+        if (isAdmin) {
+            navigate('/dashboard/allUsers'); 
+        } else {
+            navigate('/dashboard/addPets'); 
+        }
+    }, [isAdmin, navigate]);
+
     return (
         // <div>
         //     {/* responsive sidebar */}
@@ -113,18 +124,22 @@ const DashBoard = () => {
             <Button className='bg-base-100' onClick={openDrawer}>
                 <RiMenu2Fill className='text-2xl text-secondary' />
             </Button>
+            <Link to='/'>
             <Typography variant="h5" color="blue-gray">
                 {user?.displayName}
             </Typography>
+            </Link>
         </div>
 
         {/* Responsive Drawer */}
         <React.Fragment>
             <Drawer open={open} onClose={closeDrawer} className="p-4">
                 <div className="mb-6 flex items-center justify-between">
-                    <Typography variant="h5" color="blue-gray">
-                        {user?.displayName}
-                    </Typography>
+                <Link to='/'>
+            <Typography variant="h5" color="blue-gray">
+                {user?.displayName}
+            </Typography>
+            </Link>
                     <IconButton variant="text" color="blue-gray" onClick={closeDrawer}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -146,18 +161,18 @@ const DashBoard = () => {
                     <ul className='navlinks space-y-4'>
                         {isAdmin ? (
                             <>
-                                <li><NavLink to='/dashboard/allUsers' activeClassName="font-bold text-primary">All Users</NavLink></li>
-                                <li><NavLink to='/dashboard/allPets' activeClassName="font-bold text-primary">All Pets</NavLink></li>
-                                <li><NavLink to='/dashboard/allDonations' activeClassName="font-bold text-primary">All Donations</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allUsers'>All Users</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allPets'>All Pets</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allDonations'>All Donations</NavLink></li>
                             </>
                         ) : (
                             <>
-                                <li><NavLink to='/dashboard/addPets' activeClassName="font-bold text-primary">Add a pet</NavLink></li>
-                                <li><NavLink to='/dashboard/myAddpets' activeClassName="font-bold text-primary">My added pets</NavLink></li>
-                                <li><NavLink to='/dashboard/adoptionRequests' activeClassName="font-bold text-primary">Adoption Request</NavLink></li>
-                                <li><NavLink to='/dashboard/createDonation' activeClassName="font-bold text-primary">Create Donation Campaign</NavLink></li>
-                                <li><NavLink to='/dashboard/myDonationCampaign' activeClassName="font-bold text-primary">My Donation Campaigns</NavLink></li>
-                                <li><NavLink to='/dashboard/myDonation' activeClassName="font-bold text-primary">My Donations</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/addPets'>Add a pet</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/myAddpets'>My added pets</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/createDonation'>Create Donation Campaign</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/myDonationCampaign'>My Donation Campaigns</NavLink></li>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/myDonation'>My Donations</NavLink></li>
                             </>
                         )}
                     </ul>
@@ -173,23 +188,88 @@ const DashBoard = () => {
                     {user?.displayName}
                 </Link>
                 <ul className='px-6 space-y-4 text-base'>
-                    {isAdmin ? (
-                        <>
-                            <li><NavLink to='/dashboard/allUsers' activeClassName="font-bold">All Users</NavLink></li>
-                            <li><NavLink to='/dashboard/allPets' activeClassName="font-bold">All Pets</NavLink></li>
-                            <li><NavLink to='/dashboard/allDonations' activeClassName="font-bold">All Donations</NavLink></li>
-                        </>
-                    ) : (
-                        <>
-                            <li><NavLink to='/dashboard/addPets' activeClassName="font-bold">Add a pet</NavLink></li>
-                            <li><NavLink to='/dashboard/myAddpets' activeClassName="font-bold">My added pets</NavLink></li>
-                            <li><NavLink to='/dashboard/adoptionRequests' activeClassName="font-bold">Adoption Request</NavLink></li>
-                            <li><NavLink to='/dashboard/createDonation' activeClassName="font-bold">Create Donation Campaign</NavLink></li>
-                            <li><NavLink to='/dashboard/myDonationCampaign' activeClassName="font-bold">My Donation Campaigns</NavLink></li>
-                            <li><NavLink to='/dashboard/myDonation' activeClassName="font-bold">My Donations</NavLink></li>
-                        </>
-                    )}
-                </ul>
+    {isAdmin ? (
+        <>
+            {/* Admin section */}
+            <li>
+                <NavLink 
+                    to='/dashboard/allUsers' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    All Users
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/allPets' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    All Pets
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/allDonations' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    All Donations
+                </NavLink>
+            </li>
+        </>
+    ) : (
+        <>
+            {/* User section */}
+            <li>
+                <NavLink 
+                    to='/dashboard/addPets' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    Add a pet
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/myAddpets' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    My added pets
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/adoptionRequests' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    Adoption Request
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/createDonation' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    Create Donation Campaign
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/myDonationCampaign' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    My Donation Campaigns
+                </NavLink>
+            </li>
+            <li>
+                <NavLink 
+                    to='/dashboard/myDonation' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    My Donations
+                </NavLink>
+            </li>
+        </>
+    )}
+</ul>
             </div>
 
             {/* Main Content */}

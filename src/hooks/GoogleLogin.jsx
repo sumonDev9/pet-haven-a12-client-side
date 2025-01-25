@@ -13,7 +13,7 @@ const GoogleLogin = () => {
         alert("user ")
         logInbyGoogle()
         .then(result => {
-            console.log(result.user)
+            // console.log(result.user)
             const userInfo = {
                 name: result.user?.displayName,
                 email: result.user?.email,
@@ -22,7 +22,7 @@ const GoogleLogin = () => {
             }
             axiosPublic.post('/users', userInfo)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 enqueueSnackbar(`${result.user?.displayName} login has been successfully.`, {
                     variant: 'success',
                     autoHideDuration: 1000,

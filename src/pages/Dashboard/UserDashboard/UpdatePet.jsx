@@ -78,7 +78,7 @@ const UpdatePet = () => {
             };
             
             const petsRes = await axiosSecure.patch(`/pets/${_id}`, petsData)
-            console.log(petsRes.data)
+            // console.log(petsRes.data)
             if(petsRes.data.modifiedCount > 0){
               // show success popup
               resetForm();

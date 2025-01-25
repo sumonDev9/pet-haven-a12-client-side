@@ -27,7 +27,7 @@ const MyAddpets = () => {
         try {
             const response = await axiosSecure.get(`/pets/user/${user?.email}`);
             setData(response.data); // Set the fetched data to state
-            console.log(response.data);
+            // console.log(response.data);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -51,7 +51,7 @@ const MyAddpets = () => {
         })
         if (result.isConfirmed) {
             const { data } = await axiosSecure.delete(`/pets/${id._id}`);
-            console.log(data)
+            // console.log(data)
             if (data.deletedCount > 0) {
                 Swal.fire({
                     title: 'Pets Deleted!',

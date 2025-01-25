@@ -19,7 +19,7 @@ import { useLoaderData } from 'react-router-dom';
 const UpdatedDonation = () => {
 
     const { _id, petImage, name, maxDonation, lastDate, longDescription, shortDescription, } = useLoaderData();
-    console.log(name)
+    // console.log(name)
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const { enqueueSnackbar } = useSnackbar();
@@ -78,7 +78,7 @@ const UpdatedDonation = () => {
                 };
 
                 const donationRes = await axiosSecure.patch(`/donationCampaigns/${_id}`, DonationData)
-                console.log(donationRes.data)
+                // console.log(donationRes.data)
                 if (donationRes.data.modifiedCount > 0) {
                     // show success popup
                     resetForm();

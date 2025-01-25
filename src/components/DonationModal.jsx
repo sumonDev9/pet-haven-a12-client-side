@@ -8,7 +8,7 @@ import { useSnackbar } from 'notistack';
 
 
 const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
-  console.log(name, _id)
+
   const [error, setError] = useState('');
     const { user } = UseAuth();
     const [donationAmount, setDonationAmount] = useState('');
@@ -23,7 +23,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
         if(donationAmount > 0){
           axiosSecure.post('/create-payment-intent', {donationAmount})
           .then(res => {
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret)
           })
         }
@@ -32,7 +32,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
        // donation now
        const handleSubmit = async (e) => {
        e.preventDefault();
-        console.log(donationAmount)
+        // console.log(donationAmount)
        if(!stripe || !elements){
         return
        }
@@ -50,7 +50,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
 
       
     if (error) {
-      console.log('[error]', error);
+      // console.log('[error]', error);
       setError(error.message);
     } else {
       console.log('[PaymentMethod]', paymentMethod);
@@ -73,9 +73,9 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
         // setError(error.message);
       }
       else{
-        console.log('payment intent', paymentIntent)
+        // console.log('payment intent', paymentIntent)
         if(paymentIntent.status === 'succeeded'){
-          console.log('transaction id', paymentIntent.id);
+          // console.log('transaction id', paymentIntent.id);
           setTransactionId(paymentIntent.id);
 
           // now save the payment in the database

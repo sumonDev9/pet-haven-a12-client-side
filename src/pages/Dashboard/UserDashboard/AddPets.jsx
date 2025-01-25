@@ -75,7 +75,7 @@ const AddPets = () => {
           };
           
           const petsRes = await axiosSecure.post('/pets', petsData)
-          console.log(petsRes.data)
+          // console.log(petsRes.data)
           if(petsRes.data.insertedId){
             // show success popup
             resetForm();
@@ -88,8 +88,8 @@ const AddPets = () => {
       });
     return (
 
-      <div className="flex pb-20 justify-end mr-[180px] items-center">
-        <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
+    
+        <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-6">
           <Typography variant="h4" color="blue-gray" className="text-center mb-4">
           Add a New Pet
           </Typography>
@@ -200,7 +200,7 @@ const AddPets = () => {
             </Button>
           </form>
         </div>
-      </div>
+
     
     );
 };

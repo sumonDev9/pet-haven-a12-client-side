@@ -60,11 +60,17 @@ if(isPending){
                             </select>
                         </div>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
-                    {
-                        pets?.map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
-                    }
-                </div>
+               {
+                pets?.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                {
+                    pets?.map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
+                }
+            </div> :  
+           <div className="flex  my-5 min-h-80  rounded-lg justify-center items-center gap-2 flex-col">
+            <img src='https://i.ibb.co/fNHCKcb/error.webp' className="w-32" alt="" />
+            <h1 className="text-primary dark:text-white font-bold text-3xl">No Data Found</h1>
+            </div>
+               }
            </div>
        </div>
     );
