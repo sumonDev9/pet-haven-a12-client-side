@@ -41,7 +41,7 @@ const AllUsers = () => {
     return (
    
 
-    <div className="container mx-auto mt-10">
+    <div className="container mx-auto my-10">
     <h1 className="text-2xl font-bold mb-5">User Management ({users.length})</h1>
     <div>
         <Card className="h-full overflow-x-auto w-full px-6">

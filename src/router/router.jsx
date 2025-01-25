@@ -22,6 +22,7 @@ import UpdatedDonation from "../pages/Dashboard/UserDashboard/UpdatedDonation";
 import MyDonation from "../pages/Dashboard/UserDashboard/MyDonation";
 import CategoryList from "../pages/CategoryList";
 import AdminRoute from "../provider/AdminRoute";
+import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
     {
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
           element: <AdminRoute><AllDonations></AllDonations></AdminRoute>
         },
       ]
+    },
+    {
+      path: '*',
+      element: <ErrorPage></ErrorPage>
     }
   ]);
 

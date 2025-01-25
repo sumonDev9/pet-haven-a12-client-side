@@ -103,7 +103,7 @@ const Login = () => {
                         <GithubLogin></GithubLogin>
                 </div>
                 <div>
-                    <p className='text-center text-sm mt-4 md:text-lg ml-8'><span className='text-black opacity-60'>Don't have an account?</span> <Link to='/register' className='text-blue-500 hover:underline'>Register here</Link></p>
+                    <p className='text-center text-sm mt-4 md:text-lg ml-8'><span className='text-black opacity-60 dark:text-white'>Don't have an account?</span> <Link to='/register' className='text-blue-500 hover:underline'>Register here</Link></p>
                 </div>
             </div>
         </div>
