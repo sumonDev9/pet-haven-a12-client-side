@@ -28,7 +28,7 @@ const PetDetails = () => {
   }, []);
 
   const fetchAllPet = async () => {
-    const { data } = await axios.get(`http://localhost:5000/pets/${id}`)
+    const { data } = await axios.get(`https://pet-adoption-platform-sever-side.vercel.app/pets/${id}`)
     SetPets(data)
     console.log(data)
   }
@@ -57,7 +57,7 @@ const PetDetails = () => {
  console.log(pet.userEmail)
     // console.log(adoptionData )
 
-    await axios.post('http://localhost:5000/adoptions', adoptionData)
+    await axios.post('https://pet-adoption-platform-sever-side.vercel.app/adoptions', adoptionData)
       .then(res => {
         if (res.data.insertedId) {
           enqueueSnackbar(`Congratulations, ${user?.displayName}! You’ve successfully adopted ${pet.name}!`, { variant: 'success',  autoHideDuration: 1000 });

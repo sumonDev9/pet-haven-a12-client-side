@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 const AdoptionRequests = () => {
     const axiosSecure = useAxiosSecure();
     const [data, setData] = useState([]);
-    // console.log(data)
+    console.log(data)
     const [sorting, setSorting] = useState([]); // State to manage sorting
     const { user } = UseAuth();
     // const { enqueueSnackbar } = useSnackbar();
@@ -122,6 +122,10 @@ const handleReject = async (record) => {
         {
             accessorKey: 'address',
             header: 'Location',
+        },
+        {
+            accessorKey: 'petName',
+            header: 'pet Name',
         },
     ];
 

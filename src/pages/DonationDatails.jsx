@@ -19,7 +19,7 @@ const DonationDatails = () => {
   const handleOpen = () => setOpen((cur) => !cur);
 
   const fetchAllPet = async () => {
-    const { data } = await axios.get(`http://localhost:5000/donationCampaigns/${id}`)
+    const { data } = await axios.get(`https://pet-adoption-platform-sever-side.vercel.app/donationCampaigns/${id}`)
     setDonation(data)
   }
   useEffect(() => {

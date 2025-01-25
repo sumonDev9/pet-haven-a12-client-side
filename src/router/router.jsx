@@ -80,8 +80,7 @@ const router = createBrowserRouter([
         {
           path: 'updatePet/:id',
           element: <PrivetRoute><UpdatePet></UpdatePet></PrivetRoute>,
-          // loader: ({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
-          loader:({params}) => fetch(`http://localhost:5000/pets/${params.id}`)
+          loader:({params}) => fetch(`https://pet-adoption-platform-sever-side.vercel.app/pets/${params.id}`)
         },
         {
           path: 'createDonation',
@@ -94,7 +93,7 @@ const router = createBrowserRouter([
         {
           path: 'updateDonation/:id',
           element: <PrivetRoute><UpdatedDonation></UpdatedDonation></PrivetRoute>,
-          loader:({params}) => fetch(`http://localhost:5000/donationCampaigns/${params.id}`)
+          loader:({params}) => fetch(`https://pet-adoption-platform-sever-side.vercel.app/donationCampaigns/${params.id}`)
         },
         {
           path: 'adoptionRequests',
