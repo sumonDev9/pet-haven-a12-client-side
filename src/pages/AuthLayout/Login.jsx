@@ -9,7 +9,7 @@ const Login = () => {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const location = useLocation();
-    console.log('state in the location login page', location.state)
+    // console.log('state in the location login page', location.state)
     const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (e) => {
@@ -22,9 +22,10 @@ const Login = () => {
         userLogin(email, password)
         .then(result => {
             setUser(result.user);
-            console.log(result.user)
+            // console.log(result.user)
             e.target.reset();
-            enqueueSnackbar(`Welcome, ${result.user.displayName}! You have successfully logged in.`, {variant: 'success',});            navigate(from, { replace: true });
+            enqueueSnackbar(`Welcome, ${result.user.displayName}! You have successfully logged in.`, {variant: 'success',});            
+            navigate(from, { replace: true });
         })
         .catch((error) => {
             enqueueSnackbar('Login failed. Please check your credentials and try again!', {variant: 'error',autoHideDuration: 5000,

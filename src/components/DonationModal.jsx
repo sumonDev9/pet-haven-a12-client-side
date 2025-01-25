@@ -4,6 +4,7 @@ import UseAuth from '../hooks/UseAuth';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import { useSnackbar } from 'notistack';
+// import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -18,7 +19,13 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, _id }) => {
     const elements = useElements();
     const axiosSecure = useAxiosSecure();
     const { enqueueSnackbar } = useSnackbar();
+    // const navigate = useNavigate();
+    // const location = useLocation();
+    // const from = location.state?.from?.pathname || '/';
 
+    // if(!user){
+    //   navigate(from, { replace: true });
+    // }
     useEffect(()=> {
         if(donationAmount > 0){
           axiosSecure.post('/create-payment-intent', {donationAmount})

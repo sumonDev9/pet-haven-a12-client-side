@@ -48,11 +48,11 @@ const router = createBrowserRouter([
         },
         {
           path: '/petdetails/:id',
-          element: <PetDetails></PetDetails>
+          element: <PrivetRoute><PetDetails></PetDetails></PrivetRoute>
         },
         {
           path: '/donation/:id',
-          element: <DonationDatails></DonationDatails>
+          element: <PrivetRoute><DonationDatails></DonationDatails></PrivetRoute>
         },
         {
           path: '/login',
