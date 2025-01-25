@@ -64,7 +64,7 @@ const MyDonationCampaign = () => {
                 const percentage = ((completed / maxCompleted) * 100).toFixed(2);
            return (
                      
-            <ProgressBar completed={completed} maxCompleted={maxCompleted} percentage={percentage} />                );
+            <ProgressBar completed={percentage} maxCompleted={100}  />                );
             },
         },
     ];
