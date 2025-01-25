@@ -107,7 +107,7 @@ const CreateDonation = () => {
   return (
     
     <div className="w-full md:max-w-2xl mx-auto md:p-6 p-3 bg-white shadow-md rounded-lg">
-      <Typography variant="h4" className="text-center mb-4">
+      <Typography variant="h4" className="text-lg md:text-3xl text-center mb-4">
         Create Donation Campaign
       </Typography>
       <form onSubmit={formik.handleSubmit}>

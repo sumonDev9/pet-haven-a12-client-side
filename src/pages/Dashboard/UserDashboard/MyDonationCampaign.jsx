@@ -122,8 +122,8 @@ const MyDonationCampaign = () => {
     return (
     <section>
             {/* Heading */}
-            <div className="py-4 px-6 text-center text-secondary text-2xl font-semibold ">
-                Donation Campaigns Overview
+            <div className="mb-2 text-center text-secondary text-lg md:text-3xl font-semibold ">
+                Donation Campaigns Overviewss
             </div>
             <div className="bg-gray-100 rounded-lg shadow-md">
         {/* Table */}
