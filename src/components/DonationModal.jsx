@@ -35,8 +35,7 @@ const DonationModal = ({ open, setOpen, name, fetchAllPet, petImage, maxDonation
        if(maxDonation < donationAmount){
         setOpen(false)
         return enqueueSnackbar(`Donation amount exceeds the maximum allowable limit.`, { variant: 'error', autoHideDuration: 1000 });
-
-       }
+      }
         // console.log(donationAmount)
        if(!stripe || !elements){
         return

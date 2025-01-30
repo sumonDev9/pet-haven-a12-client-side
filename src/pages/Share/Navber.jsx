@@ -48,8 +48,8 @@ const Navber = () => {
 
 
   return (
-    <div className="w-full dark:bg-gray-900 bg-white shadow-lg sticky top-0 z-50">
-      <Navbar className="rounded-none dark:bg-gray-900 border-none w-11/12 mx-auto px-0 shadow-none">
+    <div className="w-full dark:bg-gray-900 bg-white bg-opacity-60 sticky top-0 z-50">
+      <Navbar className="rounded-none dark:bg-gray-900 border-none w-11/12 mx-auto px-0 py-2 shadow-none">
         <div className="flex navlink items-center justify-between">
           {/* logo */}
           <Typography
@@ -58,25 +58,26 @@ const Navber = () => {
             className="mr-4 cursor-pointer py-1.5 font-bold flex items-center gap-2"
           >
             {/* logo */}
-            <img src="https://i.ibb.co/Pz23rXM/logo.webp" alt="Logo" className="h-8 w-8 rounded-full" />
-            {/* <span className="text-2xl text-secondary">Pet Adoption</span> */}
+            <img src="https://i.ibb.co/Pz23rXM/logo.webp" alt="Logo" className="h-8 w-8 rounded-full" /> 
+           
+            <span className="text-2xl text-secondary dark:text-white">PetHaven</span>
           </Typography>
 
           {/* nav menu*/}
-          <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-4">
+          <div className="hidden  lg:flex text-secondary dark:text-white items-center space-x-6">
 
             <NavLink to='/'>
-              <Typography className="cursor-pointer">
+              <Typography className="cursor-pointer text-sm">
                 Home
               </Typography>
             </NavLink>
             <NavLink to='/petListing'>
-              <Typography className="cursor-pointer">
+              <Typography className="cursor-pointer text-sm">
                 Pet Listing
               </Typography>
             </NavLink>
             <NavLink to='/donationCampaigns'>
-              <Typography className="cursor-pointer">
+              <Typography className="cursor-pointer text-sm">
                 Donation Campaigns
               </Typography>
             </NavLink>
