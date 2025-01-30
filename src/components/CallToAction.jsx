@@ -4,7 +4,7 @@ import SectionTitle from './SectionTitle';
 
 const CallToAction = () => {
     return (
-        <section className="py-8 md:py-16  bg-gray-50 dark:bg-gray-900 ">
+        <section className="py-8   bg-gray-50 dark:bg-gray-900 ">
             <SectionTitle 
             heading={"Give Love, Adopt a Pet"}
             subHeading={'Every pet deserves a loving home. You can make a difference in their life by adopting. Let’s create a better world for them, one adoption at a time.'

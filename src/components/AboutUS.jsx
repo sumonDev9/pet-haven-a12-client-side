@@ -3,7 +3,7 @@ import React from 'react';
 const AboutUS = () => {
   return (
 
-    <section class="bg-gray-50 dark:bg-gray-900 py-10 md:py-16">
+    <section class="bg-gray-50 dark:bg-gray-900 py-8">
       <div class="max-w-7xl mx-auto  px-6 sm:px-12 lg:px-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* <!-- Left Content: Image --> */}

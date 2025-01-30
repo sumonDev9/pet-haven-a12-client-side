@@ -19,7 +19,7 @@ const FrequentlyAsk = () => {
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
     return (
-        <section class="bg-gray-50 dark:bg-gray-900  py-8 md:py-16">
+        <section class="bg-gray-50 dark:bg-gray-900 py-8">
             <div class="w-11/12 mx-auto">
                 <div class="text-center mb-10">
 
