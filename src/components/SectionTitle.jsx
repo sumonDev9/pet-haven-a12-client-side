@@ -7,7 +7,7 @@ const SectionTitle = ({heading, subHeading}) => {
             <Typography variant="h2" className="text-2xl md:text-3xl text-secondary dark:text-white  lg:text-4xl font-bold mb-6">
                 {heading}
             </Typography>
-            <Typography  className="dark:text-white max-w-3xl mx-auto text-base md:text-lg mb-8">
+            <Typography  className="dark:text-white max-w-3xl mx-auto text-base text-info md:text-lg mb-8">
                 {subHeading}
             </Typography>
         </div>
