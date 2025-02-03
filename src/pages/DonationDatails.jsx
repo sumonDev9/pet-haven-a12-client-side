@@ -24,7 +24,7 @@ const DonationDatails = () => {
   }
   useEffect(() => {
     fetchAllPet()
-  }, []);
+  }, [id]);
 
 // recommended donation
 const fetchRandomDonations = async () => {

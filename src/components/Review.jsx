@@ -56,7 +56,7 @@ const [review, setReview] = useState([]);
       //   </div>
       // </section>
 
-      <section className="bg-gray-100 dark:bg-gray-900 py-10">
+      <section className="bg-white dark:bg-gray-900 py-10">
     <div className="w-11/12  mx-auto text-center">
         <SectionTitle
             heading={"What Our Clients Say"}
