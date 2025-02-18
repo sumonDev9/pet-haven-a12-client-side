@@ -23,6 +23,7 @@ import MyDonation from "../pages/Dashboard/UserDashboard/MyDonation";
 import CategoryList from "../pages/CategoryList";
 import AdminRoute from "../provider/AdminRoute";
 import ErrorPage from "../components/ErrorPage";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         {
           path: '/register',
           element: <Register></Register>
+        },
+        {
+          path: '/about',
+          element: <About></About>
         },
         
       ]

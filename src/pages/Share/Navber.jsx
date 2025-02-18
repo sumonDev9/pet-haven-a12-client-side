@@ -81,6 +81,11 @@ const Navber = () => {
                 Donation Campaigns
               </Typography>
             </NavLink>
+            <NavLink to='/about'>
+              <Typography className="cursor-pointer text-sm">
+                About Us
+              </Typography>
+            </NavLink>
 
           </div>
 
