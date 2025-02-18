@@ -81,11 +81,20 @@ const Navber = () => {
                 Donation Campaigns
               </Typography>
             </NavLink>
-            <NavLink to='/about'>
+          {
+            user && <>
+              <NavLink to='/about'>
               <Typography className="cursor-pointer text-sm">
                 About Us
               </Typography>
             </NavLink>
+              <NavLink to='/contact'>
+              <Typography className="cursor-pointer text-sm">
+              Contact
+              </Typography>
+            </NavLink>
+            </>
+          }
 
           </div>
 

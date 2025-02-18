@@ -24,6 +24,7 @@ import CategoryList from "../pages/CategoryList";
 import AdminRoute from "../provider/AdminRoute";
 import ErrorPage from "../components/ErrorPage";
 import About from "../pages/About";
+import Contact from "../pages/Contact";
 
 const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
         {
           path: '/about',
           element: <About></About>
+        },
+        {
+          path: '/contact',
+          element: <Contact></Contact>
         },
         
       ]
