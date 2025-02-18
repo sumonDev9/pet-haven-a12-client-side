@@ -21,6 +21,20 @@ body{
     color:#0E7A81;
 }
 
+::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  /* ::-webkit-scrollbar-track {
+    background: #0E7A81; 
+  } */
+   
+  ::-webkit-scrollbar-thumb {
+    background: #0E7A81; 
+    border: 5px solid transparent;
+    border-radius: 9px;
+    background-clip: content-box;
+  }
 /* .custom-clip {
     clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 0 100%);
   } */

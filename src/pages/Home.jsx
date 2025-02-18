@@ -5,6 +5,7 @@ import AboutUS from '../components/AboutUS';
 import FrequentlyAsk from '../components/FrequentlyAsk';
 import Review from '../components/Review';
 import PetCategory from '../components/PetCategory';
+import NewsLetter from '../components/NewsLetter';
 
 const Home = () => {
     return (
@@ -14,6 +15,7 @@ const Home = () => {
            <CallToAction></CallToAction>
            <AboutUS></AboutUS>
            <FrequentlyAsk></FrequentlyAsk>
+           <NewsLetter></NewsLetter>
            <Review></Review>
         </div>
     );
