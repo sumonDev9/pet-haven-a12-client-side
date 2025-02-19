@@ -120,6 +120,10 @@ const router = createBrowserRouter([
         },
         // admin route
         {
+          path: 'adminProfile',
+          element: <AdminRoute><UserProfile></UserProfile></AdminRoute>
+        },
+        {
           path: 'allUsers',
           element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         },

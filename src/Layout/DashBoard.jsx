@@ -22,7 +22,7 @@ const DashBoard = () => {
     // Automatically navigate to the default route based on user type
     useEffect(() => {
         if (isAdmin) {
-            navigate('/dashboard/allUsers'); 
+            navigate('/dashboard/adminProfile'); 
         } else {
             navigate('/dashboard/userProfile'); 
         }
@@ -161,6 +161,7 @@ const DashBoard = () => {
                     <ul className='navlinks space-y-4'>
                         {isAdmin ? (
                             <>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allUsers'>All Users</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allPets'>All Pets</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allDonations'>All Donations</NavLink></li>
@@ -192,6 +193,14 @@ const DashBoard = () => {
     {isAdmin ? (
         <>
             {/* Admin section */}
+            <li>
+                <NavLink 
+                    to='/dashboard/adminProfile' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    Admin Profile
+                </NavLink>
+            </li>
             <li>
                 <NavLink 
                     to='/dashboard/allUsers' 
