@@ -23,23 +23,8 @@ const PetListing = () => {
     }
 })
    
-
-//   const fetchAllpet = async () => {
-//     const {data} =await axios.get('https://pet-adoption-platform-sever-side.vercel.app/pets')
-//     setPet(data)
-//     // console.log(data)
-//   }
-
-//   useEffect(() => {
-//     fetchAllpet()
-//   }, []);
-
   const handleSortChange = (e) => {
-    const order = e.target.value; // Get selected value
-    // const sortedpet = [...pet].sort((a, b) => {
-    //     return order === "asc" ? a.age - b.age : b.age - a.age;
-    // });
-    // setPet(sortedpet);
+    const order = e.target.value; 
     setSortOrder(order);
 }
 
@@ -98,7 +83,7 @@ if(isPending){
                {
                 pets?.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
-                    pets?.slice() // মূল অ্যারে পরিবর্তন না করে কপি করা
+                    pets?.slice() 
                     .sort((a, b) => (sortOrder === "asc" ? a.age - b.age : b.age - a.age)).map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
                 }
             </div> :  

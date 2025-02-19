@@ -161,6 +161,7 @@ const DashBoard = () => {
                     <ul className='navlinks space-y-4'>
                         {isAdmin ? (
                             <>
+                                {/* <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/adminHome'>Admin Home</NavLink></li> */}
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/adminProfile'>Admin Profile</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allUsers'>All Users</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/allPets'>All Pets</NavLink></li>
@@ -193,6 +194,14 @@ const DashBoard = () => {
     {isAdmin ? (
         <>
             {/* Admin section */}
+            {/* <li>
+                <NavLink 
+                    to='/dashboard/adminHome' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    Admin Home
+                </NavLink>
+            </li> */}
             <li>
                 <NavLink 
                     to='/dashboard/adminProfile' 

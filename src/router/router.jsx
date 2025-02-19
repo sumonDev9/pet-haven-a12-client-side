@@ -26,6 +26,7 @@ import ErrorPage from "../components/ErrorPage";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import UserProfile from "../pages/Dashboard/UserDashboard/UserProfile";
+import AdminHome from "../pages/Dashboard/AdminDashBoard/AdminHome";
 
 const router = createBrowserRouter([
     {
@@ -119,6 +120,10 @@ const router = createBrowserRouter([
           element: <PrivetRoute><MyDonation></MyDonation></PrivetRoute>
         },
         // admin route
+        // {
+        //   path: 'adminHome',
+        //   element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+        // },
         {
           path: 'adminProfile',
           element: <AdminRoute><UserProfile></UserProfile></AdminRoute>
