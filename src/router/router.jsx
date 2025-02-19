@@ -26,7 +26,7 @@ import ErrorPage from "../components/ErrorPage";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import UserProfile from "../pages/Dashboard/UserDashboard/UserProfile";
-import AdminHome from "../pages/Dashboard/AdminDashBoard/AdminHome";
+// import AdminHome from "../pages/Dashboard/AdminDashBoard/AdminHome";
 
 const router = createBrowserRouter([
     {

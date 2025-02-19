@@ -3,7 +3,7 @@ const About = () => {
     return (
         <div>
             {/* About section with a dark mode compatible layout */}
-            <div class="bg-gray-50 dark:bg-gray-900 py-8">
+            <div class="bg-gray-50 dark:bg-gray-800 py-8">
                 <div class="px-6 sm:px-12 lg:px-20">
 
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

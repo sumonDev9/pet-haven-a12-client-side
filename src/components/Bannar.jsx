@@ -2,7 +2,7 @@ import { Button, Typography } from "@material-tailwind/react";
 
 const Bannar = () => {
     return (
-        <section className="bg-gray-100 dark:bg-gray-900 bg-cover md:py-16 transition-all duration-300" style={{backgroundImage: 'url(https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3AtNDQ4LXBhaS0wNjQuanBn.jpg)'}}>
+        <section className="bg-gray-100 dark:bg-gray-800 bg-cover md:py-16 transition-all duration-300" >
         <div className="w-11/12 mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
           {/* Left Content */}
           <div className="md:w-1/2 text-center pt-3 md:pt-0 md:text-left space-y-6">
