@@ -5,6 +5,7 @@ import { CiSearch } from 'react-icons/ci';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import PetCard from '../components/PetCard';
+import { ScrollRestoration } from 'react-router-dom';
 
 
 const PetListing = () => {
@@ -31,6 +32,7 @@ if(isPending){
 
  return (
        <div className='bg-gray-50 dark:bg-gray-900  py-10'>
+        <ScrollRestoration></ScrollRestoration>
            <div className='w-11/12 mx-auto'>
           <SectionTitle
           heading={"Find Your Furry Friend"}

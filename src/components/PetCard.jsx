@@ -92,7 +92,7 @@ useEffect(() => {
       <CardHeader  className="relative m-0 h-56">
        {
         loading ? <Skeleton width={500} height={300}/> :  <img
-        className="w-full bg-white object-cover rounded-none"
+        className="w-full h-full bg-white object-cover rounded-none"
         src={image}
         alt="card-image"
       />
