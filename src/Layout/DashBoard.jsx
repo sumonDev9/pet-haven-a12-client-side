@@ -24,7 +24,7 @@ const DashBoard = () => {
         if (isAdmin) {
             navigate('/dashboard/allUsers'); 
         } else {
-            navigate('/dashboard/addPets'); 
+            navigate('/dashboard/userProfile'); 
         }
     }, [isAdmin, navigate]);
 
@@ -167,6 +167,7 @@ const DashBoard = () => {
                             </>
                         ) : (
                             <>
+                                <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/userProfile'>User Profile</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/addPets'>Add a pet</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/myAddpets'>My added pets</NavLink></li>
                                 <li><NavLink className={({ isActive }) => isActive ? 'font-bold text-primary' : ''} to='/dashboard/adoptionRequests'>Adoption Request</NavLink></li>
@@ -219,6 +220,14 @@ const DashBoard = () => {
     ) : (
         <>
             {/* User section */}
+            <li>
+                <NavLink 
+                    to='/dashboard/userProfile' 
+                    className={({ isActive }) => isActive ? 'font-medium rounded-md bg-white text-secondary w-full inline-block p-2' : ''}
+                >
+                    User Profile
+                </NavLink>
+            </li>
             <li>
                 <NavLink 
                     to='/dashboard/addPets' 

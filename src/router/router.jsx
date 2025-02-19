@@ -25,6 +25,7 @@ import AdminRoute from "../provider/AdminRoute";
 import ErrorPage from "../components/ErrorPage";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
+import UserProfile from "../pages/Dashboard/UserDashboard/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       path: 'dashboard',
       element: <DashBoard></DashBoard>,
       children: [
+        {
+          path: 'userProfile',
+          element: <PrivetRoute><UserProfile></UserProfile></PrivetRoute>
+        },
         {
           path: 'addPets',
           element: <PrivetRoute><AddPets></AddPets></PrivetRoute>

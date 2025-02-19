@@ -4,7 +4,7 @@ const NewsLetter = () => {
     return (
         <section className='pb-10'>
         <div className="dark:bg-gray-900  bg-gray-100 py-10 rounded-md text-white">
-          <div className="p-6 mx-auto rounded-md w-11/12 dark:bg-gray-800 px-4 text-center">
+          <div className="p-6 mx-auto rounded-md w-11/12 bg-white dark:bg-gray-800 px-4 text-center">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 dark:text-white text-secondary">
               Stay Connected with Pet Heven
             </h2>

@@ -2,29 +2,30 @@ import { FaEnvelope, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 
 const Contact = () => {
     return (
-        <div className="container mx-auto px-4 py-10">
-        <div className="grid md:grid-cols-2 gap-8 bg-gray-100 p-4 md:p-8 rounded-xl shadow-lg">
+  <section className="bg-gray-50 dark:bg-gray-900">
+          <div className="container mx-auto px-4 py-10">
+        <div className="grid md:grid-cols-2 gap-8 bg-gray-100 dark:bg-gray-800 p-4 md:p-8 rounded-xl shadow-lg">
           {/* Left Side - Contact Info */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-bold text-gray-800">Get in Touch</h2>
-            <p className="text-gray-600">Feel free to reach out to us for any inquiries or support. We are here to help you!</p>
+            <h2 className="text-3xl font-bold text-secondary dark:text-white">Get in Touch</h2>
+            <p className="text-secondary dark:text-white">Feel free to reach out to us for any inquiries or support. We are here to help you!</p>
             
             <div className="flex items-center gap-4 text-gray-700">
               <FaEnvelope className="text-blue-500 text-xl" />
-              <span>contact@petadoption.com</span>
+              <span className="text-secondary dark:text-white">contact@petadoption.com</span>
             </div>
             <div className="flex items-center gap-4 text-gray-700">
               <FaPhone className="text-green-500 text-xl" />
-              <span>+1 234 567 890</span>
+              <span className="text-secondary dark:text-white">+1 234 567 890</span>
             </div>
             <div className="flex items-center gap-4 text-gray-700">
               <FaMapMarkerAlt className="text-red-500 text-xl" />
-              <span>123 Pet Street, Animal City</span>
+              <span className="text-secondary dark:text-white">123 Pet Street, Animal City</span>
             </div>
           </div>
   
           {/* Right Side - Contact Form */}
-          <div className="bg-white p-6 rounded-lg shadow-md">
+          <div className="bg-white p-6 rounded-lg dark:bg-gray-700 shadow-md">
             <form className="space-y-4">
             <div className="flex gap-5 flex-col lg:flex-row">
             <input
@@ -65,6 +66,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+  </section>
     );
 };
 
