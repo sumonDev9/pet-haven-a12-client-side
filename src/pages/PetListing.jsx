@@ -10,10 +10,10 @@ import { ScrollRestoration } from 'react-router-dom';
 
 const PetListing = () => {
   
-
+    const [pet, setPet] = useState([]);
   const [filter, setFilter] = useState('');
   const [search, setSearch] = useState('');
-
+  const [sortOrder, setSortOrder] = useState("asc");
 
    const {data: pets, isPending} = useQuery({
     queryKey: ['pets', filter, search],
@@ -24,6 +24,24 @@ const PetListing = () => {
 })
    
 
+//   const fetchAllpet = async () => {
+//     const {data} =await axios.get('https://pet-adoption-platform-sever-side.vercel.app/pets')
+//     setPet(data)
+//     // console.log(data)
+//   }
+
+//   useEffect(() => {
+//     fetchAllpet()
+//   }, []);
+
+  const handleSortChange = (e) => {
+    const order = e.target.value; // Get selected value
+    // const sortedpet = [...pet].sort((a, b) => {
+    //     return order === "asc" ? a.age - b.age : b.age - a.age;
+    // });
+    // setPet(sortedpet);
+    setSortOrder(order);
+}
 
 
 if(isPending){
@@ -48,11 +66,12 @@ if(isPending){
                             label="search"
                             className='bg-white  text-secondary' icon={<CiSearch />} />
                     </div>
-                    {/* sort price */}
-                    <div className="w-full mt-4 md:mt-0 md:w-72">
+                  <div className='flex flex-col md:flex-row w-full md:gap-5 items-center'>
+                      {/* sort price */}
+                      <div className="w-full mt-4 md:mt-0 lg:w-72">
                             <select 
                             onChange={(e) => setFilter(e.target.value)}
-                            className='border p-2 w-72 rounded-lg'
+                            className='border p-2 w-full  rounded-lg'
                             name="category">
                                 <option value="">Filter By Category</option>
                                 <option value="Cat">Cat</option>
@@ -61,11 +80,26 @@ if(isPending){
                                 <option value="Bird">Bird</option>
                             </select>
                         </div>
+                      {/* sort price */}
+                      <div className="w-full mt-4 md:mt-0 lg:w-72">
+                            <select 
+                            id="sort"
+                            value={sortOrder}
+                            onChange={handleSortChange}
+                            className='border p-2 w-full rounded-lg'
+                            name="category">
+                                <option value="">pet year</option>
+                                <option value="asc">Ascending</option>
+                                <option value="desc">Descending</option>
+                            </select>
+                        </div>
+                  </div>
                 </div>
                {
                 pets?.length > 0 ? <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
-                    pets?.map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
+                    pets?.slice() // মূল অ্যারে পরিবর্তন না করে কপি করা
+                    .sort((a, b) => (sortOrder === "asc" ? a.age - b.age : b.age - a.age)).map(pet => <PetCard key={pet._id} pet={pet}></PetCard>)
                 }
             </div> :  
            <div className="flex  my-5 min-h-80  rounded-lg justify-center items-center gap-2 flex-col">
